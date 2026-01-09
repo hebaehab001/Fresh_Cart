@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/layout/NavBar/NavBar";
 import Providers from "@/Providers";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,11 +22,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body >
+      <body>
         <Providers>
           <NavBar />
-            {children}
-            <Toaster />
+          <div className="pt-[10vh] bg-gray-100">{children}</div>
+          <Toaster />
         </Providers>
       </body>
     </html>

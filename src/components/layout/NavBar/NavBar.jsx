@@ -26,12 +26,12 @@ export default function NavBar() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const { numOfCart } = useContext(cartContext);
-  function handleSignOut() {
-    signOut({ callbackUrl: "/login" });
+  async function handleSignOut() {
+   await signOut({ callbackUrl: "/login" });
   }
 
   return (
-    <nav className="sticky h-[10vh] left-0 top-0 w-full z-40 bg-linear-to-b from-sky-800 to-sky-950 text-white flex justify-between items-center px-8 py-3 lg:px-8 ">
+    <nav className="fixed h-[10vh] left-[5%] mx-auto top-2 rounded-2xl  w-[90%] z-40 bg-linear-to-b from-sky-800 to-sky-950 text-white flex justify-between items-center px-8 py-3 lg:px-8 ">
       <Link
         href="/"
         className="flex items-center space-x-2 rtl:space-x-reverse"
@@ -43,13 +43,13 @@ export default function NavBar() {
       </Link>
       <div>
         <ul className="flex gap-6 p-4">
-          {links.map((link) => (
-            <li key={link.href}>
+          {links.map((link, index) => (
+            <li key={index}>
               <Link
                 href={link.href}
                 className={
-                  pathname == link.href?
-                      `center-fill px-4 py-2 font-semibold text-white text-xl `
+                  pathname == link.href
+                    ? `center-fill px-4 py-2 font-semibold text-white text-xl `
                     : "center-fill-hover px-4 py-2 font-semibold text-white text-xl"
                 }
               >
@@ -137,8 +137,8 @@ export default function NavBar() {
                   <p>{session.user.email || "Email"}</p>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="p-2 m-0 w-full text-black justify-start hover:bg-white">
-                  <Link href='/allorders'>
-                  <span>Completed Orders</span>
+                  <Link href="/allorders">
+                    <span>Completed Orders</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-[#A8BBA3] " />
