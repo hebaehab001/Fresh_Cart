@@ -57,60 +57,67 @@ export default function Login() {
 
   return (
     <>
-      <section className="flex justify-center">
-        <Card className="w-full max-w-sm text-center">
-          <CardHeader>
-            <CardTitle className="text-4xl">Login Form</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Form {...form} className="gap-2">
-              <form
-                onSubmit={form.handleSubmit(handleLogin)}
-                className="flex flex-col gap-5"
-              >
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+      <main className="min-h-[90vh]">
+        <section className="flex items-center justify-center h-full">
+          <Card className="w-full max-w-sm text-center">
+            <CardHeader>
+              <CardTitle className="text-4xl">Login Form</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Form {...form} className="gap-2">
+                <form
+                  onSubmit={form.handleSubmit(handleLogin)}
+                  className="flex flex-col gap-5"
+                >
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="password"
+                            placeholder="password"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <Button type="submit">Login</Button>
-              </form>
-            </Form>
-          </CardContent>
-          <CardFooter className="text-center justify-center w-full text-xs">
-            <span>Don't have an account ? </span>
-            <Link href='/register'>
-              <Button variant={Link} className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950">Sign Up</Button>
-            </Link>
-          </CardFooter>
-        </Card>
-      </section>
+                  <Button type="submit">Login</Button>
+                </form>
+              </Form>
+            </CardContent>
+            <CardFooter className="text-center justify-center w-full text-xs">
+              <span>Don't have an account ? </span>
+              <Link href="/register">
+                <Button
+                  variant={Link}
+                  className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950"
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        </section>
+      </main>
     </>
   );
 }

@@ -37,7 +37,7 @@ export default function ProductsCard({ product }) {
         <Link href={`/products/${product._id}`}>
           <Button
             type="submit"
-            className="w-full border bg-white border-sky-900 text-sky-900 py-3 rounded-md hover:bg-sky-800 hover:text-white transition duration-150 font-semibold shadow-md"
+            className="w-full cursor-pointer border bg-white border-sky-900 text-sky-900 py-3 rounded-md hover:bg-sky-800 hover:text-white transition duration-150 font-semibold shadow-md"
           >
             See Details
           </Button>
