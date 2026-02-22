@@ -18,14 +18,14 @@ export default function loading() {
             <Skeleton className="h-4 w-[25%]" />
             <Skeleton className="h-4 w-[30%]" />
           </div>
-          <div className="grid grid-cols-5 gap-5 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-4">
             {Array.from({ length: 10 }).map((_, index) => (
               <div
                 key={index}
                 className="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
               >
                 <div className="flex flex-col space-y-3">
-                  <Skeleton className="h-[200px] w-full rounded-xl" />
+                  <Skeleton className="h-50 w-full rounded-xl" />
                   <div className="space-y-4 p-5 py-8">
                     <Skeleton className="h-4 w-full" />
                     <Skeleton className="h-4 w-[30%]" />

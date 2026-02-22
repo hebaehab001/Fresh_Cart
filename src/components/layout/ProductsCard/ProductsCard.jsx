@@ -10,11 +10,13 @@ export default function ProductsCard({ product }) {
   return (
     <div className="w-full relative max-w-sm hover:scale-[1.01] bg-white border border-gray-200 rounded-lg shadow-sm hover:border-sky-900">
       <Image
-        className=" rounded-t-lg h-[150px] object-cover  "
+        className=" rounded-t-lg h-37.5 object-cover  "
         src={product.imageCover}
         alt="product image"
         width={200}
         height={150}
+        unoptimized
+        loading="lazy"
       ></Image>
       <AddBtnFav id={product.id} productdetails={false} />
 

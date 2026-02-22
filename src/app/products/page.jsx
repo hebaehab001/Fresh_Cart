@@ -3,9 +3,7 @@ import getAllCategories from "@/APIs/GetAllcategories";
 import getAllProducts from "@/APIs/GetAllProducts";
 import ProductsCard from "@/components/layout/ProductsCard/ProductsCard";
 import SidebarCollapse from "@/components/layout/SidebarCollapse/SidebarCollapse";
-import {
-  SearchIcon,
-} from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -13,9 +11,9 @@ import {
 } from "@/components/ui/input-group";
 export default async function Product() {
   const { data } = await getAllProducts();
- const categories= await getAllCategories();
- const brands = await getAllBrands();
- 
+  const categories = await getAllCategories();
+  const brands = await getAllBrands();
+
   if (!data || data.length === 0) {
     return (
       <section className="bg-gray-100 min-h-[90vh] p-4 flex justify-center w-full">
@@ -40,7 +38,7 @@ export default async function Product() {
             <SidebarCollapse data={categories} title={"Categories"} />
             <SidebarCollapse data={brands} title={"Brands"} />
           </div>
-          <div className="bg-white rounded-xl shadow-lg   p-6 md:p-8  col-span-5">
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8  col-span-5">
             <div className=" flex justify-between mb-6 items-center">
               <h3
                 className="text-3xl
@@ -60,7 +58,7 @@ export default async function Product() {
                 </InputGroupAddon>
               </InputGroup>
             </div>
-            <div className="grid grid-cols-5 gap-5 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-4">
               {data.map((product) => (
                 <ProductsCard key={product._id} product={product} />
               ))}

@@ -19,8 +19,8 @@ import { cartContext } from "@/Context/CartContextProvider";
 const links = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
-  { href: "/allorders", label: "Brands" },
-  { href: "/allorders", label: "Categories" },
+  { href: "/brands", label: "Brands" },
+  { href: "/categories", label: "Categories" },
 ];
 export default function NavBar() {
   const pathname = usePathname();
