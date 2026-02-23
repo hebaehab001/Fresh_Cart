@@ -16,6 +16,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Badge } from "../../ui/badge";
 import { cartContext } from "@/Context/CartContextProvider";
+import { favContext } from "@/Context/FavContextProvider";
 const links = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
@@ -26,6 +27,7 @@ export default function NavBar() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const { numOfCart } = useContext(cartContext);
+  const { numOfFav } = useContext(favContext);
   async function handleSignOut() {
    await signOut({ callbackUrl: "/login" });
   }
@@ -62,6 +64,29 @@ export default function NavBar() {
 
       {status == "authenticated" ? (
         <span className="gap-2 flex">
+          <Link href="/favourite">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full hover:bg-white group/hoverh hover:cursor-pointer relative"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-8 h-8 text-red-700 group-hover/hoverh:text-red-600 lucide lucide-heart-icon lucide-heart"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+              </svg>
+              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-1.5 -right-1 ">
+                {numOfFav}
+              </Badge>
+            </Button>
+          </Link>
           <Link href="/cart">
             <Button
               variant="outline"
@@ -85,26 +110,6 @@ export default function NavBar() {
               <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-1.5 -right-1 ">
                 {numOfCart}
               </Badge>
-            </Button>
-          </Link>
-          <Link href="/Favbook">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full hover:bg-white group/hoverh hover:cursor-pointer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-8 h-8 text-red-700 group-hover/hoverh:text-red-600 lucide lucide-heart-icon lucide-heart"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                fill="none"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
-              </svg>
             </Button>
           </Link>
           <DropdownMenu>

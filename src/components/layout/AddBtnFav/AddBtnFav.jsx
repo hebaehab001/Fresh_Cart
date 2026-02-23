@@ -1,18 +1,43 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import { favContext } from "@/Context/FavContextProvider";
 import { FaHeart } from "react-icons/fa";
-
+import React, { useContext, useMemo } from "react";
+import { toast } from "sonner";
 export default function AddBtnFav({ id, productdetails }) {
-  return productdetails ? (
-    <Button className="cursor-pointer absolute top-8 right-8 bg-white/70 p-2 py-3 rounded-full  text-gray-500 hover:text-red-500 hover:bg-white/70 transition-colors duration-150">
-      <span className="w-8 h-8">
-        <FaHeart className=" size-8 " />
-      </span>
-    </Button>
-  ) : (
-    <Button className="cursor-pointer absolute  top-3 right-3 bg-white/70 p-2 py-3 rounded-full  text-gray-500 hover:text-red-500 hover:bg-white/70 transition-colors duration-150">
-      <span className="w-6 h-6">
-        <FaHeart className=" size-6 " />
+  const { addProductToFav, products, removeFavItem } = useContext(favContext);
+  const isInFav = useMemo(
+    () =>
+      products?.some((item) =>
+        typeof item === "string" ? item === id : item._id === id,
+      ),
+    [products, id],
+  );
+
+  async function handleToggleFav() {
+    const data = isInFav ? await removeFavItem(id) : await addProductToFav(id);
+    if (data?.status === "success") {
+      toast.success(data.message, {
+        position: "bottom-right",
+        duration: 2000,
+      });
+    } else {
+      toast.error("faild to add this in favourite", {
+        position: "bottom-right",
+        duration: 2000,
+      });
+    }
+  }
+  return (
+    <Button
+      onClick={handleToggleFav}
+      className={`cursor-pointer absolute ${
+        productdetails ? "top-8 right-8" : "top-3 right-3"
+      } bg-white/70 hover:bg-white/90 p-2 py-3 rounded-full transition-colors duration-150
+      ${isInFav ? "text-red-500" : "text-gray-500 hover:text-red-500"}`}
+    >
+      <span className={productdetails ? "w-8 h-8" : "w-6 h-6"}>
+        <FaHeart className={productdetails ? "size-8" : "size-6"} />
       </span>
     </Button>
   );

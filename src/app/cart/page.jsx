@@ -16,7 +16,6 @@ export default function page() {
     updateCartItem,
     removeAllCartItem,
   } = useContext(cartContext);
-  console.log(products);
 
   async function removeCart(id) {
     const data = await removeCartItem(id);
@@ -41,7 +40,7 @@ export default function page() {
 
   return (
     <section className="bg-gray-100 min-h-[90vh] p-4 flex justify-center w-full">
-      <div className="bg-white rounded-xl shadow-lg w-[60%] flex flex-col h-full  p-6 md:p-8 mt-10">
+      <div className="bg-white rounded-xl shadow-lg w-[90%] flex flex-col h-full  p-6 md:p-8 mt-10">
         <div className="flex justify-between py-5">
           <h1 className="text-2xl font-bold text-gray-800 ">
             Shopping Cart ({products.length} items)

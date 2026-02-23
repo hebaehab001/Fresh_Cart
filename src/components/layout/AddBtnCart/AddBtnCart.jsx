@@ -11,12 +11,12 @@ export default function AddBtnCart({ id, productdetails }) {
     if (data.status === "success") {
       toast.success(data.message, {
         position: "bottom-right",
-        duration: 1000,
+        duration: 2000,
       });
     } else {
       toast.error("faild to add this in cart", {
         position: "bottom-right",
-        duration: 1000,
+        duration: 2000,
       });
     }
   }
