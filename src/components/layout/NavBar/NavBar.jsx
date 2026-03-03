@@ -29,7 +29,7 @@ export default function NavBar() {
   const { numOfCart } = useContext(cartContext);
   const { numOfFav } = useContext(favContext);
   async function handleSignOut() {
-   await signOut({ callbackUrl: "/login" });
+    await signOut({ callbackUrl: "/login" });
   }
 
   return (
@@ -82,7 +82,7 @@ export default function NavBar() {
               >
                 <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
               </svg>
-              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-1.5 -right-1 ">
+              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-linear-to-r from-sky-400 to-indigo-700 text-white">
                 {numOfFav}
               </Badge>
             </Button>
@@ -107,7 +107,7 @@ export default function NavBar() {
                 <circle cx="19" cy="21" r="1" />
                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
               </svg>
-              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-1.5 -right-1 ">
+              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-linear-to-r from-sky-400 to-indigo-700 text-white">
                 {numOfCart}
               </Badge>
             </Button>

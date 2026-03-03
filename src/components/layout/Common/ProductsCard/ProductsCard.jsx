@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import AddBtnCart from "../AddBtnCart/AddBtnCart";
+import AddBtnCart from "../../Buttons/CartBtn";
 import { FaStar } from "react-icons/fa6";
-import AddBtnFav from "../AddBtnFav/AddBtnFav";
+import AddBtnFav from "../../Buttons/FavBtn";
 export default function ProductsCard({ product }) {
   return (
     <div className="w-full relative max-w-sm hover:scale-[1.01] bg-white border border-gray-200 rounded-lg shadow-sm hover:border-sky-900">
@@ -18,7 +18,7 @@ export default function ProductsCard({ product }) {
       ></Image>
       <AddBtnFav id={product.id} productdetails={false} />
 
-      <div className="px-5 pb-5 pt-3 flex flex-col gap-3">
+      <div className="px-3 pb-3 pt-3 flex flex-col gap-3">
         <h5 className="text-lg line-clamp-1 font-semibold tracking-tight text-gray-900 dark:text-white">
           {product.title}
         </h5>

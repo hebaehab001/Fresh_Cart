@@ -4,7 +4,7 @@ import { favContext } from "@/Context/FavContextProvider";
 import { FaHeart } from "react-icons/fa";
 import React, { useContext, useMemo } from "react";
 import { toast } from "sonner";
-export default function AddBtnFav({ id, productdetails }) {
+export default function FavBtn({ id, productdetails }) {
   const { addProductToFav, products, removeFavItem } = useContext(favContext);
   const isInFav = useMemo(
     () =>

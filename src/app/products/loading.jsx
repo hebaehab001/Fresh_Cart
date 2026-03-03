@@ -1,19 +1,24 @@
 import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import PageTitle from "@/components/layout/Common/PageTitle/PageTitle";
 export default function loading() {
   return (
     <section className="bg-gray-100 min-h-[90vh] p-4 flex flex-col justify-center gap-3 items-center w-full">
-      <div className="bg-white rounded-xl shadow-lg w-[90%]  p-6 md:p-8 ">
-        <h1 className="text-5xl text-center font-extrabold text-transparent bg-clip-text bg-linear-to-b from-sky-700 to-stone-800">
-          Our Products
-        </h1>
-      </div>
-      <div className="grid grid-cols-6 w-[90%] gap-3 ">
-        <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col gap-2 col-span-1">
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-full" />
+      <PageTitle title="Our Products" />
+      <div className="grid grid-cols-12 w-[90%] gap-3 ">
+        <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col gap-2 col-span-2">
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-full" />
         </div>
-        <div className="bg-white rounded-xl shadow-lg   p-6 md:p-8  col-span-5">
+        <div className="bg-white rounded-xl shadow-lg   p-6 md:p-8  col-span-10">
           <div className=" flex justify-between mb-6 items-center">
             <Skeleton className="h-4 w-[25%]" />
             <Skeleton className="h-4 w-[30%]" />

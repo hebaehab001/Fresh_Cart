@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { FaBasketShopping  } from "react-icons/fa6";
 import { toast } from "sonner";
 
-export default function AddBtnCart({ id, productdetails }) {
+export default function CartBtn({ id, productdetails }) {
   const { addProductToCart } = useContext(cartContext);
   async function handleAddCart() {
     const data = await addProductToCart(id);

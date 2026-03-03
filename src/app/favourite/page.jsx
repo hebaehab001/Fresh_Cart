@@ -1,5 +1,6 @@
 "use client";
-import ProductsCard from "@/components/layout/ProductsCard/ProductsCard";
+import PageTitle from "@/components/layout/Common/PageTitle/PageTitle";
+import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
 import { favContext } from "@/Context/FavContextProvider";
 import React, { useContext } from "react";
 
@@ -12,7 +13,8 @@ export default function page() {
     return <h1>no data</h1>;
   }
   return (
-    <section className="bg-gray-100 min-h-[90vh] p-4 flex justify-center w-full">
+    <section className="bg-gray-100 min-h-[90vh] p-4 flex flex-col justify-center items-center w-full">
+      <PageTitle title="Wishlist"/>
       <div className="bg-white rounded-xl shadow-lg w-[90%] flex flex-col h-full  p-6 md:p-8 mt-10">
         <div className="flex justify-between py-5">
           <h1 className="text-2xl font-bold text-gray-800 ">

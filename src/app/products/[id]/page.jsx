@@ -9,9 +9,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import AddBtnCart from "@/components/layout/AddBtnCart/AddBtnCart";
+import AddBtnCart from "@/components/layout/Buttons/CartBtn";
 import { Star, StarHalf } from "lucide-react";
-import AddBtnFav from "@/components/layout/AddBtnFav/AddBtnFav";
+import AddBtnFav from "@/components/layout/Buttons/FavBtn";
 const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
   const roundedRating = useMemo(() => Math.round(rating * 2) / 2, [rating]);
   const stars = useMemo(() => {
