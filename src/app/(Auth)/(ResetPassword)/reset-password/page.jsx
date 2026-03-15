@@ -21,36 +21,30 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { loginSchema } from "@/schema/login.schema";
-
-export default function Login() {
+import { ResetPasswordSchema } from "@/schema/resetPassword.schema";
+import UpdateUserPassword from "@/APIs/UpdateUserPassword";
+export default function Register() {
   const router = useRouter();
   const form = useForm({
+    resolver: zodResolver(ResetPasswordSchema),
     defaultValues: {
       email: "",
-      password: "",
+      newPassword: "",
     },
-    resolver: zodResolver(loginSchema),
   });
-  async function handleLogin(values) {
-    const res = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-      callbackUrl: "/",
-    });
-    if (res?.ok) {
-      toast.success("login success", {
+  async function handleResetPassword(values) {
+    try {
+      await UpdateUserPassword(values);
+      toast.success("Password Updated successfully", {
         position: "bottom-right",
-        duration: 1000,
+        duration: 3000,
       });
-      router.push(res.url || "/");
-    } else {
-      toast.error(res.error, {
+      router.push("/login");
+    } catch (error) {
+      toast.error(error.response?.data?.message ?? "Something went wrong", {
         position: "bottom-right",
-        duration: 1000,
+        duration: 3000,
       });
     }
   }
@@ -59,12 +53,12 @@ export default function Login() {
     <section className="flex items-center justify-center min-h-[90vh] h-full">
       <Card className="w-full max-w-sm text-center">
         <CardHeader>
-          <CardTitle className="text-4xl">Login Form</CardTitle>
+          <CardTitle className="text-4xl">Reset Password</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form} className="gap-2">
             <form
-              onSubmit={form.handleSubmit(handleLogin)}
+              onSubmit={form.handleSubmit(handleResetPassword)}
               className="flex flex-col gap-5"
             >
               <FormField
@@ -82,25 +76,14 @@ export default function Login() {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name="newPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between">
-                      <FormLabel>Password</FormLabel>
-
-                      <Link href="/forget-password">
-                        <Button
-                          variant={Link}
-                          className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950"
-                        >
-                          Forget Password?
-                        </Button>
-                      </Link>
-                    </div>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
-                        placeholder="password"
+                        placeholder="newPassword"
                         {...field}
                       />
                     </FormControl>
@@ -108,19 +91,18 @@ export default function Login() {
                   </FormItem>
                 )}
               />
-
-              <Button type="submit">Login</Button>
+              <Button type="submit">Reset Password</Button>
             </form>
           </Form>
         </CardContent>
         <CardFooter className="text-center justify-center w-full text-xs">
-          <span>Don't have an account ? </span>
-          <Link href="/register">
+          <span>Have an account ? </span>
+          <Link href="/login">
             <Button
               variant={Link}
               className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950"
             >
-              Sign Up
+              LogIn
             </Button>
           </Link>
         </CardFooter>

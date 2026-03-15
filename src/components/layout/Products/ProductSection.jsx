@@ -64,8 +64,10 @@ export default function ProductSection({ products, brands, categories }) {
             </InputGroupAddon>
           </InputGroup>
         </div>
-       
-        {filteredProducts.length === 0 ? (
+
+        {products.length === 0 ? (
+          <NoProducts text="No products available." />
+        ) : filteredProducts.length === 0 ? (
           <NoProducts text="No products match your search or filter criteria." />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
