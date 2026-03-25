@@ -8,7 +8,7 @@ export default function ProductsCard({ product }) {
   return (
     <div className="w-full relative max-w-sm hover:scale-[1.01] bg-white border border-gray-200 rounded-lg shadow-sm hover:border-sky-900">
       <Image
-        className=" rounded-t-lg h-54 object-cover  "
+        className=" rounded-t-lg w-full h-75 lg:h-54  object-center  lg:object-cover"
         src={product.imageCover}
         alt="product image"
         width={200}
