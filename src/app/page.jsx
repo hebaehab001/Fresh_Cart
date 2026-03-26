@@ -37,7 +37,7 @@ export default async function Home() {
           <div className="flex gap-4 self-center lg:self-start">
             <Link
               href="/products"
-              className="w-[200px] flex justify-center items-center-safe gap-3 p-3 bg-linear-to-b from-sky-800 to-sky-950 rounded-3xl"
+              className="w-[200px] flex justify-center items-center-safe gap-3 p-3 bg-linear-to-b from-sky-800 to-sky-950 rounded-2xl"
             >
               Shop Now <FaArrowRight />
             </Link>

@@ -1,17 +1,11 @@
 import getProductById from "@/APIs/GetProductById";
 import Image from "next/image";
 import React, { useMemo } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import AddBtnCart from "@/components/layout/Buttons/CartBtn";
 import { Star, StarHalf } from "lucide-react";
 import AddBtnFav from "@/components/layout/Buttons/FavBtn";
+import ImgCarousel from "@/components/layout/Common/ImgCarousel/ImgCarousel";
+
 const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
   const roundedRating = useMemo(() => Math.round(rating * 2) / 2, [rating]);
   const stars = useMemo(() => {
@@ -23,21 +17,23 @@ const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
           <Star
             key={i}
             className={`${iconClass} fill-yellow-500 text-yellow-500`}
-          />
+          />,
         );
       } else if (starValue - 0.5 === roundedRating) {
         starElements.push(
-          <StarHalf
-            key={i}
-            className={`${iconClass} fill-yellow-500 text-yellow-500`}
-          />
+          <div key={i} className="relative">
+            <StarHalf
+              className={`${iconClass} fill-yellow-500 text-yellow-500 absolute`}
+            />
+            <Star className={`${iconClass} fill-gray-300 text-gray-300`} />
+          </div>,
         );
       } else {
         starElements.push(
           <Star
             key={i}
             className={`${iconClass} fill-gray-300 text-gray-300`}
-          />
+          />,
         );
       }
     }
@@ -57,49 +53,13 @@ export default async function page({ params }) {
   const { data } = await getProductById(id);
 
   return (
-    <section className="bg-gray-100 min-h-[90vh] p-4 flex justify-center items-center w-full">
-      <div className="bg-white rounded-xl shadow-lg w-[80%] h-auto p-6 md:p-8 grid grid-cols-2 relative ">
+    <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
+      <div className="bg-white rounded-xl shadow-lg  w-[90%] min-h-[85vh] p-6 md:p-8 grid grid-cols-2 gap-14 relative ">
         <AddBtnFav id={id} productdetails={true} />
-        <div className="col-span-1  gap-3">
-          <div className="flex flex-col justify-center gap-2 items-center rounded-2xl shrink-0">
-            <Image
-              className="h-[250px] max-w-full rounded-lg "
-              src={data?.images[0]}
-              alt="img"
-              height={400}
-              width={300}
-            />
-            <Carousel
-              opts={{
-                align: "start",
-              }}
-              className="w-full max-w-xs"
-            >
-              <CarouselContent>
-                {data?.images.map((myimg) => (
-                  <CarouselItem key={myimg} className="pt-1 gap-2 md:basis-1/3">
-                    <div className="p-1">
-                      <Card className="p-0">
-                        <CardContent className="flex items-center aspect-square justify-center p-0">
-                          <Image
-                            className=" rounded-lg"
-                            src={myimg}
-                            alt="img"
-                            height={100}
-                            width={80}
-                          />
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div>
+        <div className="col-span-2 lg:col-span-1 gap-3">
+          <ImgCarousel images={data?.images} />
         </div>
-        <div className="col-span-1 flex flex-col justify-between leading-normal py-10">
+        <div className="col-span-2 lg:col-span-1 flex flex-col justify-between leading-normal  lg:py-10">
           <p className="text-lg font-semibold uppercase tracking-wider text-sky-700 mb-2">
             {data.category.name}
           </p>
@@ -120,9 +80,8 @@ export default async function page({ params }) {
             <div className="flex flex-col items-center space-y-3">
               <StarRating rating={data.ratingsAverage} iconClass="w-6 h-6" />
             </div>
-            <span className="text-lg mx-2">
-              {" "}
-              {data.ratingsAverage} ({data.ratingsQuantity} Review)
+            <span className="text-lg mx-2 text-gray-400">
+              ({data.ratingsQuantity} Review)
             </span>
           </div>
           <p className="text-3xl font-bold text-gray-900 mb-4">
