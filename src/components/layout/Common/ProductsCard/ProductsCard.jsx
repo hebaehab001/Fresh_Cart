@@ -8,7 +8,7 @@ export default function ProductsCard({ product }) {
   return (
     <div className="w-full relative max-w-sm hover:scale-[1.01] bg-white border border-gray-200 rounded-lg shadow-sm hover:border-sky-900">
       <Image
-        className=" rounded-t-lg w-full h-75 lg:h-54  object-center  lg:object-cover"
+        className=" md:rounded-t-lg w-[80%] mx-auto md:w-full h-75 lg:h-54  object-center  lg:object-cover"
         src={product.imageCover}
         alt="product image"
         width={200}
@@ -18,8 +18,8 @@ export default function ProductsCard({ product }) {
       ></Image>
       <AddBtnFav id={product.id} productdetails={false} />
 
-      <div className="px-3 pb-3 pt-3 flex flex-col gap-3">
-        <h5 className="text-lg line-clamp-1 font-semibold tracking-tight text-gray-900 dark:text-white">
+      <div className="p-6 md:p-3 flex flex-col gap-3">
+        <h5 className="text-xl md:text-lg line-clamp-1  font-semibold tracking-tight text-gray-900 dark:text-white">
           {product.title}
         </h5>
         <div className="flex items-center">

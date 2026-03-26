@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <Link
       href="/"
-      className="flex items-center space-x-2 text-white text-xl md:text-3xl"
+      className="flex items-center space-x-2 text-white text-2xl md:text-3xl"
     >
       <RiShoppingBag4Fill className="m-0" />
       <span className="self-center  font-semibold whitespace-nowrap ">

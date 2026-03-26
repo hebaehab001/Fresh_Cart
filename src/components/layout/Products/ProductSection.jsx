@@ -28,7 +28,7 @@ export default function ProductSection({ products, brands, categories }) {
   }, [products, search, selectedCategory]);
   return (
     <div className="grid grid-cols-12 w-[90%] gap-3 ">
-      <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 h-fit col-span-2">
+      <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 h-fit col-span-12 lg:col-span-2">
         <SidebarFilteration
           data={categories}
           title="Categories"
@@ -36,8 +36,8 @@ export default function ProductSection({ products, brands, categories }) {
           onSelect={setSelectedCategory}
         />
       </div>
-      <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8  col-span-10">
-        <div className=" flex justify-between items-center">
+      <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12   lg:col-span-10">
+        <div className=" flex flex-col md:flex-row justify-between gap-4 md:items-center">
           <h3
             className="text-2xl
                 font-bold capitalize
@@ -53,7 +53,7 @@ export default function ProductSection({ products, brands, categories }) {
               ({filteredProducts.length} Items){" "}
             </span>
           </h3>
-          <InputGroup className="w-[30%]">
+          <InputGroup className=" md:w-[30%]">
             <InputGroupInput
               placeholder="Search..."
               value={search}

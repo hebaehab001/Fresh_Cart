@@ -12,10 +12,10 @@ export default function SidebarFilteration({
         {title}
       </h3>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap lg:flex-col gap-2">
         <button
           onClick={() => onSelect(null)}
-          className={`rounded-md border px-4 py-2 text-sm text-left transition cursor-pointer
+          className={`rounded-md border px-2 md:px-4 py-2 text-xs md:text-sm text-left transition cursor-pointer
             ${!selected ? "border-sky-800 bg-sky-50 text-sky-900" : "hover:border-sky-900"}
           `}
         >

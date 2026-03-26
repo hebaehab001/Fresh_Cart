@@ -16,7 +16,7 @@ export default async function page() {
                 className="rounded-md cursor-pointer border font-mono text-sm hover:border-sky-900"
               >
                 <Image
-                  className=" rounded-t-lg h-37.5 object-cover  "
+                  className=" md:rounded-t-lg mx-auto h-37.5 object-cover  "
                   src={item.image}
                   alt="brand image"
                   width={200}
