@@ -56,17 +56,29 @@ export default function Login() {
   }
 
   return (
-    <section className="flex items-center justify-center min-h-[90vh] h-full">
-      <Card className="w-full max-w-sm text-center">
-        <CardHeader>
-          <CardTitle className="text-4xl">Login Form</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form} className="gap-2">
+    <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
+      <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
+        <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
+          <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
+            <img
+              src="/login.png"
+              alt="Image"
+              className="absolute rounded-l-xl inset-0 h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
+            />
+          </div>
+          <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleLogin)}
-              className="flex flex-col gap-5"
+              className="flex  flex-col justify-center h-full gap-5 p-6 md:p-10"
             >
+              <CardHeader className="text-center">
+                <CardTitle className="text-4xl font-bold  text-sky-900">
+                  Login to your account
+                </CardTitle>
+                <p className="text-sm  text-muted-foreground">
+                  Enter your email below to login to your account
+                </p>
+              </CardHeader>
               <FormField
                 control={form.control}
                 name="email"
@@ -91,7 +103,7 @@ export default function Login() {
                       <Link href="/forget-password">
                         <Button
                           variant={Link}
-                          className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950"
+                          className="px-1 text-xs underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
                         >
                           Forget Password?
                         </Button>
@@ -109,21 +121,24 @@ export default function Login() {
                 )}
               />
 
-              <Button type="submit">Login</Button>
+              <Button
+                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
+                type="submit"
+              >
+                Login
+              </Button>
+              <p className="text-center">
+                Don&apos;t have an account?{" "}
+                <Link
+                  href="/register"
+                  className="px-1 underline underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
+                >
+                  Sign up
+                </Link>
+              </p>
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="text-center justify-center w-full text-xs">
-          <span>Don't have an account ? </span>
-          <Link href="/register">
-            <Button
-              variant={Link}
-              className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950"
-            >
-              Sign Up
-            </Button>
-          </Link>
-        </CardFooter>
       </Card>
     </section>
   );

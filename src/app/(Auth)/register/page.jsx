@@ -53,17 +53,29 @@ export default function Register() {
   }
 
   return (
-    <section className="flex items-center justify-center min-h-[90vh] h-full">
-      <Card className="w-full max-w-sm text-center">
-        <CardHeader>
-          <CardTitle className="text-4xl">Register Form</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form} className="gap-2">
+     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
+      <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
+        <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
+          <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
+            <img
+              src="/login.png"
+              alt="Image"
+              className="absolute rounded-l-xl inset-0 h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
+            />
+          </div>
+          <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleRegister)}
-              className="flex flex-col gap-5"
+              className="flex  flex-col justify-center h-full gap-5 p-6 md:p-10"
             >
+              <CardHeader className="text-center">
+                <CardTitle className="text-4xl font-bold  text-sky-900">
+                  Create your account
+                </CardTitle>
+                <p className="text-sm  text-muted-foreground">
+                  Fill in the form below to create your account
+                </p>
+              </CardHeader>
               <FormField
                 control={form.control}
                 name="name"
@@ -133,21 +145,24 @@ export default function Register() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Register</Button>
+              <Button
+                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
+                type="submit"
+              >
+                Create account
+              </Button>
+              <p className="text-center">
+                Have an account ?{" "}
+                <Link
+                  href="/login"
+                  className="px-1 underline underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
+                >
+                  LogIn
+                </Link>
+              </p>
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="text-center justify-center w-full text-xs">
-          <span>Have an account ? </span>
-          <Link href="/login">
-            <Button
-              variant={Link}
-              className="px-1 text-xs underline hover:cursor-pointer hover:text-amber-950"
-            >
-              LogIn
-            </Button>
-          </Link>
-        </CardFooter>
       </Card>
     </section>
   );
