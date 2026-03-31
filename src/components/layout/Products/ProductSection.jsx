@@ -36,7 +36,7 @@ export default function ProductSection({ products, brands, categories }) {
           onSelect={setSelectedCategory}
         />
       </div>
-      <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12   lg:col-span-10">
+      <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12 lg:col-span-10">
         <div className=" flex flex-col md:flex-row justify-between gap-4 md:items-center">
           <h3
             className="text-2xl
