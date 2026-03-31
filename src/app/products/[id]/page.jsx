@@ -1,5 +1,5 @@
 import getProductById from "@/APIs/GetProductById";
-import Image from "next/image";
+
 import React, { useMemo } from "react";
 import AddBtnCart from "@/components/layout/Buttons/CartBtn";
 import { Star, StarHalf } from "lucide-react";

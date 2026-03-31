@@ -2,6 +2,7 @@ import React from "react";
 import getAllBrands from "@/APIs/GetAllBrands";
 import Image from "next/image";
 import PageTitle from "@/components/layout/Common/PageTitle/PageTitle";
+import Link from "next/link";
 export default async function page() {
   const brands = await getAllBrands();
   return (
@@ -15,18 +16,20 @@ export default async function page() {
                 key={item._id}
                 className="rounded-md cursor-pointer border font-mono text-sm hover:border-sky-900"
               >
-                <Image
-                  className=" md:rounded-t-lg mx-auto h-37.5 object-cover  "
-                  src={item.image}
-                  alt="brand image"
-                  width={200}
-                  height={150}
-                  unoptimized
-                  loading="lazy"
-                />
-                <h5 className="text-xl py-2 line-clamp-1 text-center font-semibold tracking-tight text-gray-900 dark:text-white">
-                  {item.name}
-                </h5>
+                <Link href={`/brands/${item._id}`}>
+                  <Image
+                    className=" md:rounded-t-lg mx-auto h-37.5 object-cover  "
+                    src={item.image}
+                    alt="brand image"
+                    width={200}
+                    height={150}
+                    unoptimized
+                    loading="lazy"
+                  />
+                  <h5 className="text-xl py-2 line-clamp-1 text-center font-semibold tracking-tight text-gray-900 dark:text-white">
+                    {item.name}
+                  </h5>
+                </Link>
               </div>
             ))}
           </div>
