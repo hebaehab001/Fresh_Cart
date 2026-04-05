@@ -1,14 +1,38 @@
 "use client";
 import React from "react";
 import { useSession } from "next-auth/react";
-import { Button } from "@/components/ui/button";
+import { FiEdit } from "react-icons/fi";
+import { MdOutlinePassword } from "react-icons/md";
+import { GrMapLocation } from "react-icons/gr";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import EditProfileTab from "./EditProfileTab";
+const tabs = [
+  {
+    name: "Edit Profile",
+    value: "EditProfile",
+    icon: FiEdit,
+  },
+  {
+    name: "Addresses",
+    value: "settings",
+    icon: GrMapLocation,
+  },
+  {
+    name: "Password & Security",
+    value: "messages",
+    icon: MdOutlinePassword,
+  },
+];
 export default function ProfileSection() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
-    <div className="grid grid-cols-12 w-[90%] gap-3 ">
-      <div className="bg-white rounded-xl shadow-lg  h-fit col-span-12 lg:col-span-4">
-        <div className="relative w-full h-[65vh] flex flex-col items-center bg-white rounded-2xl">
+    <Tabs
+      defaultValue={tabs[0].value}
+      className="grid grid-cols-12 w-[90%] gap-3 "
+    >
+      <div className="bg-white rounded-xl shadow-lg  h-fit col-span-12 lg:col-span-3">
+        <div className="relative w-full md:h-[40vh] h-[60vh] lg:h-[65vh] flex flex-col items-center bg-white rounded-2xl">
           <div className="h-[40%] w-full bg-linear-to-b from-sky-800 to-sky-950 rounded-t-2xl">
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="100%">
               <rect fill="#ffffff" width={540} height={450} />
@@ -58,25 +82,24 @@ export default function ProfileSection() {
             </div>
 
             <div className="mt-4 flex flex-col w-full gap-2">
-              <Button
-                variant="outline"
-                className="w-full  text-sky-900 cursor-pointer md:text-lg md:py-5 rounded-2xl hover:bg-transparent hover:text-sky-900"
-              >
-                Edit Profile
-              </Button>
-              <Button
-                variant="outline"
-                className="bg-linear-to-b from-sky-800 to-sky-950 text-white rounded-2xl   w-full border-0 cursor-pointer hover:text-white  md:text-lg md:py-5 "
-              >
-                Security Settings
-              </Button>
+              <TabsList className="lg:grid flex flex-wrap  shrink-0 lg:grid-cols-1 gap-1 bg-background lg:p-0  w-full">
+                {tabs.map((tab) => (
+                  <TabsTrigger
+                    className="lg:justify-start justify-center shrink-0 px-3 py-1.5 data-[state=active]:bg-linear-to-b cursor-pointer from-sky-800 to-sky-950 data-[state=active]:text-primary-foreground"
+                    key={tab.value}
+                    value={tab.value}
+                  >
+                    <tab.icon className="me-2 h-5 w-5" /> {tab.name}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12 lg:col-span-8">
-        rg
+      <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12 lg:col-span-9">
+        <EditProfileTab />
       </div>
-    </div>
+    </Tabs>
   );
 }

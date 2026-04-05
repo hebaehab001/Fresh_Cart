@@ -40,10 +40,14 @@ export const authOptions = {
             session.user = token.user;
             return session
         },
-        async jwt({ token, user }) {
+        async jwt({ token, user, trigger, session }) {
             if (user) {
                 token.user = user?.user;
                 token.token = user?.token;
+            }
+            if (trigger === "update" && session?.name) {
+                if (!token.user) token.user = {};
+                token.user.name = session.name;
             }
             return token
         }
