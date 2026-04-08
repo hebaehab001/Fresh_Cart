@@ -1,6 +1,5 @@
 import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
-export { default } from "next-auth/middleware"
 
 export async function proxy(request) {
     const pathname = request.nextUrl.pathname.replace(/\/$/, '');
@@ -23,7 +22,6 @@ export async function proxy(request) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
     }
-
     return NextResponse.next();
 }
 

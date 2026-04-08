@@ -47,7 +47,9 @@ export default function Login() {
         duration: 1000,
       });
       await getSession();
-      router.push(res.url || "/");
+      setTimeout(() => {
+        router.push(res.url || "/");
+      }, 300);
     } else {
       toast.error(res.error, {
         position: "bottom-right",
