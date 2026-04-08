@@ -32,7 +32,6 @@ export default function page() {
     };
     try {
       const data = await cashPaymentAction(cardId, values);
-      console.log(data);
       if (data.status === "success") {
         toast.success(data.status, {
           duration: 1000,
@@ -60,7 +59,6 @@ export default function page() {
     };
     try {
       const data = await onlinePaymentAction(cardId, values);
-      console.log(data);
       if (data.status === "success") {
         toast.success(data.status, {
           duration: 1000,
@@ -78,19 +76,31 @@ export default function page() {
     }
   }
   return (
-    <section className="bg-gray-100 min-h-[90vh] p-4 flex flex-col items-center justify-center w-full">
-      <Card className="w-[30%] max-w-[40%] h-auto">
-        <CardHeader className="text-center">
-          <CardTitle className='text-3xl'>payment</CardTitle>
-          <CardDescription>
-            Enter your data below to pay
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
+    <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
+      <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
+        <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
+          <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
+            <img
+              src="/payment.png"
+              alt="Image"
+              className="absolute rounded-l-xl inset-0 h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
+            />
+          </div>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex  flex-col justify-center h-full gap-5 p-6 md:p-10"
+          >
+            <CardHeader className="text-center">
+              <CardTitle className="text-4xl font-bold  text-sky-900">
+                Payment
+              </CardTitle>
+              <p className="text-sm  text-muted-foreground">
+                Enter your data below to pay
+              </p>
+            </CardHeader>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="details">Details</Label>
+                <Label htmlFor="details">Shipping Address Details</Label>
                 <Input ref={details} id="details" type="text" required />
               </div>
               <div className="grid gap-2">
@@ -104,24 +114,22 @@ export default function page() {
                 <Input ref={city} id="city" type="text" required />
               </div>
             </div>
+            <div className="flex flex-col gap-2">
+              <Button
+                onClick={cashPayment}
+                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
+              >
+                Cash Payment
+              </Button>
+              <Button
+                onClick={onlinePayment}
+                className="text-lg border bg-white border-sky-900 text-sky-900 py-5 hover:cursor-pointer rounded-lg hover:bg-sky-800 hover:text-white "
+              >
+                Online Payment
+              </Button>
+            </div>
           </form>
         </CardContent>
-        <CardFooter className="flex-col gap-2">
-          <Button
-            onClick={cashPayment}
-            type="submit"
-            className="w-full bg-sky-900 text-white py-3 rounded-lg hover:bg-sky-800 transition duration-150 font-semibold shadow-md"
-          >
-            Cash Payment
-          </Button>
-          <Button
-            onClick={onlinePayment}
-            type="submit"
-            className="w-full border bg-white border-sky-900 text-sky-900 py-3 rounded-lg hover:bg-sky-800 hover:text-white transition duration-150 font-semibold shadow-md"
-          >
-            Online Payment
-          </Button>
-        </CardFooter>
       </Card>
     </section>
   );
