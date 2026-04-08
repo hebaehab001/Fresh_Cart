@@ -21,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import Link from "next/link";
 import { loginSchema } from "@/schema/login.schema";
 
@@ -46,6 +46,7 @@ export default function Login() {
         position: "bottom-right",
         duration: 1000,
       });
+      await getSession();
       router.push(res.url || "/");
     } else {
       toast.error(res.error, {
