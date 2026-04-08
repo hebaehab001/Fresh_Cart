@@ -1,9 +1,9 @@
 import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 
-export async function proxy(request) {
+export async function middleware(request) {
     const pathname = request.nextUrl.pathname.replace(/\/$/, '');
-    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET, secureCookie: true });
 
     const authPages = ['/login', '/register'];
     const protectedRoutes = ['/products', '/cart', '/allorders', '/payment', '/brands', '/categories'];
