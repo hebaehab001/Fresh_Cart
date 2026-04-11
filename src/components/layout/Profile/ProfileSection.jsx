@@ -32,7 +32,7 @@ export default function ProfileSection(Addresses) {
       defaultValue={tabs[0].value}
       className="grid grid-cols-12 w-[90%] gap-3 "
     >
-      <div className="bg-white rounded-xl shadow-lg  h-fit col-span-12 lg:col-span-3">
+      <div className="bg-white rounded-xl shadow-lg  h-[85vh] col-span-12 lg:col-span-3">
         <div className="relative w-full md:h-[40vh] h-[60vh] lg:h-[65vh] flex flex-col items-center bg-white rounded-2xl">
           <div className="h-[40%] w-full bg-linear-to-b from-sky-800 to-sky-950 rounded-t-2xl">
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="100%">

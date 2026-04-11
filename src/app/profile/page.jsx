@@ -6,7 +6,7 @@ export default async function page() {
   const { data: Addresses } = await GetloggedUserAddresses();
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col gap-3 items-center w-full">
-      <PageTitle title="My Account" />
+      {/* <PageTitle title="My Account" /> */}
       <ProfileSection Addresses={Addresses} />
     </section>
   );

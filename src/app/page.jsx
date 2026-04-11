@@ -84,7 +84,7 @@ export default async function Home() {
       </section>
 
       <section className=" w-[90%]  p-6 md:p-8 ">
-        <h3 className="text-3xl md:text-4xl lg:text-5xl py-4 mb-4 text-center leading-16 tracking-wider  capitalize font-extrabold text-sky-900">
+        <h3 className="text-3xl md:text-4xl  py-4 mb-4 text-center leading-16 tracking-wider  capitalize font-extrabold text-sky-900">
           Categories
         </h3>
         <Carousel
@@ -126,7 +126,7 @@ export default async function Home() {
         </Carousel>
       </section>
       <section className=" w-[90%]  p-6 md:p-8 ">
-        <h3 className="text-3xl md:text-4xl lg:text-5xl py-4 mb-4 text-center leading-16 tracking-wider  capitalize font-extrabold text-sky-900">
+        <h3 className="text-3xl md:text-4xl  py-4 mb-4 text-center leading-16 tracking-wider  capitalize font-extrabold text-sky-900">
           Trending Now
         </h3>
         <Carousel
