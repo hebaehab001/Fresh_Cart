@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState } from "react";
 import {
   Form,
   FormControl,
@@ -8,44 +8,66 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { CardHeader, CardTitle } from "@/components/ui/card";
+import { CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TabsContent } from "@/components/ui/tabs";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EditProfileSchema } from "@/schema/EditProfile.schema";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
 import { toast } from "sonner";
-import { updateUserInfo } from "@/Actions/Profile/UpdateUserInfo";
-export default function AdressesTab() {
-  const { data: session , update} = useSession();
+import NoProducts from "../Common/NoProducts/NoProducts";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { PostNewAddresse } from "@/Actions/Profile/PostNewAddresse";
+import { NewAddressesSchema } from "@/schema/NewAddresses.schema";
+import { useRouter } from "next/navigation";
+import { removeAddress } from "@/Actions/Profile/removeAddress";
+export default function AdressesTab({ Addresses }) {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
   const form = useForm({
-    resolver: zodResolver(EditProfileSchema),
+    resolver: zodResolver(NewAddressesSchema),
     defaultValues: {
-      name: session?.user?.name || "",
-      email: session?.user?.email || "",
-      phone: session?.user?.phone || "",
+      name: "",
+      details: "",
+      phone: "",
+      city: "",
     },
   });
-  useEffect(() => {
-    if (session) {
-      form.reset({
-        name: session?.user?.name || "",
-        email: session?.user?.email || "",
-        phone: session?.user?.phone || "",
-      });
-    }
-  }, [session, form]);
-  async function handleUpdateData(values) {
+  const { isSubmitting } = form.formState;
+
+  async function handleDeleteAddress(id) {
     try {
-    await updateUserInfo({ name: values.name, phone: values.phone });
-      toast.success("Data updated successfully", {
+      await removeAddress(id);
+      toast.success("Address removed successfully", {
         position: "bottom-right",
         duration: 3000,
       });
-      await update({ name: values.name});
+      router.refresh();
+    } catch (error) {
+      toast.error(error.response?.data?.message ?? "Something went wrong", {
+        position: "bottom-right",
+        duration: 3000,
+      });
+    }
+  }
+
+  async function handleNewAddresses(values) {
+    try {
+      await PostNewAddresse(values);
+      toast.success("Data Added successfully", {
+        position: "bottom-right",
+        duration: 3000,
+      });
+      setOpen(false); 
+      form.reset(); 
+      router.refresh();
     } catch (error) {
       toast.error(error.response?.data?.message ?? "Something went wrong", {
         position: "bottom-right",
@@ -55,69 +77,124 @@ export default function AdressesTab() {
   }
   return (
     <TabsContent
-      className="flex h-full items-center justify-center"
+      className="h-full w-full flex flex-col gap-6"
       value="Addresses"
     >
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleUpdateData)}
-          className="flex  flex-col justify-center h-full gap-5 p-6 md:p-10 w-full"
-        >
-          <CardHeader className="text-center">
-            <CardTitle className="text-4xl font-bold  text-sky-900">
-              Account Information
-            </CardTitle>
-            <p className="text-sm  text-muted-foreground">
-              Change User Information here
-            </p>
-          </CardHeader>
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input type="text" placeholder="name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input type="email" placeholder="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone</FormLabel>
-                <FormControl>
-                  <Input type="tel" placeholder="Phone" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button
-            className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-            type="submit"
-          >
-            Update Information
-          </Button>
-        </form>
-      </Form>
+      <div className="flex justify-between w-full">
+        <div className="w-80% space-y-2">
+          <CardTitle className="text-4xl font-bold  text-sky-900">
+            Saved Points
+          </CardTitle>
+          <p className="text-sm  text-muted-foreground">
+            Manage your default shipping locations.
+          </p>
+        </div>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer">
+              Add New Address
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="text-4xl font-bold  text-sky-900">
+                New Address
+              </DialogTitle>
+            </DialogHeader>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleNewAddresses)}
+                className="flex  flex-col justify-center h-full gap-5 py-4 w-full"
+              >
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="details"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>details</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="details" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone</FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder="Phone" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="city"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>City</FormLabel>
+                      <FormControl>
+                        <Input type="text" placeholder="City" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Saving..." : "Add Address"}
+                </Button>
+              </form>
+            </Form>
+          </DialogContent>
+        </Dialog>
+      </div>
+      {Addresses.Addresses.length === 0 ? (
+        <NoProducts text="No Addresses available." />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-4 ">
+          {Addresses.Addresses.map((address) => (
+            <div
+              key={address._id}
+              className="border-sky-900 relative border col-span-1 rounded-lg shadow-md p-4"
+            >
+              <h3 className="font-bold text-lg">{address.name}</h3>
+              <p className="text-muted-foreground">City : {address.city}</p>
+              <p className="text-muted-foreground">
+                Details : {address.details}
+              </p>
+              <p className="text-muted-foreground">Phone : {address.phone}</p>
+              <Button
+                className=" bg-white absolute top-3 right-2 hover:bg-white cursor-pointer text-sky-900 hover:text-red-600"
+                onClick={() => handleDeleteAddress(address._id)}
+              >
+                <RiDeleteBin6Line className="size-5 " />
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
     </TabsContent>
   );
 }

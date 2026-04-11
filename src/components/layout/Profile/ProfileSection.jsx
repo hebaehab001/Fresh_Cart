@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { FiEdit } from "react-icons/fi";
 import { MdOutlinePassword } from "react-icons/md";
 import { GrMapLocation } from "react-icons/gr";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs,TabsList, TabsTrigger } from "@/components/ui/tabs";
 import EditProfileTab from "./EditProfileTab";
 import AdressesTab from "./AdressesTab";
 import EditPasswordTab from "./EditPasswordTab";
@@ -25,9 +25,8 @@ const tabs = [
     icon: MdOutlinePassword,
   },
 ];
-export default function ProfileSection() {
+export default function ProfileSection(Addresses) {
   const { data: session } = useSession();
-
   return (
     <Tabs
       defaultValue={tabs[0].value}
@@ -101,8 +100,8 @@ export default function ProfileSection() {
       </div>
       <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12 lg:col-span-9">
         <EditProfileTab />
-        <AdressesTab/>
-        <EditPasswordTab/>
+        <AdressesTab Addresses={Addresses} />
+        <EditPasswordTab />
       </div>
     </Tabs>
   );
