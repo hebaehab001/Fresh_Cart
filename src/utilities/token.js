@@ -7,7 +7,6 @@ export async function getMyToken() {
     const jwt =
         (await cookies()).get("next-auth.session-token")?.value ||
         (await cookies()).get("__Secure-next-auth.session-token")?.value;
-
     const token = await decode({
         token: jwt,
         secret: process.env.NEXTAUTH_SECRET,
