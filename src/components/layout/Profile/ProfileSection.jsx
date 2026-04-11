@@ -6,6 +6,8 @@ import { MdOutlinePassword } from "react-icons/md";
 import { GrMapLocation } from "react-icons/gr";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import EditProfileTab from "./EditProfileTab";
+import AdressesTab from "./AdressesTab";
+import EditPasswordTab from "./EditPasswordTab";
 const tabs = [
   {
     name: "Edit Profile",
@@ -14,12 +16,12 @@ const tabs = [
   },
   {
     name: "Addresses",
-    value: "settings",
+    value: "Addresses",
     icon: GrMapLocation,
   },
   {
     name: "Password & Security",
-    value: "messages",
+    value: "Password & Security",
     icon: MdOutlinePassword,
   },
 ];
@@ -99,6 +101,8 @@ export default function ProfileSection() {
       </div>
       <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12 lg:col-span-9">
         <EditProfileTab />
+        <AdressesTab/>
+        <EditPasswordTab/>
       </div>
     </Tabs>
   );
