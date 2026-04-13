@@ -23,7 +23,6 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { loginSchema } from "@/schema/login.schema";
-
 export default function Login() {
   const router = useRouter();
   const form = useForm({
@@ -45,6 +44,7 @@ export default function Login() {
         position: "bottom-right",
         duration: 1000,
       });
+      router.refresh();
       router.push(res.url || "/");
     } else {
       toast.error(res.error, {

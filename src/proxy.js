@@ -5,7 +5,7 @@ export default async function proxy(request) {
     const pathname = request.nextUrl.pathname.replace(/\/$/, '');
     const token = await getToken({ req: request,cookieName, secret: process.env.NEXTAUTH_SECRET});
     const authPages = ['/login', '/register'];
-    const protectedRoutes = ['/products', '/cart', '/allorders', '/payment', '/brands', '/categories'];
+    const protectedRoutes = ['/products', '/cart', '/favorites', '/allorders', '/payment', '/brands', '/categories','/profile'];
     // 1️⃣ Redirect logged-in users away from login/register
     if (token && authPages.includes(pathname)) {
         return NextResponse.redirect(new URL('/', request.url));
@@ -24,11 +24,13 @@ export const config = {
     matcher: [
         '/products/:path*',
         '/cart',
+        '/favorites',
         '/allorders',
         '/payment',
         '/brands/:path*',
         '/categories/:path*',
         '/login',
         '/register',
+        '/profile',
     ],
 };

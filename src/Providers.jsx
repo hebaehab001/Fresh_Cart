@@ -6,7 +6,7 @@ import FavContextProvider from "./Context/FavContextProvider";
 
 export default function Providers({ children }) {
   return (
-    <SessionProvider>
+    <SessionProvider refetchInterval={15 * 60}>
       <CartContextProvider>
         <FavContextProvider>{children}</FavContextProvider>
       </CartContextProvider>
