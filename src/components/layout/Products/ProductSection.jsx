@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
-import { useState, useMemo } from "react";
-import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
+import React,{ useState, useMemo } from "react";
 import { SearchIcon } from "lucide-react";
 import {
   InputGroup,
@@ -10,22 +8,16 @@ import {
 } from "@/components/ui/input-group";
 import SidebarFilteration from "./SidebarFilteration";
 import NoProducts from "../Common/NoProducts/NoProducts";
-export default function ProductSection({ products, brands, categories }) {
+import { filterProducts } from "@/utilities/filterProducts";
+import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
+
+export default function ProductSection({ products,categories }) {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesSearch = product.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      const matchesCategory = selectedCategory
-        ? product.category.name === selectedCategory
-        : true;
-
-      return matchesSearch && matchesCategory;
-    });
+    return filterProducts(products, search, selectedCategory);
   }, [products, search, selectedCategory]);
+
   return (
     <div className="grid grid-cols-12 w-[90%] gap-3 ">
       <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 h-fit col-span-12 lg:col-span-2">
@@ -64,8 +56,7 @@ export default function ProductSection({ products, brands, categories }) {
             </InputGroupAddon>
           </InputGroup>
         </div>
-
-        {products.length === 0 ? (
+        {!products || products.length === 0 ? (
           <NoProducts text="No products available." />
         ) : filteredProducts.length === 0 ? (
           <NoProducts text="No products match your search or filter criteria." />
@@ -76,29 +67,6 @@ export default function ProductSection({ products, brands, categories }) {
             ))}
           </div>
         )}
-        {/* <nav
-          aria-label="Page navigation example"
-          className="flex justify-center mt-5"
-        >
-          <ul className="inline-flex -space-x-px text-sm">
-            <li>
-              <a
-                href="#"
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                1
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                2
-              </a>
-            </li>
-          </ul>
-        </nav> */}
       </div>
     </div>
   );

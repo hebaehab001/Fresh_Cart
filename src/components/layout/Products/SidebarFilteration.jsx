@@ -11,7 +11,6 @@ export default function SidebarFilteration({
       <h3 className="text-2xl font-bold capitalize text-transparent bg-clip-text bg-linear-to-b from-sky-800 to-sky-900">
         {title}
       </h3>
-
       <div className="flex flex-wrap lg:flex-col gap-2">
         <button
           onClick={() => onSelect(null)}
@@ -21,7 +20,6 @@ export default function SidebarFilteration({
         >
           All
         </button>
-
         {data?.map((item) => {
           const isActive = selected === item.name;
           return (
@@ -43,27 +41,4 @@ export default function SidebarFilteration({
       </div>
     </div>
   );
-  //   return (
-  //     <div className="flex flex-col gap-4">
-  //       <h3
-  //         className="text-2xl
-  //                 font-bold capitalize
-  //                 text-transparent
-  //                 bg-clip-text
-  //                 bg-linear-to-b
-  //                 from-sky-800
-  //                 to-sky-900"
-  //       >
-  //         {title}
-  //       </h3>
-  //       <div className="flex flex-col gap-3">
-  //         {data &&
-  //           data.map((item) => (
-  //             <div className="rounded-md cursor-pointer border px-4 py-2  text-sm hover:border-sky-900">
-  //               {item.name}
-  //             </div>
-  //           ))}
-  //       </div>
-  //     </div>
-  //   );
 }

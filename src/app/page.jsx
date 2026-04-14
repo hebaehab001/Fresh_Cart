@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import { AiOutlineSafety } from "react-icons/ai";
+import { MdOutlineLocalShipping, MdOutlineSupportAgent } from "react-icons/md";
 import getAllCategories from "@/APIs/GetAllcategories";
 import getAllProducts from "@/APIs/GetAllProducts";
 import {
@@ -11,18 +12,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
-import { MdOutlineLocalShipping, MdOutlineSupportAgent } from "react-icons/md";
-import { AiOutlineSafety } from "react-icons/ai";
+
 export default async function Home() {
   const [{ data: products }, { data: categories }] = await Promise.all([
     getAllProducts(),
     getAllCategories(),
   ]);
+
   return (
     <div className="min-h-[90vh] py-4  flex flex-col gap-3 items-center">
       <main className="flex gap-4 justify-around bg-white h-[70vh] rounded-xl rounded-b-[20%] shadow-lg w-[90%]  p-4 md:p-8 bg-linear-to-b from-sky-800/30 to-sky-950/50 text-white">
@@ -82,7 +80,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className=" w-[90%]  p-6 md:p-8 ">
         <h3 className="text-3xl md:text-4xl  py-4 mb-4 text-center leading-16 tracking-wider  capitalize font-extrabold text-sky-900">
           Categories
