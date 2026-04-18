@@ -1,11 +1,18 @@
-'use server'
-import PostOnlinePayemnt from "@/APIs/PostOnlinePayment";
-import { getMyToken } from "@/utilities/token"
+"use server";
+import postOnlinePayment from "@/APIs/Payment/postOnlinePayment";
+import { getMyToken } from "@/utilities/token";
 
 export async function onlinePaymentAction(productsId, data) {
-    const token = await getMyToken();
-    if (!token) {
-        throw Error('login first')
-    }
-    return  await PostOnlinePayemnt({ token: token, productsId: productsId, data: data });
+  const token = await getMyToken();
+  if (!token) {
+    return {
+      success: false,
+      message: "Authentication required. Please login first.",
+    };
+  }
+  return await postOnlinePayment({
+    token: token,
+    productsId: productsId,
+    data: data,
+  });
 }

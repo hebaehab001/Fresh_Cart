@@ -16,13 +16,13 @@ export default function FavBtn({ id, productdetails }) {
 
   async function handleToggleFav() {
     const data = isInFav ? await removeFavItem(id) : await addProductToFav(id);
-    if (data?.status === "success") {
+    if (data?.success) {
       toast.success(data.message, {
         position: "bottom-right",
         duration: 2000,
       });
     } else {
-      toast.error("faild to add this in favourite", {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 2000,
       });

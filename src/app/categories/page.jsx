@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from "next/image";
-import getAllCategories from "@/APIs/GetAllcategories";
+import getAllCategories from "@/APIs/Category/getAllcategories";
 import PageTitle from '@/components/layout/Common/PageTitle/PageTitle';
 import Link from 'next/link';
 export default async function page() {

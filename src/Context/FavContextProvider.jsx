@@ -1,5 +1,5 @@
 "use client";
-import { AddToFavAction } from "@/Actions/FavActions/addToFavAction";
+import { addToFavAction } from "@/Actions/FavActions/addToFavAction";
 import { getUserFavAction } from "@/Actions/FavActions/GetUserFavAction";
 import { removeFavAction } from "@/Actions/FavActions/removeFavAction";
 import React, { createContext, useEffect, useState } from "react";
@@ -11,7 +11,7 @@ export default function FavContextProvider({ children }) {
   const [products, setproducts] = useState([]);
   async function addProductToFav(id) {
     try {
-      const data = await AddToFavAction(id);
+      const data = await addToFavAction(id);
       getuserfav();
       return data;
     } catch (error) {
@@ -21,7 +21,7 @@ export default function FavContextProvider({ children }) {
   async function removeFavItem(id) {
     try {
       const data = await removeFavAction(id);
-      if (data?.status === "success") {
+      if (data?.success) {
         setproducts(data.data);
         setnumOfFav(data.data.length);
       }

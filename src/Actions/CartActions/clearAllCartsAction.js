@@ -1,11 +1,14 @@
-'use server'
-import DeleteAllCarts from "@/APIs/DeleteAllCarts";
-import { getMyToken } from"@/utilities/token"
+"use server";
+import deleteAllCarts from "@/APIs/Cart/deleteAllCarts";
+import { getMyToken } from "@/utilities/token";
 
 export async function clearAllCartsAction() {
   const token = await getMyToken();
   if (!token) {
-    throw Error('login first')
+    return {
+      success: false,
+      message: "Authentication required. Please login first.",
+    };
   }
-  return  await DeleteAllCarts({ token: token });
+  return await deleteAllCarts({ token: token });
 }

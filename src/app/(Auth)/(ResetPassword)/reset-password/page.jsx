@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ResetPasswordSchema } from "@/schema/resetPassword.schema";
-import UpdateUserPassword from "@/APIs/UpdateUserPassword";
+import UpdateUserPassword from "@/APIs/Auth/updateUserPassword";
 export default function Register() {
   const router = useRouter();
   const form = useForm({
@@ -33,15 +33,15 @@ export default function Register() {
     },
   });
   async function handleResetPassword(values) {
-    try {
-      await UpdateUserPassword(values);
-      toast.success("Password Updated successfully", {
+    const data = await UpdateUserPassword(values);
+    if (data?.success) {
+      toast.success(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
       router.push("/login");
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
+    } else {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 3000,
       });

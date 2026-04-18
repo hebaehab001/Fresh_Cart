@@ -18,13 +18,13 @@ export default function page() {
 
   async function removeCart(id) {
     const data = await removeCartItem(id);
-    if (data.status === "success") {
-      toast.success("success to remove this from cart", {
+    if (data?.success) {
+      toast.success(data.message, {
         duration: 1000,
         position: "bottom-right",
       });
     } else {
-      toast.error("faild to remove this from cart", {
+      toast.error(data.message, {
         duration: 1000,
         position: "bottom-right",
       });

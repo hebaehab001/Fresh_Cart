@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
-import getAllProducts from "@/APIs/GetAllProducts";
+import getAllProducts from "@/APIs/Product/getAllProducts";
 import NoProducts from "@/components/layout/Common/NoProducts/NoProducts";
-import getCategoriesById from "@/APIs/GetCategoryById";
+import getCategoriesById from "@/APIs/Category/getCategoryById";
 export default async function page({ params }) {
   const { id } = await params;
   const [{ data: products }, { data: category }] = await Promise.all([

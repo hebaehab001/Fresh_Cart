@@ -1,4 +1,4 @@
-import getProductById from "@/APIs/GetProductById";
+import getProductById from "@/APIs/Product/getProductById";
 
 import React, { useMemo } from "react";
 import AddBtnCart from "@/components/layout/Buttons/CartBtn";

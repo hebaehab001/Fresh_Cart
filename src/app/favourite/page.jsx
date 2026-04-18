@@ -6,10 +6,7 @@ import { favContext } from "@/Context/FavContextProvider";
 import React, { useContext } from "react";
 
 export default function page() {
-  const { products, isLoading, numOfFav } = useContext(favContext);
-  if (isLoading) {
-    return <p>loading</p>;
-  }
+  const { products,numOfFav } = useContext(favContext);
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col  gap-3 items-center w-full">
       <PageTitle title="Wishlist" />

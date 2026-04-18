@@ -8,13 +8,13 @@ export default function CartBtn({ id, productdetails }) {
   const { addProductToCart } = useContext(cartContext);
   async function handleAddCart() {
     const data = await addProductToCart(id);
-    if (data.status === "success") {
+    if (data.success) {
       toast.success(data.message, {
         position: "bottom-right",
         duration: 2000,
       });
     } else {
-      toast.error("faild to add this in cart", {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 2000,
       });

@@ -1,11 +1,18 @@
-'use server'
-import PostCashPayemnt from "@/APIs/PostCashPayment";
-import { getMyToken } from "@/utilities/token"
+"use server";
+import postCashPayment from "@/APIs/Payment/postCashPayment";
+import { getMyToken } from "@/utilities/token";
 
 export async function cashPaymentAction(productsId, data) {
-    const token = await getMyToken();
-    if (!token) {
-        throw Error('login first')
-    }
-    return  await PostCashPayemnt({ token: token, productsId: productsId, data: data });
+  const token = await getMyToken();
+  if (!token) {
+    return {
+      success: false,
+      message: "Authentication required. Please login first.",
+    };
+  }
+  return await postCashPayment({
+    token: token,
+    productsId: productsId,
+    data: data,
+  });
 }

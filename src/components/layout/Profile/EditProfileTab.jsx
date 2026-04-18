@@ -18,9 +18,9 @@ import { EditProfileSchema } from "@/schema/EditProfile.schema";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { updateUserInfo } from "@/Actions/Profile/UpdateUserInfo";
+import { updateUserInfoAction } from "@/Actions/ProfileActions/updateUserInfoAction";
 export default function EditProfileTab() {
-  const { data: session , update} = useSession();
+  const { data: session, update } = useSession();
   const form = useForm({
     resolver: zodResolver(EditProfileSchema),
     defaultValues: {
@@ -39,20 +39,24 @@ export default function EditProfileTab() {
     }
   }, [session, form]);
   async function handleUpdateData(values) {
-    try {
-    await updateUserInfo({ name: values.name, phone: values.phone });
-      toast.success("Data updated successfully", {
+    const data = await updateUserInfoAction({
+      name: values.name,
+      phone: values.phone,
+    });
+    if (data?.success) {
+      toast.success(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
-      await update({ name: values.name});
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
+      await update({ name: values.name });
+    } else {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
     }
   }
+
   return (
     <TabsContent
       className="flex h-full items-center justify-center"
@@ -91,7 +95,7 @@ export default function EditProfileTab() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="email"  {...field} />
+                  <Input type="email" placeholder="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

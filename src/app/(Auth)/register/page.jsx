@@ -22,7 +22,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { registerSchema } from "@/schema/register.schema";
-import PostSignup from "@/APIs/PostSignup";
+import PostSignup from "@/APIs/Auth/postSignup";
 export default function Register() {
   const router = useRouter();
   const form = useForm({
@@ -36,19 +36,19 @@ export default function Register() {
     },
   });
   async function handleRegister(values) {
-    try {
-      await PostSignup(values);
-      toast.success("registered successfully", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      router.push("/login");
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
+    const data = await PostSignup(values);
+      if (data?.success) {
+        toast.success(data.message, {
+          position: "bottom-right",
+          duration: 3000,
+        });
+        router.push("/login");
+      } else {
+        toast.error(data.message, {
+          position: "bottom-right",
+          duration: 3000,
+        });
+      }
   }
 
   return (

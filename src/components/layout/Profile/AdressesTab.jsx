@@ -24,10 +24,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { PostNewAddresse } from "@/Actions/Profile/PostNewAddresse";
+import { postNewAddresseAction } from "@/Actions/ProfileActions/postNewAddresseAction";
 import { NewAddressesSchema } from "@/schema/NewAddresses.schema";
 import { useRouter } from "next/navigation";
-import { removeAddress } from "@/Actions/Profile/removeAddress";
+import { removeAddressAction } from "@/Actions/ProfileActions/removeAddressAction";
 export default function AdressesTab({ Addresses }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function AdressesTab({ Addresses }) {
 
   async function handleDeleteAddress(id) {
     try {
-      await removeAddress(id);
+      await removeAddressAction(id);
       toast.success("Address removed successfully", {
         position: "bottom-right",
         duration: 3000,
@@ -60,7 +60,7 @@ export default function AdressesTab({ Addresses }) {
 
   async function handleNewAddresses(values) {
     try {
-      await PostNewAddresse(values);
+      await postNewAddresseAction(values);
       toast.success("Data Added successfully", {
         position: "bottom-right",
         duration: 3000,

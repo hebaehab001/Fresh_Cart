@@ -1,8 +1,14 @@
-'use server'
-import PostFav from "@/APIs/PostFav";
-import { getMyToken } from "@/utilities/token"
+"use server";
+import postFav from "@/APIs/Fav/postFav";
+import { getMyToken } from "@/utilities/token";
 
-export async function AddToFavAction(id) {
-    const token = await getMyToken();
-    return await PostFav({ productId: id, token: token });
+export async function addToFavAction(id) {
+  const token = await getMyToken();
+    if (!token) {
+        return {
+            success: false,
+            message: "Authentication required. Please login first.",
+        };
+    }
+  return await postFav({ productId: id, token: token });
 }

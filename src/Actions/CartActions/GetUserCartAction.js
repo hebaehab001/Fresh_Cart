@@ -1,12 +1,14 @@
-'use server'
-
-import getUserCart from "@/APIs/GetUserCart";
-import { getMyToken } from "@/utilities/token"
+"use server";
+import getUserCart from "@/APIs/Cart/getUserCart";
+import { getMyToken } from "@/utilities/token";
 
 export async function getUserCartAction() {
   const token = await getMyToken();
   if (!token) {
-    return null
+    return {
+      success: false,
+      message: "Authentication required. Please login first.",
+    };
   }
-  return  await getUserCart({ token: token });
+  return await getUserCart({ token: token });
 }

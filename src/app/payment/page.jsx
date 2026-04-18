@@ -1,14 +1,7 @@
 "use client";
 import React, { useContext, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cartContext } from "@/Context/CartContextProvider";
@@ -30,23 +23,19 @@ export default function page() {
         city: city.current?.value,
       },
     };
-    try {
-      const data = await cashPaymentAction(cardId, values);
-      if (data.status === "success") {
-        toast.success(data.status, {
-          duration: 1000,
-          position: "bottom-right",
-        });
-        afterPayment();
-        router.push("/allorders");
-      } else {
-        toast.error("faild to remove this from cart", {
-          duration: 1000,
-          position: "bottom-right",
-        });
-      }
-    } catch (error) {
-      console.log(error);
+    const data = await cashPaymentAction(cardId, values);
+    if (data?.success) {
+      toast.success(data.message, {
+        duration: 1000,
+        position: "bottom-right",
+      });
+      afterPayment();
+      router.push("/allorders");
+    } else {
+      toast.error(data.message, {
+        duration: 1000,
+        position: "bottom-right",
+      });
     }
   }
   async function onlinePayment() {
@@ -57,22 +46,18 @@ export default function page() {
         city: city.current?.value,
       },
     };
-    try {
-      const data = await onlinePaymentAction(cardId, values);
-      if (data.status === "success") {
-        toast.success(data.status, {
-          duration: 1000,
-          position: "bottom-right",
-        });
-        window.location.href = data.session.url;
-      } else {
-        toast.error("faild to remove this from cart", {
-          duration: 1000,
-          position: "bottom-right",
-        });
-      }
-    } catch (error) {
-      console.log(error);
+    const data = await onlinePaymentAction(cardId, values);
+    if (data?.success) {
+      toast.success(data.message, {
+        duration: 1000,
+        position: "bottom-right",
+      });
+      window.location.href = data.session.url;
+    } else {
+      toast.error(data.message, {
+        duration: 1000,
+        position: "bottom-right",
+      });
     }
   }
   return (

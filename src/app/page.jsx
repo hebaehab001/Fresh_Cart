@@ -3,8 +3,8 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { AiOutlineSafety } from "react-icons/ai";
 import { MdOutlineLocalShipping, MdOutlineSupportAgent } from "react-icons/md";
-import getAllCategories from "@/APIs/GetAllcategories";
-import getAllProducts from "@/APIs/GetAllProducts";
+import getAllCategories from "@/APIs/Category/getAllcategories";
+import getAllProducts from "@/APIs/Product/getAllProducts";
 import {
   Carousel,
   CarouselContent,

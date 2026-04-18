@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateLoggedUserPasswordSchema } from "@/schema/updateLoggedUserPassword.schema";
 import { toast } from "sonner";
-import { updateLoggedUserPassword } from "@/Actions/Profile/UpdateLoggedUserPassword";
+import { updateLoggedUserPasswordAction } from "@/Actions/ProfileActions/updateLoggedUserPasswordAction";
 export default function EditPasswordTab() {
   const form = useForm({
     resolver: zodResolver(updateLoggedUserPasswordSchema),
@@ -27,14 +27,14 @@ export default function EditPasswordTab() {
     },
   });
   async function handleUpdateData(values) {
-    try {
-    await updateLoggedUserPassword(values);
-      toast.success("Data updated successfully", {
+    const data = await updateLoggedUserPasswordAction(values);
+    if (data?.success) {
+      toast.success(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
+    } else {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 3000,
       });

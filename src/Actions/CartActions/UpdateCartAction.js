@@ -1,11 +1,14 @@
-"use server"
-import UpdateCart from "@/APIs/UpdateCart";
-import { getMyToken } from "@/utilities/token"
+"use server";
+import updateCart from "@/APIs/Cart/updateCart";
+import { getMyToken } from "@/utilities/token";
 
-export async function updateCartAction(id,count) {
-    const token = await getMyToken();
+export async function updateCartAction(id, count) {
+  const token = await getMyToken();
     if (!token) {
-        throw Error('login first')
+        return {
+            success: false,
+            message: "Authentication required. Please login first.",
+        };
     }
-    return  await UpdateCart({ productId: id, token: token, count: count });
+  return await updateCart({ productId: id, token: token, count: count });
 }

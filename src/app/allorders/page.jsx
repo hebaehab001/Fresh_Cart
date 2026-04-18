@@ -4,7 +4,8 @@ import { estimateArrival } from "@/utilities/estimateArrival";
 import React from "react";
 import { LuShoppingBag } from "react-icons/lu";
 export default async function page() {
-  const data = await getUserOrdertAction();
+  const {data} = await getUserOrdertAction();
+  
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
       <div className="bg-white rounded-xl shadow-lg w-[90%] min-h-[85vh]  p-6 md:p-8 ">

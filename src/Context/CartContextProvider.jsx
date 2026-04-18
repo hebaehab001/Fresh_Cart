@@ -1,9 +1,9 @@
 "use client";
-import { AddToCartAction } from "@/Actions/CartActions/addToCartAction";
+import { addToCartAction } from "@/Actions/CartActions/addToCartAction";
 import { clearAllCartsAction } from "@/Actions/CartActions/clearAllCartsAction";
-import { getUserCartAction } from "@/Actions/CartActions/GetUserCartAction";
+import { getUserCartAction } from "@/Actions/CartActions/getUserCartAction";
 import { removeCartAction } from "@/Actions/CartActions/removeCartAction";
-import { updateCartAction } from "@/Actions/CartActions/UpdateCartAction";
+import { updateCartAction } from "@/Actions/CartActions/updateCartAction";
 import React, { createContext, useEffect, useState } from "react";
 
 export const cartContext = createContext({});
@@ -17,7 +17,7 @@ export default function CartContextProvider({ children }) {
 
   async function addProductToCart(id) {
     try {
-      const data = await AddToCartAction(id);
+      const data = await addToCartAction(id);
       getusercart();
       return data;
     } catch (error) {

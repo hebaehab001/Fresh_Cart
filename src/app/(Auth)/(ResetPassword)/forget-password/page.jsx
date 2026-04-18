@@ -15,7 +15,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -23,9 +22,9 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import PostForgotPassword from "@/APIs/PostForgotPassword";
+import PostForgotPassword from "@/APIs/Auth/postForgotPassword";
 import { verifyPasswordSchema } from "@/schema/verifyPassword.schema";
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Field} from "@/components/ui/field";
 import {
   InputOTP,
   InputOTPGroup,
@@ -33,7 +32,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { RefreshCwIcon } from "lucide-react";
-import PostVerifyCode from "@/APIs/PostVerfiyCode";
+import PostVerifyCode from "@/APIs/Auth/postVerfiyCode";
 export default function page() {
   const [Codevalue, setCodeValue] = useState("");
   const [Emailvalue, setEmailvalue] = useState("");
@@ -46,48 +45,46 @@ export default function page() {
     resolver: zodResolver(verifyPasswordSchema),
   });
   async function handleForgetPassword(Values) {
-    try {
-      setEmailvalue(Values.email);
-      await PostForgotPassword(Values);
-      toast.success("Verified successfully", {
+    setEmailvalue(Values.email);
+    const data = await PostForgotPassword(Values);
+    if (data?.success) {
+      toast.success(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
       setConfirmCode(true);
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
+    } else {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
     }
   }
   async function handleResendCode() {
-    try {
-      console.log(Emailvalue);
-      
-      await PostForgotPassword({email:Emailvalue});
-      toast.success("Resend Code successfully", {
+    const data = await PostForgotPassword({ email: Emailvalue });
+    if (data?.success) {
+      toast.success(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
       setConfirmCode(true);
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
+    } else {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
     }
   }
   async function handleVerfiyCode() {
-    try {
-      await PostVerifyCode(Codevalue);
-      toast.success("Verified successfully", {
+    const data = await PostVerifyCode(Codevalue);
+    if (data?.success) {
+      toast.success(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
       router.push("/reset-password");
-    } catch (error) {
-      toast.error(error.response?.message ?? "Something went wrong", {
+    } else {
+      toast.error(data.message, {
         position: "bottom-right",
         duration: 3000,
       });
