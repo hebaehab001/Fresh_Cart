@@ -1,12 +1,12 @@
 import { ApiResponse } from "@/types/common";
-import { AllProducts } from "@/types/product";
+import { Product } from "@/types/product";
 
 export default async function getAllProducts() {
   try {
       const res = await fetch(process.env.NEXT_PUBLIC_PRODUCTS, {
       next: { revalidate: 600 },
     });
-    const result = await res.json() as ApiResponse<AllProducts>;
+    const result = await res.json() as ApiResponse<Product[]>;
 
     if (!res.ok) {
       return {

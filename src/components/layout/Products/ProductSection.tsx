@@ -10,11 +10,12 @@ import SidebarFilteration from "./SidebarFilteration";
 import NoProducts from "../Common/NoProducts/NoProducts";
 import { filterProducts } from "@/utilities/filterProducts";
 import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
-import { AllProducts } from "@/types/product";
+import { Product } from "@/types/product";
+import { Category } from "@/types/categories";
 
-export default function ProductSection({ products, categories }: { products: AllProducts, categories :any}) {
-  const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null);
+export default function ProductSection({ products, categories }: { products: Product[], categories :Category[]}) {
+  const [search, setSearch] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const filteredProducts = useMemo(() => {
     return filterProducts(products, search, selectedCategory);
   }, [products, search, selectedCategory]);

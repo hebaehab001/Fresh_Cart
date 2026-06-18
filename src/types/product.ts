@@ -58,8 +58,3 @@ export interface SpecificProduct extends Product {
   reviews: Review[];
   __v: number;
 }
-
-export interface AllProducts{
-    length: number;
-    allProducts : Product[];
-}

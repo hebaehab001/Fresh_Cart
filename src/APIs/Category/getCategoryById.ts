@@ -1,9 +1,12 @@
-export default async function getCategoriesById(id) {
+import { Category } from "@/types/categories";
+import { ApiResponse } from "@/types/common";
+
+export default async function getCategoriesById(id: string) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_CATEGORIES}/${id}`, {
       next: { revalidate: 3600 },
     });
-    const result = await res.json();
+    const result = (await res.json()) as ApiResponse<Category>;
 
     if (!res.ok) {
       return {
@@ -16,7 +19,6 @@ export default async function getCategoriesById(id) {
       success: true,
       data: result.data,
     };
-    
   } catch (error) {
     return {
       success: false,

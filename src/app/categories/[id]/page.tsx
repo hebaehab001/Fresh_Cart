@@ -4,7 +4,8 @@ import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
 import getAllProducts from "@/APIs/Product/getAllProducts";
 import NoProducts from "@/components/layout/Common/NoProducts/NoProducts";
 import getCategoriesById from "@/APIs/Category/getCategoryById";
-export default async function page({ params }) {
+import { PagePropsParams } from "@/types/common";
+export default async function page({ params }:PagePropsParams) {
   const { id } = await params;
   const [{ data: products }, { data: category }] = await Promise.all([
     getAllProducts(),

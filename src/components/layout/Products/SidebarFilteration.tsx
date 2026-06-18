@@ -1,11 +1,12 @@
 import React from "react";
+import { SidebarFilterationProps } from "@/types/categories";
 
 export default function SidebarFilteration({
   data,
   title,
   selected,
   onSelect,
-}) {
+}:SidebarFilterationProps) {
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-2xl font-bold capitalize text-transparent bg-clip-text bg-linear-to-b from-sky-800 to-sky-900">

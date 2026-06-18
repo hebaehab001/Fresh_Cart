@@ -1,9 +1,12 @@
+import { Category } from "@/types/categories";
+import { ApiResponse } from "@/types/common";
+
 export default async function getAllCategories() {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_CATEGORIES, {
       cache: "force-cache",
     });
-    const result = await res.json();
+    const result = await res.json() as ApiResponse<Category[]>;
 
     if (!res.ok) {
       return {

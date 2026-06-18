@@ -18,3 +18,4 @@ export interface Pagination {
 }
 
 export type SortOption = "name" | "price-asc" | "price-desc" | "newest";
+
