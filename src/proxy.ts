@@ -1,19 +1,22 @@
 import { getToken } from "next-auth/jwt";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function proxy(request) {
+export default async function proxy(request: NextRequest) {
   const cookieName =
     process.env.NODE_ENV == "production"
       ? "__Secure-next-auth.session-token"
       : "next-auth.session-token";
+
   const pathname = request.nextUrl.pathname.replace(/\/$/, "");
+
   const token = await getToken({
     req: request,
     cookieName,
     secret: process.env.NEXTAUTH_SECRET,
   });
-  const authPages = ["/login", "/register"];
-  const protectedRoutes = [
+
+  const authPages: string[] = ["/login", "/register"];
+  const protectedRoutes: string[] = [
     "/products",
     "/cart",
     "/favorites",
