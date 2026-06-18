@@ -7,10 +7,6 @@ export interface Category {
   updatedAt: string;
 }
 
-export interface AllCategories {
-  allCategories: Category[];
-}
-
 export interface SidebarFilterationProps {
   data: Category[];
   title: string;

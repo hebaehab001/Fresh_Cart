@@ -1,9 +1,12 @@
-export default async function getBrandById(id) {
+import { Brand } from "@/types/brands";
+import { ApiResponse } from "@/types/common";
+
+export default async function getAllBrands() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BRANDS}/${id}`, {
-      next: { revalidate: 3600 },
+    const res = await fetch(process.env.NEXT_PUBLIC_BRANDS, {
+      cache: "force-cache",
     });
-    const result = await res.json();
+    const result = (await res.json()) as ApiResponse<Brand[]>;
 
     if (!res.ok) {
       return {
@@ -16,7 +19,6 @@ export default async function getBrandById(id) {
       success: true,
       data: result.data,
     };
-    
   } catch (error) {
     return {
       success: false,
