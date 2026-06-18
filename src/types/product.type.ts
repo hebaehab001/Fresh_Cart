@@ -1,23 +1,7 @@
-export interface Subcategory {
-  _id: string;
-  name: string;
-  slug: string;
-  category: string;
-}
+import { Brand } from "./brands.type";
+import { Category, Subcategory } from "./categories.type";
+import { MetaDataResponse } from "./common.type";
 
-export interface Category {
-  _id: string;
-  name: string;
-  slug: string;
-  image: string;
-}
-
-export interface Brand {
-  _id: string;
-  name: string;
-  slug: string;
-  image: string;
-}
 export interface ReviewUser {
   _id: string;
   name: string;
@@ -47,9 +31,9 @@ export interface Product {
   imageCover: string;
   ratingsAverage: number;
   ratingsQuantity: number;
-  category: Category;
-  subcategory: Subcategory[];
-  brand: Brand;
+  category: Partial<Category>;
+  subcategory: Partial<Subcategory[]>;
+  brand: Partial<Brand>;
   createdAt: string;
   updatedAt: string;
 }
@@ -57,4 +41,10 @@ export interface Product {
 export interface SpecificProduct extends Product {
   reviews: Review[];
   __v: number;
+}
+
+export interface ProductResponse {
+  results: number;
+  metadata: MetaDataResponse;
+  data: Product[];
 }

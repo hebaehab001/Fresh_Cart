@@ -10,8 +10,8 @@ import SidebarFilteration from "./SidebarFilteration";
 import NoProducts from "../Common/NoProducts/NoProducts";
 import { filterProducts } from "@/utilities/filterProducts";
 import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
-import { Product } from "@/types/product";
-import { Category } from "@/types/categories";
+import { Product } from "@/types/product.type";
+import { Category } from "@/types/categories.type";
 
 export default function ProductSection({ products, categories }: { products: Product[], categories :Category[]}) {
   const [search, setSearch] = useState<string>("");

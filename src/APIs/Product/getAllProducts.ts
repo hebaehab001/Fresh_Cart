@@ -1,5 +1,5 @@
-import { ApiResponse } from "@/types/common";
-import { Product } from "@/types/product";
+import { ApiResponse } from "@/types/common.type";
+import { Product } from "@/types/product.type";
 
 export default async function getAllProducts() {
   try {

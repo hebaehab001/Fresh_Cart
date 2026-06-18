@@ -1,5 +1,5 @@
-import { Brand } from "@/types/brands";
-import { ApiResponse } from "@/types/common";
+import { Brand } from "@/types/brands.type";
+import { ApiResponse } from "@/types/common.type";
 
 export default async function getBrandById(id: string) {
   try {

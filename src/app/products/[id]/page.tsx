@@ -5,7 +5,7 @@ import AddBtnCart from "@/components/layout/Buttons/CartBtn";
 import { Star, StarHalf } from "lucide-react";
 import AddBtnFav from "@/components/layout/Buttons/FavBtn";
 import ImgCarousel from "@/components/layout/Common/ImgCarousel/ImgCarousel";
-import { PagePropsParams } from "@/types/common";
+import { PagePropsParams } from "@/types/common.type";
 
 const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
   const roundedRating = useMemo(() => Math.round(rating * 2) / 2, [rating]);

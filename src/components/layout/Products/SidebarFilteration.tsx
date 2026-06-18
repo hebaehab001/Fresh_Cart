@@ -1,5 +1,5 @@
 import React from "react";
-import { SidebarFilterationProps } from "@/types/categories";
+import { SidebarFilterationProps } from "@/types/categories.type";
 
 export default function SidebarFilteration({
   data,

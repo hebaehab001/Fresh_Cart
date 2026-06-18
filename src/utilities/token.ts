@@ -1,5 +1,5 @@
 'use server'
-import { CustomJWT } from "@/types/auth";
+import { CustomJWT } from "@/types/auth.type";
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 

@@ -5,6 +5,8 @@ import React from "react";
 import { LuShoppingBag } from "react-icons/lu";
 export default async function page() {
   const {data} = await getUserOrdertAction();
+  console.log(data);
+  
   
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">

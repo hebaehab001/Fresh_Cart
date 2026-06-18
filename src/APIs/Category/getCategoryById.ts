@@ -1,5 +1,5 @@
-import { Category } from "@/types/categories";
-import { ApiResponse } from "@/types/common";
+import { Category } from "@/types/categories.type";
+import { ApiResponse } from "@/types/common.type";
 
 export default async function getCategoriesById(id: string) {
   try {
