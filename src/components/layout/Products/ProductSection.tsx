@@ -10,8 +10,9 @@ import SidebarFilteration from "./SidebarFilteration";
 import NoProducts from "../Common/NoProducts/NoProducts";
 import { filterProducts } from "@/utilities/filterProducts";
 import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
+import { AllProducts } from "@/types/product";
 
-export default function ProductSection({ products,categories }) {
+export default function ProductSection({ products, categories }: { products: AllProducts, categories :any}) {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const filteredProducts = useMemo(() => {
@@ -49,9 +50,8 @@ export default function ProductSection({ products,categories }) {
             <InputGroupInput
               placeholder="Search..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <InputGroupAddon>
+              onChange={(e) => setSearch(e.target.value)} className={undefined}  />
+            <InputGroupAddon className={undefined}>
               <SearchIcon />
             </InputGroupAddon>
           </InputGroup>

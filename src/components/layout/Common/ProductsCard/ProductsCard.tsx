@@ -4,8 +4,9 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
 import AddBtnCart from "../../Buttons/CartBtn";
 import AddBtnFav from "../../Buttons/FavBtn";
+import { Product } from "@/types/product";
 
-export default function ProductsCard({ product }) {
+export default function ProductsCard({ product }: { product: Product }) {
   return (
     <div className="w-full relative max-w-sm hover:scale-[1.01] bg-white border border-gray-200 rounded-lg shadow-sm hover:border-sky-900">
       <Image

@@ -1,9 +1,12 @@
-export default async function getProductById(id) {
+import { ApiResponse } from "@/types/common";
+import { AllProducts } from "@/types/product";
+
+export default async function getAllProducts() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTS}/${id}`, {
-      next: { revalidate: 3600 },
+      const res = await fetch(process.env.NEXT_PUBLIC_PRODUCTS, {
+      next: { revalidate: 600 },
     });
-    const result = await res.json();
+    const result = await res.json() as ApiResponse<AllProducts>;
 
     if (!res.ok) {
       return {
@@ -14,9 +17,9 @@ export default async function getProductById(id) {
 
     return {
       success: true,
-      data: result.data,
+      data: result.data ,
     };
-    
+
   } catch (error) {
     return {
       success: false,

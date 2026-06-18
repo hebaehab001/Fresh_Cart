@@ -5,6 +5,7 @@ import AddBtnCart from "@/components/layout/Buttons/CartBtn";
 import { Star, StarHalf } from "lucide-react";
 import AddBtnFav from "@/components/layout/Buttons/FavBtn";
 import ImgCarousel from "@/components/layout/Common/ImgCarousel/ImgCarousel";
+import { PagePropsParams } from "@/types/common";
 
 const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
   const roundedRating = useMemo(() => Math.round(rating * 2) / 2, [rating]);
@@ -48,7 +49,7 @@ const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
 
   return <div className="flex space-x-0.5 justify-center">{stars}</div>;
 };
-export default async function page({ params }) {
+export default async function page({ params }:PagePropsParams) {
   const { id } = await params;
   const { data } = await getProductById(id);
 
