@@ -89,9 +89,8 @@ export default async function Home() {
             align: "start",
             loop: true,
           }}
-          className=" w-[95%] mx-auto"
-        >
-          <CarouselContent>
+          className=" w-[95%] mx-auto" setApi={undefined} plugins={undefined} >
+          <CarouselContent className={undefined}>
             {categories.map((item) => (
               <CarouselItem
                 key={item._id}
@@ -118,8 +117,8 @@ export default async function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className={undefined} />
+          <CarouselNext className={undefined} />
         </Carousel>
       </section>
       <section className=" w-[90%]  p-6 md:p-8 ">
@@ -130,9 +129,8 @@ export default async function Home() {
           opts={{
             align: "start",
           }}
-          className=" w-[95%] mx-auto"
-        >
-          <CarouselContent>
+          className=" w-[95%] mx-auto" setApi={undefined} plugins={undefined}>
+          <CarouselContent className={undefined}>
             {products.slice(0, 10).map((product) => (
               <CarouselItem
                 key={product._id}
@@ -144,8 +142,8 @@ export default async function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className={undefined} />
+          <CarouselNext className={undefined} />
         </Carousel>
       </section>
     </div>
