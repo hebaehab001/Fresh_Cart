@@ -1,3 +1,4 @@
+import { ShippingAddress } from "@/types/addresses.type";
 import { ApiDataParams, ApiDataResponse, ApiParams, ApiResponse } from "@/types/api.types";
 import { OrdersResponse } from "@/types/orders.type";
 
@@ -6,7 +7,7 @@ export async function postCashPayment({
   id,
   token,
   data,
-}: ApiDataParams<OrdersResponse>): Promise<ApiResponse> {
+}: ApiDataParams<ShippingAddress>): Promise<ApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_CASHPAYMENT}/${id}`, {
       method: "POST",
@@ -42,7 +43,7 @@ export async function postOnlinePayment({
   id,
   token,
   data,
-}: ApiDataParams<OrdersResponse>): Promise<ApiResponse> {
+}: ApiDataParams<ShippingAddress>): Promise<ApiResponse> {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_ONLINEPAYMENT}/${id}?url=http://localhost:3000`,

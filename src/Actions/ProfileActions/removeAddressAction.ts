@@ -1,8 +1,9 @@
 "use server";
-import postCashPayment from "@/APIs/Payment/postCashPayment";
+import { deleteAddress } from "@/APIs/addresses.api";
+import { ApiResponse } from "@/types/api.types";
 import { getMyToken } from "@/utilities/token";
 
-export async function cashPaymentAction(productsId, data) {
+export async function removeAddressAction(id:string) : Promise<ApiResponse>{
   const token = await getMyToken();
   if (!token) {
     return {
@@ -10,9 +11,5 @@ export async function cashPaymentAction(productsId, data) {
       message: "Authentication required. Please login first.",
     };
   }
-  return await postCashPayment({
-    token: token,
-    productsId: productsId,
-    data: data,
-  });
+  return await deleteAddress({ id, token });
 }
