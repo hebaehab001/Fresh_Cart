@@ -1,26 +1,26 @@
 "use client";
-import { addToFavAction } from "@/Actions/FavActions/addToFavAction";
-import { getUserFavAction } from "@/Actions/FavActions/GetUserFavAction";
-import { removeFavAction } from "@/Actions/FavActions/removeFavAction";
-import React, { createContext, useEffect, useState } from "react";
+import {addToWishlistAction } from "@/Actions/WishlistActions/addToWishlistAction";
+import { getUserWishlistAction } from "@/Actions/WishlistActions/GetUserWishlistAction";
+import { removeWishlistAction } from "@/Actions/WishlistActions/removeWishlistAction";
+import { createContext, useEffect, useState } from "react";
 
 export const favContext = createContext({});
 export default function FavContextProvider({ children }) {
   const [numOfFav, setnumOfFav] = useState(0);
   const [isLoading, setisLoading] = useState(false);
   const [products, setproducts] = useState([]);
-  async function addProductToFav(id) {
+  async function addProductToFav(id:string) {
     try {
-      const data = await addToFavAction(id);
+      const data = await addToWishlistAction(id);
       getuserfav();
       return data;
     } catch (error) {
       console.log(error);
     }
   }
-  async function removeFavItem(id) {
+  async function removeFavItem(id: string) {
     try {
-      const data = await removeFavAction(id);
+      const data = await removeWishlistAction(id);
       if (data?.success) {
         setproducts(data.data);
         setnumOfFav(data.data.length);
@@ -33,7 +33,7 @@ export default function FavContextProvider({ children }) {
   async function getuserfav() {
     setisLoading(true);
     try {
-      const data = await getUserFavAction();
+      const data = await getUserWishlistAction();
       setnumOfFav(data.count);
       setproducts(data.data);
       setisLoading(false);

@@ -1,8 +1,9 @@
 "use server";
-import getUserFav from "@/APIs/Fav/getUserFav";
+import { postCart } from "@/APIs/cart.api";
+import { CartApiResponse } from "@/types/api.types";
 import { getMyToken } from "@/utilities/token";
 
-export async function getUserFavAction() {
+export async function addToCartAction(id:string):Promise<CartApiResponse> {
   const token = await getMyToken();
   if (!token) {
     return {
@@ -10,5 +11,5 @@ export async function getUserFavAction() {
       message: "Authentication required. Please login first.",
     };
   }
-  return await getUserFav({ token: token });
+  return await postCart({ id,token });
 }

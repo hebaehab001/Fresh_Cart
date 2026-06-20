@@ -1,8 +1,9 @@
 "use server";
-import getUserCart from "@/APIs/Cart/getUserCart";
+import { deleteCart } from "@/APIs/cart.api";
+import { CartApiResponse } from "@/types/api.types";
 import { getMyToken } from "@/utilities/token";
 
-export async function getUserCartAction() {
+export async function removeCartAction(id:string):Promise<CartApiResponse> {
   const token = await getMyToken();
   if (!token) {
     return {
@@ -10,5 +11,5 @@ export async function getUserCartAction() {
       message: "Authentication required. Please login first.",
     };
   }
-  return await getUserCart({ token: token });
+  return await deleteCart({ id, token });
 }

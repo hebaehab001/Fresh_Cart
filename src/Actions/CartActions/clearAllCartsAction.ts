@@ -1,8 +1,9 @@
 "use server";
-import deleteAllCarts from "@/APIs/Cart/deleteAllCarts";
+import { deleteAllCarts } from "@/APIs/cart.api";
+import { CartApiResponse } from "@/types/api.types";
 import { getMyToken } from "@/utilities/token";
 
-export async function clearAllCartsAction() {
+export async function clearAllCartsAction():Promise<CartApiResponse> {
   const token = await getMyToken();
   if (!token) {
     return {
@@ -10,5 +11,5 @@ export async function clearAllCartsAction() {
       message: "Authentication required. Please login first.",
     };
   }
-  return await deleteAllCarts({ token: token });
+  return await deleteAllCarts({ token });
 }

@@ -1,9 +1,6 @@
-import {ApiDataResponse, ApiParams, ApiResponse, CartApiResponse } from "@/types/api.types";
-import { CartResponse } from "@/types/cart.type";
+import { ApiParams,CartApiResponse } from "@/types/api.types";
 
-export async function deleteAllCarts({
-  token,
-}: ApiParams): Promise<ApiResponse> {
+export async function deleteAllCarts({ token }: ApiParams): Promise<CartApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_CART, {
       method: "DELETE",
@@ -34,7 +31,7 @@ export async function deleteAllCarts({
   }
 }
 
-export async function deleteCart({ id, token }: ApiParams):Promise<ApiDataResponse<CartResponse>> {
+export async function deleteCart({ id, token }: ApiParams): Promise<CartApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_CART}/${id}`, {
       method: "DELETE",
@@ -95,7 +92,7 @@ export async function getUserCart({ token }: ApiParams):Promise<CartApiResponse>
   }
 }
 
-export async function postCart({ id, token }: ApiParams):Promise<ApiDataResponse<CartResponse>> {
+export async function postCart({ id, token }: ApiParams):Promise<CartApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_CART, {
       method: "POST",

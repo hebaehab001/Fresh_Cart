@@ -1,3 +1,4 @@
+import { CartData } from "./cart.type";
 import { Product } from "./product.type";
 
 export type ApiResponse = {
@@ -33,7 +34,7 @@ export interface WishListApiResponse {
 export interface CartApiResponse {
   success: boolean;
   message?: string;
-  data?: Product[];
+  data?: CartData;
   numOfCartItems?: number;
   cartId?: string;
 }

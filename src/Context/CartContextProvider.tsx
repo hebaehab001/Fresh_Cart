@@ -4,7 +4,7 @@ import { clearAllCartsAction } from "@/Actions/CartActions/clearAllCartsAction";
 import { getUserCartAction } from "@/Actions/CartActions/getUserCartAction";
 import { removeCartAction } from "@/Actions/CartActions/removeCartAction";
 import { updateCartAction } from "@/Actions/CartActions/updateCartAction";
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const cartContext = createContext({});
 
@@ -15,7 +15,7 @@ export default function CartContextProvider({ children }) {
   const [isLoading, setisLoading] = useState(false);
   const [cardId, setcardId] = useState('');
 
-  async function addProductToCart(id) {
+  async function addProductToCart(id:string) {
     try {
       const data = await addToCartAction(id);
       getusercart();
@@ -25,7 +25,7 @@ export default function CartContextProvider({ children }) {
     }
   }
 
-  async function removeCartItem(id) {
+  async function removeCartItem(id:string) {
     try {
       const data = await removeCartAction(id);
       setnumOfCart(data.numOfCartItems);
@@ -49,7 +49,7 @@ export default function CartContextProvider({ children }) {
     }
   }
 
-  async function updateCartItem(id,count) {
+  async function updateCartItem(id:string,count:number) {
     try {
       const data = await updateCartAction(id, count);
       setnumOfCart(data.numOfCartItems);

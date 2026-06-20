@@ -1,14 +1,13 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
-import React from "react";
 import CartContextProvider from "./Context/CartContextProvider";
-import FavContextProvider from "./Context/FavContextProvider";
+import WishlistContextProvider from "./Context/WishlistContextProvider";
 
 export default function Providers({ children }) {
   return (
     <SessionProvider refetchInterval={15 * 60}>
       <CartContextProvider>
-        <FavContextProvider>{children}</FavContextProvider>
+        <WishlistContextProvider>{children}</WishlistContextProvider>
       </CartContextProvider>
     </SessionProvider>
   );

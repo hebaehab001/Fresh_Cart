@@ -1,14 +1,12 @@
 import {
-  ApiDataResponse,
   ApiParams,
   WishListApiResponse,
 } from "@/types/api.types";
-import { WishList} from "@/types/whishlist.type";
 
 export async function deleteWishlist({
   id,
   token
-}:ApiParams): Promise<ApiDataResponse<WishList>> {
+}:ApiParams): Promise<WishListApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_FAV}/${id}`, {
       method: "DELETE",

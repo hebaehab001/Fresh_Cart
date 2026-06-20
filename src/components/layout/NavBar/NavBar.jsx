@@ -15,7 +15,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Badge } from "../../ui/badge";
 import { cartContext } from "@/Context/CartContextProvider";
-import { favContext } from "@/Context/FavContextProvider";
+import { favContext } from "@/Context/WishlistContextProvider";
 import { IoMenu, IoClose } from "react-icons/io5";
 import {
   Drawer,

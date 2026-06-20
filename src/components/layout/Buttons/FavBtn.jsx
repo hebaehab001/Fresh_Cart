@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { favContext } from "@/Context/FavContextProvider";
+import { favContext } from "@/Context/WishlistContextProvider";
 import { FaHeart } from "react-icons/fa";
 import React, { useContext, useMemo } from "react";
 import { toast } from "sonner";
