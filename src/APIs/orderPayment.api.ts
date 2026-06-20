@@ -1,0 +1,111 @@
+import { ApiDataParams, ApiDataResponse, ApiParams, ApiResponse } from "@/types/api.types";
+import { OrdersResponse } from "@/types/orders.type";
+
+// Cash Payment
+export async function postCashPayment({
+  id,
+  token,
+  data,
+}: ApiDataParams<OrdersResponse>): Promise<ApiResponse> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_CASHPAYMENT}/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+
+    if (!res.ok) {
+      return {
+        success: false,
+        message: result.message || "Failed to pay with cash. Please try again.",
+      };
+    }
+
+    return {
+      success: true,
+      message: result.message || "payment successful.",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Network error. Please check your connection.",
+    };
+  }
+}
+
+// card online payment
+export async function postOnlinePayment({
+  id,
+  token,
+  data,
+}: ApiDataParams<OrdersResponse>): Promise<ApiResponse> {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_ONLINEPAYMENT}/${id}?url=http://localhost:3000`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: token,
+        },
+        body: JSON.stringify(data),
+      },
+    );
+    const result = await res.json();
+
+    if (!res.ok) {
+      return {
+        success: false,
+        message:
+          result.message ||
+          "Failed to pay with online payment. Please try again.",
+      };
+    }
+
+    return {
+      success: true,
+      message: result.message || "payment successful.",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Network error. Please check your connection.",
+    };
+  }
+}
+
+// Get User orders
+export default async function getOrderUser(
+  {id}: ApiParams
+): Promise<ApiDataResponse<OrdersResponse>> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_USER_ORDER}/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await res.json();
+
+    if (!res.ok) {
+      return {
+        success: false,
+        message: result.message || "Failed to fetch data from the server.",
+      };
+    }
+
+    return {
+      success: true,
+      data: result,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Network error. Please check your connection.",
+    };
+  }
+}

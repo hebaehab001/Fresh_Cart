@@ -30,4 +30,4 @@ export interface Order {
 }
 
 // Typings for the raw API list response or your main state wrapper
-export type UserOrdersResponse = Order[];
+export type OrdersResponse = Order[];

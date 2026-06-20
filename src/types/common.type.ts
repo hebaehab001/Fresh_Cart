@@ -1,20 +1,9 @@
 // Common types used everywhere
-export type ApiResponse<T> = {
-  success: boolean;
-  data?: T;
-  message?: string;
-};
-
 export interface MetaDataResponse {
   currentPage: number;
   numberOfPages: number;
   limit: number;
   nextPage: number;
-}
-
-export interface MessageResponse {
-  statusMsg: "success" | "fail";
-  message: string;
 }
 
 export interface ValidationError {

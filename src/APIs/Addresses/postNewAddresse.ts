@@ -1,4 +1,7 @@
-export default async function postNewAddresse({ token, data }) {
+import { AddressesResponse,ShippingAddress } from "@/types/addresses.type";
+import { ApiParams, ApiResponse} from "@/types/common.type";
+
+export default async function postNewAddresse({ token, data }:ApiParams<ShippingAddress>):Promise<ApiResponse<AddressesResponse>> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_GET_LOGGED_USER_ADDRESSES, {
       method: "POST",

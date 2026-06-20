@@ -1,6 +1,6 @@
-import { Product } from "./product.type"; // Path to your main Product interface
+import { Product } from "./product.type"; 
 
-export interface ProductListResponse {
+export interface WishList{
   status: string;
   count: number;
   data: Product[];

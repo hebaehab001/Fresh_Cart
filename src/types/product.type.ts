@@ -38,7 +38,7 @@ export interface Product {
   updatedAt: string;
 }
 
-export interface SpecificProduct extends Product {
+export interface SpecificProductResponse extends Product {
   reviews: Review[];
   __v: number;
 }
