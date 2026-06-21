@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
     Carousel,
@@ -10,33 +10,34 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
-export default function ImgCarousel({ images }) {
-    const [api, setApi] = useState();
-    const [current, setCurrent] = useState(0);
+export default function ImgCarousel({ images }:{images:string[]}) {
 
-    useEffect(() => {
-        if (!api) {
-            return;
-        }
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState<number>(0);
 
-        setCurrent(api.selectedScrollSnap() + 1);
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
 
-        api.on("select", () => {
-            setCurrent(api.selectedScrollSnap() + 1);
-        });
-    }, [api]);
+    setCurrent(api.selectedScrollSnap() + 1);
 
-    const handleThumbClick = useCallback(
-        (index) => {
-            api?.scrollTo(index);
-        },
-        [api],
-    );
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
+  const handleThumbClick = useCallback(
+    (index: number) => {
+      api?.scrollTo(index);
+    },
+    [api],
+  );
 
     return (
       <div className="mx-auto max-w-[90%]">
-        <Carousel className="w-full " setApi={setApi}>
-          <CarouselContent>
+        <Carousel className="w-full " setApi={setApi} opts={undefined} plugins={undefined} >
+          <CarouselContent className={undefined}>
             {images.map((image) => (
               <CarouselItem key={image} className="flex justify-center">
                 <Image
@@ -51,7 +52,7 @@ export default function ImgCarousel({ images }) {
           </CarouselContent>
         </Carousel>
 
-        <Carousel className="mt-4 mx-auto max-w-[80%] ">
+        <Carousel className="mt-4 mx-auto max-w-[80%] " opts={undefined} setApi={undefined} plugins={undefined} >
           <CarouselContent className="my-1 flex">
             {images.map((image, index) => (
               <CarouselItem

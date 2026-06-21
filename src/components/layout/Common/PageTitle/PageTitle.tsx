@@ -1,7 +1,7 @@
 import React from 'react'
 import { GiFluffyWing } from "react-icons/gi";
 
-export default function PageTitle({title}) {
+export default function PageTitle({ title }: {title:string}) {
   return (
     <div className="bg-linear-to-b from-white/10 from-30% to-white rounded-xl shadow-b-lg w-[90%]  p-4  flex items-center gap-3 justify-center">
       <GiFluffyWing className="size-12 text-sky-900" />
