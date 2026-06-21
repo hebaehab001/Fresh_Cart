@@ -3,6 +3,7 @@ import { Brand } from "./brands.type";
 import { CartData } from "./cart.type";
 import { Category } from "./categories.type";
 import { MetaDataResponse } from "./common.type";
+import { Order } from "./orders.type";
 import { Product } from "./product.type";
 
 export type ApiResponse = {
@@ -42,6 +43,12 @@ export interface CartApiResponse {
   data?: CartData;
   numOfCartItems?: number;
   cartId?: string;
+}
+
+export interface OrderApiResponse {
+  success: boolean;
+  message?: string;
+  data?: Order[];
 }
 
 export interface BrandApiResponse {

@@ -8,7 +8,7 @@ export default async function allOrders() {
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
       <div className="bg-white rounded-xl shadow-lg w-[90%] min-h-[85vh]  p-6 md:p-8 ">
         <div className="flex flex-col gap-5 mb-4">
-          {data.length == 0 ? (
+          {data?.length == 0 ? (
             <NoProducts text="There is no orders yet" />
           ) : (
             data.map((order, index) => (

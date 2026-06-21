@@ -25,7 +25,7 @@ const tabs = [
     icon: MdOutlinePassword,
   },
 ];
-export default function ProfileSection(Addresses:ShippingAddress[]) {
+export default function ProfileSection({ addresses }: {addresses:ShippingAddress[]}) {
   const { data: session } = useSession();
   return (
     <Tabs
@@ -100,7 +100,7 @@ export default function ProfileSection(Addresses:ShippingAddress[]) {
       </div>
       <div className="bg-white rounded-xl flex flex-col gap-4 shadow-lg p-6 md:p-8 col-span-12 lg:col-span-9">
         <EditProfileTab />
-        <AdressesTab {...Addresses} />
+        <AdressesTab addresses={addresses} />
         <EditPasswordTab />
       </div>
     </Tabs>

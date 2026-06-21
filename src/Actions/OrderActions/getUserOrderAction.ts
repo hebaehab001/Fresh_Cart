@@ -1,11 +1,10 @@
 "use server";
 import getOrderUser from "@/APIs/orderPayment.api";
-import { ApiDataResponse } from "@/types/api.types";
-import { OrdersResponse } from "@/types/orders.type";
+import { OrderApiResponse } from "@/types/api.types";
 import { getMyToken } from "@/utilities/token";
 import { jwtDecode } from "jwt-decode";
 
-export async function getUserOrdertAction(): Promise<ApiDataResponse<OrdersResponse>> {
+export async function getUserOrdertAction(): Promise<OrderApiResponse> {
   const token = await getMyToken();
   if (!token) {
     return {
@@ -13,6 +12,8 @@ export async function getUserOrdertAction(): Promise<ApiDataResponse<OrdersRespo
       message: "Authentication required. Please login first.",
     };
   }
-  const id: string = jwtDecode(token);
-  return await getOrderUser({ id });
+  const decoded = jwtDecode<{ id: string }>(token);
+  const id = decoded.id;
+  
+  return await getOrderUser(id);
 }

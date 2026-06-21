@@ -29,7 +29,7 @@ import { NewAddressesSchema } from "@/schema/NewAddresses.schema";
 import { useRouter } from "next/navigation";
 import { removeAddressAction } from "@/Actions/ProfileActions/removeAddressAction";
 import { ShippingAddress } from "@/types/addresses.type";
-export default function AdressesTab(Addresses :ShippingAddress[]) {
+export default function AdressesTab({ addresses }: {addresses : ShippingAddress[]}) { 
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const form = useForm({
@@ -170,11 +170,11 @@ export default function AdressesTab(Addresses :ShippingAddress[]) {
           </DialogContent>
         </Dialog>
       </div>
-      {Addresses.length === 0 ? (
+      {addresses.length === 0 ? (
         <NoProducts text="No Addresses available." />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2  gap-4 ">
-          {Addresses.map((address) => (
+          {addresses.map((address) => (
             <div
               key={address._id}
               className="border-sky-900 relative border col-span-1 rounded-lg shadow-md p-4"

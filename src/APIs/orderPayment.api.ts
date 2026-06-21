@@ -1,6 +1,5 @@
 import { ShippingAddress } from "@/types/addresses.type";
-import { ApiDataParams, ApiDataResponse, ApiParams, ApiResponse } from "@/types/api.types";
-import { OrdersResponse } from "@/types/orders.type";
+import { ApiDataParams,ApiResponse, OrderApiResponse } from "@/types/api.types";
 
 // Cash Payment
 export async function postCashPayment({
@@ -80,9 +79,7 @@ export async function postOnlinePayment({
 }
 
 // Get User orders
-export default async function getOrderUser(
-  {id}: ApiParams
-): Promise<ApiDataResponse<OrdersResponse>> {
+export default async function getOrderUser(id: string): Promise<OrderApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_USER_ORDER}/${id}`, {
       method: "GET",
