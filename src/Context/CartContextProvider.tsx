@@ -4,18 +4,22 @@ import { clearAllCartsAction } from "@/Actions/CartActions/clearAllCartsAction";
 import { getUserCartAction } from "@/Actions/CartActions/getUserCartAction";
 import { removeCartAction } from "@/Actions/CartActions/removeCartAction";
 import { updateCartAction } from "@/Actions/CartActions/updateCartAction";
+import { ComponentProps } from "@/types/common.type";
+import { CartContextType } from "@/types/context.type";
 import { createContext, useEffect, useState } from "react";
 
-export const cartContext = createContext({});
+export const cartContext = createContext<CartContextType | undefined>(
+  undefined,
+);
 
-export default function CartContextProvider({ children }) {
+export default function CartContextProvider({ children }: ComponentProps) {
   const [numOfCart, setnumOfCart] = useState(0);
   const [totalPrice, settotalPrice] = useState(0);
   const [products, setproducts] = useState([]);
   const [isLoading, setisLoading] = useState(false);
-  const [cardId, setcardId] = useState('');
+  const [cardId, setcardId] = useState("");
 
-  async function addProductToCart(id:string) {
+  async function addProductToCart(id: string) {
     try {
       const data = await addToCartAction(id);
       getusercart();
@@ -25,7 +29,7 @@ export default function CartContextProvider({ children }) {
     }
   }
 
-  async function removeCartItem(id:string) {
+  async function removeCartItem(id: string) {
     try {
       const data = await removeCartAction(id);
       setnumOfCart(data.numOfCartItems);
@@ -49,7 +53,7 @@ export default function CartContextProvider({ children }) {
     }
   }
 
-  async function updateCartItem(id:string,count:number) {
+  async function updateCartItem(id: string, count: number) {
     try {
       const data = await updateCartAction(id, count);
       setnumOfCart(data.numOfCartItems);
@@ -80,29 +84,28 @@ export default function CartContextProvider({ children }) {
     setnumOfCart(0);
     setproducts([]);
     settotalPrice(0);
-    setcardId('');
-    
+    setcardId("");
   }
 
   useEffect(function () {
     getusercart();
   }, []);
 
+  const value: CartContextType = {
+    numOfCart,
+    products,
+    totalPrice,
+    isLoading,
+    cardId,
+    addProductToCart,
+    removeCartItem,
+    updateCartItem,
+    removeAllCartItem,
+    afterPayment,
+  };
+
   return (
-    <cartContext.Provider
-      value={{
-        numOfCart,
-        products,
-        totalPrice,
-        isLoading,
-        cardId,
-        addProductToCart,
-        removeCartItem,
-        updateCartItem,
-        removeAllCartItem,
-        afterPayment,
-      }}
-    >
+    <cartContext.Provider value={value}>
       {children}
     </cartContext.Provider>
   );

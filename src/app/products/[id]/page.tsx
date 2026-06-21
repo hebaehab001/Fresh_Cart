@@ -1,13 +1,12 @@
-import getProductById from "@/APIs/Product/getProductById";
-
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import AddBtnCart from "@/components/layout/Buttons/CartBtn";
 import { Star, StarHalf } from "lucide-react";
-import AddBtnFav from "@/components/layout/Buttons/FavBtn";
+import AddBtnFav from "@/components/layout/Buttons/WishlistBtn";
 import ImgCarousel from "@/components/layout/Common/ImgCarousel/ImgCarousel";
 import { PagePropsParams } from "@/types/common.type";
+import { getProductById } from "@/APIs/product.api";
 
-const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
+const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }: { rating: number, maxStars: number, iconClass:string }) => {
   const roundedRating = useMemo(() => Math.round(rating * 2) / 2, [rating]);
   const stars = useMemo(() => {
     const starElements = [];
@@ -49,7 +48,7 @@ const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }) => {
 
   return <div className="flex space-x-0.5 justify-center">{stars}</div>;
 };
-export default async function page({ params }:PagePropsParams) {
+export default async function ProductDetails({ params }:PagePropsParams) {
   const { id } = await params;
   const { data } = await getProductById(id);
 
@@ -79,7 +78,7 @@ export default async function page({ params }:PagePropsParams) {
           </p>
           <div className="flex items-center mt-2.5 mb-5">
             <div className="flex flex-col items-center space-y-3">
-              <StarRating rating={data.ratingsAverage} iconClass="w-6 h-6" />
+              <StarRating rating={data.ratingsAverage} iconClass="w-6 h-6" maxStars={5} />
             </div>
             <span className="text-lg mx-2 text-gray-400">
               ({data.ratingsQuantity} Review)

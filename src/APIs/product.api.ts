@@ -1,8 +1,7 @@
-import { ApiDataResponse, ApiParams} from "@/types/api.types";
-import { SpecificProductResponse, ProductResponse } from "@/types/product.type";
+import {ProductApiResponse, SpecificProductApiResponse} from "@/types/api.types";
 
 // Gel ALL Products
-export async function getAllProducts(): Promise<ApiDataResponse<ProductResponse>> {
+export async function getAllProducts(): Promise<ProductApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_PRODUCTS, {
       next: { revalidate: 600 },
@@ -29,9 +28,7 @@ export async function getAllProducts(): Promise<ApiDataResponse<ProductResponse>
 }
 
 // Get Specifc product Detail
-export async function getProductById(
-  id: ApiParams
-): Promise<ApiDataResponse<SpecificProductResponse>> {
+export async function getProductById(id: string): Promise<SpecificProductApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTS}/${id}`, {
       next: { revalidate: 3600 },

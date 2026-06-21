@@ -1,8 +1,7 @@
-import { BrandResponse } from "@/types/brands.type";
-import { ApiDataResponse, ApiParams} from "@/types/api.types";
+import { BrandApiResponse, SpecificBrandApiResponse} from "@/types/api.types";
 
 // Get All Brands
-export  async function getAllBrands():Promise<ApiDataResponse<BrandResponse>> {
+export  async function getAllBrands():Promise<BrandApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_BRANDS, {
       cache: "force-cache",
@@ -29,7 +28,7 @@ export  async function getAllBrands():Promise<ApiDataResponse<BrandResponse>> {
 }
 
 // Get Specifc Brand Details
-export  async function getBrandById(id: ApiParams): Promise<ApiDataResponse<BrandResponse>> {
+export  async function getBrandById(id: string): Promise<SpecificBrandApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BRANDS}/${id}`, {
       next: { revalidate: 3600 },

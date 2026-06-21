@@ -78,7 +78,7 @@ export async function updateUserData({
 }
 
 export async function PostForgotPassword(
-  data: ApiDataParams<ForgetPasswordData>,
+  data: ForgetPasswordData,
 ): Promise<ApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_POST_FORGETPASSWORD, {
@@ -111,7 +111,7 @@ export async function PostForgotPassword(
 }
 
 export async function postSignup(
-  data: ApiDataParams<SignupData>,
+  data: SignupData,
 ): Promise<ApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_POST_SIGNUP, {
@@ -143,7 +143,7 @@ export async function postSignup(
 }
 
 export async function postVerifyCode(
-  data: ApiDataParams<VerifyResetCodeData>,
+  data: VerifyResetCodeData,
 ): Promise<ApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_POST_VERIFYCODE, {
@@ -151,7 +151,7 @@ export async function postVerifyCode(
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ resetCode: data }),
+      body: JSON.stringify(data),
     });
     const result = await res.json();
 
@@ -175,7 +175,7 @@ export async function postVerifyCode(
 }
 
 export async function updateUserPassword(
-  data: ApiDataParams<ResetPasswordData>,
+  data:ResetPasswordData,
 ): Promise<ApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_POST_RESETPASSWORD, {

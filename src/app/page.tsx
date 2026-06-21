@@ -3,8 +3,6 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { AiOutlineSafety } from "react-icons/ai";
 import { MdOutlineLocalShipping, MdOutlineSupportAgent } from "react-icons/md";
-import getAllCategories from "@/APIs/Category/getAllcategories";
-import getAllProducts from "@/APIs/Product/getAllProducts";
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +12,8 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
+import { getAllProducts } from "@/APIs/product.api";
+import { getAllCategories } from "@/APIs/category.api";
 
 export default async function Home() {
   const [{ data: products }, { data: categories }] = await Promise.all([

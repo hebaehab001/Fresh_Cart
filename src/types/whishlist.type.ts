@@ -5,3 +5,4 @@ export interface WishList{
   count: number;
   data: Product[];
 }
+

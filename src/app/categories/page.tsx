@@ -1,9 +1,8 @@
-import React from 'react'
 import Image from "next/image";
-import getAllCategories from "@/APIs/Category/getAllcategories";
 import PageTitle from '@/components/layout/Common/PageTitle/PageTitle';
 import Link from 'next/link';
-export default async function page() {
+import { getAllCategories } from "@/APIs/category.api";
+export default async function Categories() {
     const categories = await getAllCategories();
   return (
     categories && (

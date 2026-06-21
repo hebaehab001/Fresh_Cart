@@ -15,7 +15,7 @@ export default function NotFound() {
           </p>
         </div>
         <Link href="/">
-          <Button className="py-6 cursor-pointer px-8 bg-linear-to-b from-sky-800 to-sky-950 rounded-xl text-lg hover:shadow-lg transition-all">
+          <Button className="py-6 cursor-pointer px-8 bg-linear-to-b from-sky-800 to-sky-950 rounded-xl text-lg hover:shadow-lg transition-all" variant={undefined} size={undefined}>
             Back to Home
           </Button>
         </Link>

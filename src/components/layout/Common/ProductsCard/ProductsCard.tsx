@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa6";
 import AddBtnCart from "../../Buttons/CartBtn";
-import AddBtnFav from "../../Buttons/FavBtn";
+import AddBtnFav from "../../Buttons/WishlistBtn";
 import { Product } from "@/types/product.type";
 
 export default function ProductsCard({ product }: { product: Product }) {

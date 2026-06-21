@@ -1,7 +1,12 @@
+import { ShippingAddress } from "./addresses.type";
+import { Brand } from "./brands.type";
 import { CartData } from "./cart.type";
+import { Category } from "./categories.type";
+import { MetaDataResponse } from "./common.type";
 import { Product } from "./product.type";
 
 export type ApiResponse = {
+  session?: any;
   success: boolean;
   message?: string;
 };
@@ -37,4 +42,60 @@ export interface CartApiResponse {
   data?: CartData;
   numOfCartItems?: number;
   cartId?: string;
+}
+
+export interface BrandApiResponse {
+  success: boolean;
+  message?: string;
+  results?: number;
+  metadata?: MetaDataResponse;
+  data?: Brand[];
+}
+
+export interface CategoryApiResponse {
+  success: boolean;
+  message?: string;
+  results?: number;
+  metadata?: MetaDataResponse;
+  data?: Category[];
+}
+
+export interface SpecificBrandApiResponse {
+  success: boolean;
+  message?: string;
+  results?: number;
+  metadata?: MetaDataResponse;
+  data?: Brand;
+}
+
+export interface SpecificCategoryApiResponse {
+  success: boolean;
+  message?: string;
+  results?: number;
+  metadata?: MetaDataResponse;
+  data?: Category;
+}
+
+export interface ProductApiResponse {
+  success: boolean;
+  message?: string;
+  results?: number;
+  metadata?: MetaDataResponse;
+  data?: Product[];
+}
+
+export interface SpecificProductApiResponse {
+  success: boolean;
+  message?: string;
+  results?: number;
+  metadata?: MetaDataResponse;
+  data?: Product;
+}
+
+export interface AddressesApiResponse {
+  success: boolean;
+  message?: string;
+  status?: string;
+  results?: number;
+  data?: ShippingAddress[];
 }

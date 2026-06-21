@@ -1,8 +1,7 @@
-import React from "react";
-import getAllBrands from "@/APIs/Brand/getAllBrands";
 import Image from "next/image";
 import PageTitle from "@/components/layout/Common/PageTitle/PageTitle";
 import Link from "next/link";
+import { getAllBrands } from "@/APIs/brand.api";
 export default async function page() {
   const brands = await getAllBrands();
   return (

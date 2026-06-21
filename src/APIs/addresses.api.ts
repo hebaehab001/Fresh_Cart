@@ -1,9 +1,9 @@
-import { AddressesResponse, ShippingAddress } from "@/types/addresses.type";
+import {ShippingAddress } from "@/types/addresses.type";
 import {
   ApiDataParams,
-  ApiDataResponse,
   ApiResponse,
   ApiParams,
+  AddressesApiResponse,
 } from "@/types/api.types";
 
 // Add new Address
@@ -42,9 +42,9 @@ export async function postNewAddress({
 }
 
 // Get User Addresses
-export async function getloggedUserAddresses(
-  {token}: ApiParams
-): Promise<ApiDataResponse<AddressesResponse>> {
+export async function getloggedUserAddresses({
+  token,
+}: ApiParams): Promise<AddressesApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_GET_LOGGED_USER_ADDRESSES, {
       method: "GET",

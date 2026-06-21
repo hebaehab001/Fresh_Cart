@@ -1,4 +1,10 @@
 // Common types used everywhere
+import { ReactNode } from "react";
+
+export interface ComponentProps {
+  children: ReactNode;
+}
+
 export interface MetaDataResponse {
   currentPage: number;
   numberOfPages: number;

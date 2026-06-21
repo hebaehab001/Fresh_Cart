@@ -1,8 +1,7 @@
-import { CategoryResponse } from "@/types/categories.type";
-import { ApiDataResponse, ApiParams} from "@/types/api.types";
+import { CategoryApiResponse, SpecificCategoryApiResponse} from "@/types/api.types";
 
 // Get All Categories
-export  async function getAllCategories():Promise<ApiDataResponse<CategoryResponse>> {
+export  async function getAllCategories(): Promise<CategoryApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_CATEGORIES, {
       cache: "force-cache",
@@ -20,7 +19,6 @@ export  async function getAllCategories():Promise<ApiDataResponse<CategoryRespon
       success: true,
       data: result.data,
     };
-    
   } catch (error) {
     return {
       success: false,
@@ -31,8 +29,8 @@ export  async function getAllCategories():Promise<ApiDataResponse<CategoryRespon
 
 // Get Specifc Category Details
 export  async function getCategoriesById(
-  id: ApiParams
-): Promise<ApiDataResponse<CategoryResponse>> {
+  id: string,
+): Promise<SpecificCategoryApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_CATEGORIES}/${id}`, {
       next: { revalidate: 3600 },

@@ -1,10 +1,9 @@
 "use server";
 import { getloggedUserAddresses } from "@/APIs/addresses.api";
-import { AddressesResponse } from "@/types/addresses.type";
-import { ApiDataResponse } from "@/types/api.types";
+import { AddressesApiResponse} from "@/types/api.types";
 import { getMyToken } from "@/utilities/token";
 
-export async function getloggedUserAddressesAction(): Promise<ApiDataResponse<AddressesResponse>> {
+export async function getloggedUserAddressesAction(): Promise<AddressesApiResponse> {
   const token = await getMyToken();
   if (!token) {
     return {
@@ -12,5 +11,5 @@ export async function getloggedUserAddressesAction(): Promise<ApiDataResponse<Ad
       message: "Authentication required. Please login first.",
     };
   }
-  return await getloggedUserAddresses({token});
+  return await getloggedUserAddresses({ token });
 }

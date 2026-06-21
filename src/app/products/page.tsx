@@ -1,5 +1,5 @@
-import getAllCategories from "@/APIs/Category/getAllcategories";
-import getAllProducts from "@/APIs/Product/getAllProducts";
+import { getAllCategories } from "@/APIs/category.api";
+import { getAllProducts } from "@/APIs/product.api";
 import PageTitle from "@/components/layout/Common/PageTitle/PageTitle";
 import ProductSection from "@/components/layout/Products/ProductSection";
 
