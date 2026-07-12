@@ -81,7 +81,7 @@ export default function NavBar() {
               <DrawerFooter className="pt-2">
                 {status == "authenticated" ? (
                   <span className="gap-2 flex flex-col">
-                    <Link href="/favourite">
+                    <Link href="/wishlist">
                       <Button
                         variant="outline"
                         className="rounded-full w-full hover:bg-white group/hoverh hover:cursor-pointer relative" size={undefined}                      >
@@ -98,7 +98,7 @@ export default function NavBar() {
                           <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
                         </svg>
                         <span className="text-red-700 group-hover/hoverh:text-red-600">
-                          Favourite
+                          Wishlist
                         </span>
                         <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-white bg-linear-to-b from-sky-800/40 to-sky-950/30 text-white" variant={undefined}>
                           {numOfFav}
@@ -267,7 +267,7 @@ export default function NavBar() {
           {/* right side */}
           {status == "authenticated" ? (
             <span className="gap-2 flex">
-              <Link href="/favourite">
+              <Link href="/wishlist">
                 <Button
                   variant="outline"
                   size="icon"
