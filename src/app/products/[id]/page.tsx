@@ -1,56 +1,16 @@
-import { useMemo } from "react";
 import AddBtnCart from "@/components/layout/Buttons/CartBtn";
-import { Star, StarHalf } from "lucide-react";
 import AddBtnFav from "@/components/layout/Buttons/WishlistBtn";
 import ImgCarousel from "@/components/layout/Common/ImgCarousel/ImgCarousel";
 import { PagePropsParams } from "@/types/common.type";
 import { getProductById } from "@/APIs/product.api";
+import StarRating from "@/components/layout/reviews/StarRating";
+import { getProductReviews } from "@/APIs/reviews.api";
+import ProductReviewsSection from "@/components/layout/reviews/ProductReviewsSection";
 
-const StarRating = ({ rating, maxStars = 5, iconClass = "w-6 h-6" }: { rating: number, maxStars: number, iconClass:string }) => {
-  const roundedRating = useMemo(() => Math.round(rating * 2) / 2, [rating]);
-  const stars = useMemo(() => {
-    const starElements = [];
-    for (let i = 1; i <= maxStars; i++) {
-      const starValue = i;
-      if (starValue <= roundedRating) {
-        starElements.push(
-          <Star
-            key={i}
-            className={`${iconClass} fill-yellow-500 text-yellow-500`}
-          />,
-        );
-      } else if (starValue - 0.5 === roundedRating) {
-        starElements.push(
-          <div key={i} className="relative">
-            <StarHalf
-              className={`${iconClass} fill-yellow-500 text-yellow-500 absolute`}
-            />
-            <Star className={`${iconClass} fill-gray-300 text-gray-300`} />
-          </div>,
-        );
-      } else {
-        starElements.push(
-          <Star
-            key={i}
-            className={`${iconClass} fill-gray-300 text-gray-300`}
-          />,
-        );
-      }
-    }
-    return starElements;
-  }, [roundedRating, maxStars, iconClass]);
-
-  // Ensure the rating is between 0 and maxStars
-  if (rating < 0 || rating > maxStars) {
-    // You might want to return an error state or default stars here
-    return <div className="text-red-500">Invalid Rating</div>;
-  }
-
-  return <div className="flex space-x-0.5 justify-center">{stars}</div>;
-};
 export default async function ProductDetails({ params }:PagePropsParams) {
   const { id } = await params;
   const { data } = await getProductById(id);
+  const { data: initialReviews } = await getProductReviews(id);
 
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
@@ -89,6 +49,7 @@ export default async function ProductDetails({ params }:PagePropsParams) {
           </p>
           <AddBtnCart id={id} productdetails={true} />
         </div>
+          <ProductReviewsSection id={id} initialReviews={initialReviews}/>
       </div>
     </section>
   );
