@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
+import ProductsCard from "@/components/layout/Common/Card/ProductsCard";
 import NoProducts from "@/components/layout/Common/NoProducts/NoProducts";
 import { PagePropsParams } from "@/types/common.type";
 import { getCategoriesById } from "@/APIs/category.api";

@@ -4,20 +4,20 @@ import { clearAllCartsAction } from "@/Actions/CartActions/clearAllCartsAction";
 import { getUserCartAction } from "@/Actions/CartActions/getUserCartAction";
 import { removeCartAction } from "@/Actions/CartActions/removeCartAction";
 import { updateCartAction } from "@/Actions/CartActions/updateCartAction";
+import { CartItem } from "@/types/cart.type";
 import { ComponentProps } from "@/types/common.type";
 import { CartContextType } from "@/types/context.type";
 import { createContext, useEffect, useState } from "react";
-
 export const cartContext = createContext<CartContextType | undefined>(
   undefined,
 );
-
 export default function CartContextProvider({ children }: ComponentProps) {
-  const [numOfCart, setnumOfCart] = useState(0);
-  const [totalPrice, settotalPrice] = useState(0);
-  const [products, setproducts] = useState([]);
-  const [isLoading, setisLoading] = useState(false);
-  const [cardId, setcardId] = useState("");
+  const [numOfCart, setNumOfCart] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [products, setProducts] = useState<CartItem[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [cartId, setCartId] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   async function addProductToCart(id: string) {
     try {
@@ -26,65 +26,72 @@ export default function CartContextProvider({ children }: ComponentProps) {
       return data;
     } catch (error) {
       console.log(error);
+      setError("Couldn't update your cart. Check your connection.");
     }
   }
 
   async function removeCartItem(id: string) {
     try {
       const data = await removeCartAction(id);
-      setnumOfCart(data.numOfCartItems);
-      setproducts(data.data.products);
-      settotalPrice(data.data.totalCartPrice);
+      setNumOfCart(data.numOfCartItems);
+      setProducts(data.data.products);
+      setTotalPrice(data.data.totalCartPrice);
       return data;
     } catch (error) {
       console.log(error);
+      setError("Couldn't update your cart. Check your connection.");
     }
   }
 
   async function removeAllCartItem() {
     try {
       const data = await clearAllCartsAction();
-      setnumOfCart(0);
-      setproducts([]);
-      settotalPrice(0);
+      setNumOfCart(0);
+      setProducts([]);
+      setTotalPrice(0);
       return data;
     } catch (error) {
       console.log(error);
+      setError("Couldn't update your cart. Check your connection.");
     }
   }
 
   async function updateCartItem(id: string, count: number) {
     try {
       const data = await updateCartAction(id, count);
-      setnumOfCart(data.numOfCartItems);
-      setproducts(data.data.products);
-      settotalPrice(data.data.totalCartPrice);
+      setNumOfCart(data.numOfCartItems);
+      setProducts(data.data.products);
+      setTotalPrice(data.data.totalCartPrice);
       return data;
     } catch (error) {
       console.log(error);
+      setError("Couldn't update your cart. Check your connection.");
     }
   }
 
   async function getusercart() {
-    setisLoading(true);
+    setIsLoading(true);
+    setError(null);
     try {
       const data = await getUserCartAction();
-      setnumOfCart(data.numOfCartItems);
-      setproducts(data.data.products);
-      settotalPrice(data.data.totalCartPrice);
-      setisLoading(false);
-      setcardId(data.cartId);
+      setNumOfCart(data.numOfCartItems);
+      setProducts(data.data.products ?? []);
+      setTotalPrice(data.data.totalCartPrice);
+      setIsLoading(false);
+      setCartId(data.cartId);
     } catch (error) {
       console.log(error);
-      setisLoading(false);
+      setError("Couldn't update your cart. Check your connection.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
   function afterPayment() {
-    setnumOfCart(0);
-    setproducts([]);
-    settotalPrice(0);
-    setcardId("");
+    setNumOfCart(0);
+    setProducts([]);
+    setTotalPrice(0);
+    setCartId("");
   }
 
   useEffect(function () {
@@ -96,7 +103,8 @@ export default function CartContextProvider({ children }: ComponentProps) {
     products,
     totalPrice,
     isLoading,
-    cardId,
+    cartId,
+    error,
     addProductToCart,
     removeCartItem,
     updateCartItem,
@@ -104,9 +112,5 @@ export default function CartContextProvider({ children }: ComponentProps) {
     afterPayment,
   };
 
-  return (
-    <cartContext.Provider value={value}>
-      {children}
-    </cartContext.Provider>
-  );
+  return <cartContext.Provider value={value}>{children}</cartContext.Provider>;
 }

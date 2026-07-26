@@ -1,7 +1,6 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,49 +9,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { registerSchema } from "@/schema/register.schema";
-import {postSignup} from "@/APIs/auth.api";
-import { SignupData } from "@/types/auth.type";
+import { Input } from "@/components/ui/input";
+import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
+import { useRegister } from "@/hooks/useRegister";
 export default function Register() {
-  const router = useRouter();
-  const form = useForm({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      rePassword: "",
-      phone: "",
-    },
-  });
-  async function handleRegister(values:SignupData) {
-    const data = await postSignup(values);
-      if (data?.success) {
-        toast.success(data.message, {
-          position: "bottom-right",
-          duration: 3000,
-        });
-        router.push("/login");
-      } else {
-        toast.error(data.message, {
-          position: "bottom-right",
-          duration: 3000,
-        });
-      }
-  }
+  const { handleRegister, form, isSubmitting } = useRegister();
 
   return (
-     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
+    <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
       <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
         <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
           <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
@@ -123,7 +89,9 @@ export default function Register() {
                 name="rePassword"
                 render={({ field }) => (
                   <FormItem className={undefined}>
-                    <FormLabel className={undefined}>Confirm Password</FormLabel>
+                    <FormLabel className={undefined}>
+                      Confirm Password
+                    </FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="Confirm" {...field} />
                     </FormControl>
@@ -144,16 +112,24 @@ export default function Register() {
                   </FormItem>
                 )}
               />
-              <Button
-                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-                type="submit" variant={undefined} size={undefined}              >
-                Create account
-              </Button>
+              <LoadingBtn
+                isSubmitting={isSubmitting}
+                type="submit"
+                variant="primary"
+                size="lg"
+                className="w-full text-lg"
+                loadingTitle="Creating account..."
+                title="Create account"
+              />
               <p className="text-center">
                 Have an account ?{" "}
                 <Link
                   href="/login"
-                  className="px-1 underline underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
+                  className={buttonVariants({
+                    variant: "link",
+                    size: "sm",
+                    className: "px-0!",
+                  })}
                 >
                   LogIn
                 </Link>

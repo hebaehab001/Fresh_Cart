@@ -2,71 +2,38 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { updateReviewAction } from "@/Actions/ReviewActions/updateReviewAction";
 import { Review, UpdateReviewData } from "@/types/review.type";
-import { deleteReviewAction } from "@/Actions/ReviewActions/deleteReviewAction";
+import LoadingBtn from "../Buttons/LoadingBtn";
+import { toastError } from "@/lib/toast";
 
 interface ReviewUpdateProps {
   review: Review;
-  onUpdateComplete?: () => void;
-  onReviewDeleted?: () => void;
+  isSaving: boolean;
+  isDeleting: boolean;
+  onSave: (values: UpdateReviewData) => void;
+  onDelete: () => void;
 }
 
-export default function ReviewUpdate({
-  review,
-  onUpdateComplete,
-  onReviewDeleted,
-}: ReviewUpdateProps) {
+export default function ReviewUpdate({ review, isSaving, isDeleting, onSave, onDelete }: ReviewUpdateProps) {
   const [rating, setRating] = useState(review.rating);
   const [reviewText, setReviewText] = useState(review.review);
-  const [loading, setLoading] = useState(false);
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     if (rating === 0) {
-      toast.error("Please select a rating");
+      toastError("Please select a rating");
       return;
     }
-
     if (!reviewText.trim()) {
-      toast.error("Please write a review");
+      toastError("Please write a review");
       return;
     }
-
-    setLoading(true);
-
-    const updateData: UpdateReviewData = {
-      rating,
-      review: reviewText,
-    };
-
-    const response = await updateReviewAction(review._id, updateData);
-
-    if (response.success) {
-      toast.success("Review updated successfully");
-      onUpdateComplete?.();
-    } else {
-      toast.error(response.message || "Failed to update review");
-    }
-
-    setLoading(false);
-  };
-
-  const handleDelete = async (id: string) => {
-    const response = await deleteReviewAction(id);
-    if (response.success) {
-      toast.success("Review deleted");
-      onReviewDeleted?.();
-    } else {
-      toast.error("Failed to delete review");
-    }
-  };
+    onSave({ rating, review: reviewText });
+  }
 
   return (
     <form
-      onSubmit={handleUpdate}
+      onSubmit={handleSubmit}
       className="bg-white p-4 rounded-lg shadow-md w-full"
     >
       <h3 className="text-lg font-bold mb-4">Edit Your Review</h3>
@@ -74,16 +41,18 @@ export default function ReviewUpdate({
         <label className="block text-sm font-medium mb-2">Rating</label>
         <div className="flex gap-2">
           {[1, 2, 3, 4, 5].map((star) => (
-            <button
+            <Button
               key={star}
               type="button"
+              variant={undefined}
+              size="icon-lg"
               onClick={() => setRating(star)}
-              className={`text-3xl transition ${
+              className={`text-3xl bg-transparent hover:bg-transparent ${
                 star <= rating ? "text-yellow-400" : "text-gray-300"
-              } cursor-pointer hover:text-yellow-300`}
+              }  hover:text-yellow-300`}
             >
               ★
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -99,24 +68,25 @@ export default function ReviewUpdate({
       </div>
 
       <div className="flex flex-col gap-2">
-        <Button
+        <LoadingBtn
+          isSubmitting={isSaving}
           type="submit"
-          disabled={loading}
-          className="bg-sky-800 hover:bg-sky-900 text-white w-full"
+          variant="primary"
+          size="lg"
+          className="w-full text-lg"
+          loadingTitle="Saving..."
+          title="Save"
+        />
+        <LoadingBtn
+          isSubmitting={isDeleting}
+          type="button"
+          onClick={onDelete}
           variant={undefined}
-          size={undefined}
-        >
-          {loading ? "Saving..." : "Save"}
-        </Button>
-        <Button
-          disabled={loading}
-          onClick={() => handleDelete(review._id)}
-          variant={undefined}
-          size={undefined}
-          className=" text-white w-full"
-        >
-          {loading ? "Deleting..." : "Delete Review"}
-        </Button>
+          size="lg"
+          className="text-lg w-full bg-transparent border border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+          loadingTitle="Deleting..."
+          title="Delete Review"
+        />
       </div>
     </form>
   );

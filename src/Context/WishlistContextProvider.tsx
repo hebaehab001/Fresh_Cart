@@ -4,14 +4,15 @@ import { getUserWishlistAction } from "@/Actions/WishlistActions/GetUserWishlist
 import { removeWishlistAction } from "@/Actions/WishlistActions/removeWishlistAction";
 import { ComponentProps } from "@/types/common.type";
 import { WishListContextType } from "@/types/context.type";
+import { Product } from "@/types/product.type";
 import { createContext, useEffect, useState } from "react";
-export const wishlistContext = createContext<WishListContextType | undefined>(
-  undefined,
-);
-export default function WishlistContextProvider({ children }:ComponentProps) {
-  const [numOfFav, setnumOfFav] = useState(0);
-  const [isLoading, setisLoading] = useState(false);
-  const [products, setproducts] = useState([]);
+export const wishlistContext = createContext<WishListContextType | undefined>(undefined);
+export default function WishlistContextProvider({ children }: ComponentProps) {
+  const [numOfFav, setNumOfFav] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
   async function addProductToFav(id: string) {
     try {
       const data = await addToWishlistAction(id);
@@ -19,30 +20,37 @@ export default function WishlistContextProvider({ children }:ComponentProps) {
       return data;
     } catch (error) {
       console.log(error);
+      setError("Couldn't load your wishlist. Check your connection.");
     }
   }
+
   async function removeFavItem(id: string) {
     try {
       const data = await removeWishlistAction(id);
       if (data?.success) {
-        setproducts(data.data);
-        setnumOfFav(data.data.length);
+        setProducts(data.data);
+        setNumOfFav(data.data.length);
       }
       return data;
     } catch (error) {
       console.log(error);
+      setError("Couldn't load your wishlist. Check your connection.");
     }
   }
+
   async function getuserfav() {
-    setisLoading(true);
+    setIsLoading(true);
+    setError(null);
     try {
       const data = await getUserWishlistAction();
-      setnumOfFav(data.count);
-      setproducts(data.data);
-      setisLoading(false);
+      setNumOfFav(data.count);
+      setProducts(data.data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
-      setisLoading(false);
+      setError("Couldn't load your wishlist. Check your connection.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -54,6 +62,7 @@ export default function WishlistContextProvider({ children }:ComponentProps) {
     numOfFav,
     products,
     isLoading,
+    error,
     addProductToFav,
     removeFavItem,
   };

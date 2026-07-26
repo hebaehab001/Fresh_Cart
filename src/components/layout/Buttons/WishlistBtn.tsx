@@ -4,7 +4,13 @@ import { FaHeart } from "react-icons/fa";
 import { useMemo } from "react";
 import { toast } from "sonner";
 import { useWishlist } from "@/hooks/useWishlist";
-export default function WishlistBtn({ id, productdetails }: { id: string, productdetails :boolean}) {
+export default function WishlistBtn({
+  id,
+  productdetails,
+}: {
+  id: string;
+  productdetails: boolean;
+}) {
   const { addProductToFav, products, removeFavItem } = useWishlist();
   const isInFav = useMemo(
     () =>
@@ -31,10 +37,15 @@ export default function WishlistBtn({ id, productdetails }: { id: string, produc
   return (
     <Button
       onClick={handleToggleFav}
-      className={`cursor-pointer absolute ${productdetails
+      className={`cursor-pointer absolute ${
+        productdetails
           ? "top-8 right-8 bg-transparent hover:bg-transparent"
-          : "top-3 right-3 bg-white/70 hover:bg-white/90"} z-30  p-2 py-3 rounded-full transition-colors duration-150
-      ${isInFav ? "text-red-500" : "text-gray-500 hover:text-red-500"}`} variant={undefined} size={undefined}    >
+          : "top-3 right-3 bg-white/70 hover:bg-white/90"
+      } z-30 rounded-full
+      ${isInFav ? "text-red-500" : "text-gray-500 hover:text-red-500"}`}
+      variant={undefined}
+      size="icon"
+    >
       <span className={productdetails ? "w-8 h-8" : "w-6 h-6"}>
         <FaHeart className={productdetails ? "size-8" : "size-6"} />
       </span>

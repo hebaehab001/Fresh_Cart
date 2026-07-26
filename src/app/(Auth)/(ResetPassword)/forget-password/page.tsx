@@ -1,8 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -19,77 +17,31 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
-import { verifyPasswordSchema } from "@/schema/verifyPassword.schema";
-import { Field} from "@/components/ui/field";
+import { Field } from "@/components/ui/field";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { RefreshCwIcon } from "lucide-react";
-import { ForgetPasswordData } from "@/types/auth.type";
-import { PostForgotPassword, postVerifyCode } from "@/APIs/auth.api";
+import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
+import { useForgetPassword } from "@/hooks/useForgetPassword";
 export default function ForgetPassword() {
-  const [Codevalue, setCodeValue] = useState("");
-  const [Emailvalue, setEmailvalue] = useState("");
-  const [ConfirmCode, setConfirmCode] = useState(false);
-  const router = useRouter();
-  const form = useForm({
-    defaultValues: {
-      email: "",
-    },
-    resolver: zodResolver(verifyPasswordSchema),
-  });
-  async function handleForgetPassword(Values: ForgetPasswordData) {
-    setEmailvalue(Values.email);
-    const data = await PostForgotPassword(Values);
-    if (data?.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      setConfirmCode(true);
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
-  async function handleResendCode() {
-    const data = await PostForgotPassword( {email:Emailvalue} );
-    if (data?.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      setConfirmCode(true);
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
-  async function handleVerfiyCode() {
-    const data = await postVerifyCode({resetCode:Codevalue});
-    if (data?.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      router.push("/reset-password");
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
+  const {
+    Codevalue,
+    setCodeValue,
+    Emailvalue,
+    ConfirmCode,
+    isVerifying,
+    isResending,
+    handleForgetPassword,
+    handleResendCode,
+    handleVerfiyCode,
+    form,
+    isSubmitting,
+  } = useForgetPassword();
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
       <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
@@ -104,7 +56,7 @@ export default function ForgetPassword() {
             />
           </div>
           {!ConfirmCode ? (
-            <Form {...form} >
+            <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(handleForgetPassword)}
                 className="flex  flex-col justify-center h-full gap-5 p-6 md:p-10"
@@ -131,15 +83,23 @@ export default function ForgetPassword() {
                     </FormItem>
                   )}
                 />
-                <Button
-                  className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-                  type="submit" variant={undefined} size={undefined}                >
-                  Confirm Email
-                </Button>
+                <LoadingBtn
+                  isSubmitting={isSubmitting}
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full text-lg"
+                  loadingTitle="Confirming Email..."
+                  title="Confirm Email"
+                />
                 <p className="text-center">
                   <Link
                     href="/login"
-                    className="px-1 underline underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
+                    className={buttonVariants({
+                      variant: "link",
+                      size: "sm",
+                      className: "px-0!",
+                    })}
                   >
                     Back To Login Screen
                   </Link>
@@ -158,11 +118,14 @@ export default function ForgetPassword() {
                 </CardDescription>
               </CardHeader>
               <InputOTP
-                  maxLength={6}
-                  id="otp-verification"
-                  required
-                  value={Codevalue}
-                  onChange={(value) => setCodeValue(value)} className={undefined} containerClassName={undefined}              >
+                maxLength={6}
+                id="otp-verification"
+                required
+                value={Codevalue}
+                onChange={(value) => setCodeValue(value)}
+                className={undefined}
+                containerClassName={undefined}
+              >
                 <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
                   <InputOTPSlot index={0} className={undefined} />
                   <InputOTPSlot index={1} className={undefined} />
@@ -175,21 +138,26 @@ export default function ForgetPassword() {
                   <InputOTPSlot index={5} className={undefined} />
                 </InputOTPGroup>
               </InputOTP>
-              <Button
-                  className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-                  type="submit"
-                  onClick={handleVerfiyCode} variant={undefined} size={undefined}              >
-                Confirm Code
-              </Button>
-              <Button
-                onClick={handleResendCode}
-                className="px-1 underline underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
-                variant="none"
+              <LoadingBtn
+                isSubmitting={isVerifying}
+                onClick={handleVerfiyCode}
+                type="button"
+                variant="primary"
+                size="lg"
+                className="w-full text-lg"
+                loadingTitle="Verifying..."
+                title="Confirm Code"
+              />
+              <LoadingBtn
+                isSubmitting={isResending}
+                type="button"
+                variant="link"
                 size="sm"
-              >
-                <RefreshCwIcon />
-                Resend Confirmation Code
-              </Button>
+                className="px-0!"
+                loadingTitle="Resending..."
+                title="Resend Confirmation Code"
+                onClick={handleResendCode}
+              />
             </Field>
           )}
         </CardContent>

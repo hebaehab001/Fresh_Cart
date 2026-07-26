@@ -12,14 +12,14 @@ const stars = useMemo(() => {
             starElements.push(
                 <Star
                     key={i}
-                    className={`${iconClass} fill-yellow-500 text-yellow-500`}
+                    className={`${iconClass} fill-yellow-400 text-yellow-400`}
                 />,
             );
         } else if (starValue - 0.5 === roundedRating) {
             starElements.push(
                 <div key={i} className="relative">
                     <StarHalf
-                        className={`${iconClass} fill-yellow-500 text-yellow-500 absolute`}
+                        className={`${iconClass} fill-yellow-400 text-yellow-400 absolute`}
                     />
                     <Star className={`${iconClass} fill-gray-300 text-gray-300`} />
                 </div>,

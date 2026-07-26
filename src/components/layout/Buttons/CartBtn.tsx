@@ -1,37 +1,25 @@
 "use client";
-import { useCart } from "@/hooks/useCart";
-import { FaBasketShopping  } from "react-icons/fa6";
-import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { useCartActions } from "@/hooks/useCartActions";
+import { FaBasketShopping } from "react-icons/fa6";
 
-export default function CartBtn({ id, productdetails }: { id: string, productdetails: boolean }) {
-  const { addProductToCart } = useCart();
-  async function handleAddCart() {
-    const data = await addProductToCart(id);
-    if (data.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 2000,
-      });
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 2000,
-      });
-    }
-  }
-  return productdetails ? (
-    <button
-      onClick={handleAddCart}
-      className="w-full cursor-pointer bg-linear-to-b from-sky-800 to-sky-950 text-white py-3 rounded-lg hover:from-sky-700 transition duration-150 font-semibold shadow-md"
+export default function CartBtn({
+  id,
+  productdetails,
+}: {
+  id: string;
+  productdetails: boolean;
+}) {
+  const { handleAddToCart } = useCartActions();
+
+  return (
+    <Button
+      variant="primary"
+      size={productdetails ? "lg" : "default"}
+      onClick={() => handleAddToCart(id)}
+      className={`${productdetails ? "text-lg h-11" : ""} w-full`}
     >
-      Add To Cart
-    </button>
-  ) : (
-    <button
-      onClick={handleAddCart}
-      className="cursor-pointer bg-white border border-sky-800 text-sky-800 font-bold text-lg  rounded-lg p-2 hover:border-sky-800 hover:text-white hover:bg-sky-800"
-    >
-      <FaBasketShopping />
-    </button>
+      <FaBasketShopping /> Add To Cart
+    </Button>
   );
 }

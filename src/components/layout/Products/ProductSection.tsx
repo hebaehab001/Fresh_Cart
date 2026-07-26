@@ -1,5 +1,4 @@
 "use client";
-import React,{ useState, useMemo } from "react";
 import { SearchIcon } from "lucide-react";
 import {
   InputGroup,
@@ -8,17 +7,25 @@ import {
 } from "@/components/ui/input-group";
 import SidebarFilteration from "./SidebarFilteration";
 import NoProducts from "../Common/NoProducts/NoProducts";
-import { filterProducts } from "@/utilities/filterProducts";
-import ProductsCard from "@/components/layout/Common/ProductsCard/ProductsCard";
+import ProductsCard from "@/components/layout/Common/Card/ProductsCard";
 import { Product } from "@/types/product.type";
 import { Category } from "@/types/categories.type";
+import { useProductFilters } from "@/hooks/useProductFilters";
 
-export default function ProductSection({ products, categories }: { products: Product[], categories :Category[]}) {
-  const [search, setSearch] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const filteredProducts = useMemo(() => {
-    return filterProducts(products, search, selectedCategory);
-  }, [products, search, selectedCategory]);
+export default function ProductSection({
+  products,
+  categories,
+}: {
+  products: Product[];
+  categories: Category[];
+}) {
+  const {
+    search,
+    setSearch,
+    selectedCategory,
+    setSelectedCategory,
+    filteredProducts,
+  } = useProductFilters(products);
 
   return (
     <div className="grid grid-cols-12 w-[90%] gap-3 ">
@@ -51,7 +58,9 @@ export default function ProductSection({ products, categories }: { products: Pro
             <InputGroupInput
               placeholder="Search..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)} className={undefined}  />
+              onChange={(e) => setSearch(e.target.value)}
+              className={undefined}
+            />
             <InputGroupAddon className={undefined}>
               <SearchIcon />
             </InputGroupAddon>
@@ -62,7 +71,7 @@ export default function ProductSection({ products, categories }: { products: Pro
         ) : filteredProducts.length === 0 ? (
           <NoProducts text="No products match your search or filter criteria." />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 ">
             {filteredProducts.map((product) => (
               <ProductsCard key={product._id} product={product} />
             ))}

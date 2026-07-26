@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import {
   Form,
   FormControl,
@@ -10,53 +10,10 @@ import {
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TabsContent } from "@/components/ui/tabs";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { EditProfileSchema } from "@/schema/EditProfile.schema";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { toast } from "sonner";
-import { updateUserInfoAction } from "@/Actions/ProfileActions/updateUserInfoAction";
-import { UpdateUserData } from "@/types/auth.type";
+import LoadingBtn from "../Buttons/LoadingBtn";
+import { useEditUserInformation } from "@/hooks/useEditUserInformation";
 export default function EditProfileTab() {
-  const { data: session, update } = useSession();
-  const form = useForm({
-    resolver: zodResolver(EditProfileSchema),
-    defaultValues: {
-      name: session?.user?.name || "",
-      email: session?.user?.email || "",
-      phone: session?.user?.phone || "",
-    },
-  });
-  useEffect(() => {
-    if (session) {
-      form.reset({
-        name: session?.user?.name || "",
-        email: session?.user?.email || "",
-        phone: session?.user?.phone || "",
-      });
-    }
-  }, [session, form]);
-  async function handleUpdateData(values: UpdateUserData) {
-    const data = await updateUserInfoAction({
-      name: values.name,
-      phone: values.phone,
-    });
-    if (data?.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      await update({ name: values.name });
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
-
+  const { form, handleUpdateData, isSubmitting } = useEditUserInformation();
   return (
     <TabsContent
       className="flex h-full items-center justify-center"
@@ -95,8 +52,11 @@ export default function EditProfileTab() {
               <FormItem className={undefined}>
                 <FormLabel className={undefined}>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="email" {...field} />
+                  <Input type="email" placeholder="email" disabled {...field} />
                 </FormControl>
+                <p className="text-xs text-muted-foreground ml-2">
+                  Email cannot be changed
+                </p>
                 <FormMessage className={undefined} />
               </FormItem>
             )}
@@ -114,11 +74,15 @@ export default function EditProfileTab() {
               </FormItem>
             )}
           />
-          <Button
-            className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-            type="submit" variant={undefined} size={undefined}          >
-            Update Information
-          </Button>
+          <LoadingBtn
+            isSubmitting={isSubmitting}
+            type="submit"
+            variant="primary"
+            size="lg"
+            className="w-full text-lg"
+            loadingTitle="Updating..."
+            title="Update Information"
+          />
         </form>
       </Form>
     </TabsContent>

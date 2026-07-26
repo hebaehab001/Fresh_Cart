@@ -1,55 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { CreateReviewData, Review } from "@/types/review.type";
+import { CreateReviewData} from "@/types/review.type";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { createReviewAction } from "@/Actions/ReviewActions/createReviewAction";
+import LoadingBtn from "../Buttons/LoadingBtn";
+import { toastError } from "@/lib/toast";
 
 interface ReviewFormProps {
-  id: string;
-  onReviewAdded?: () => void;
+  isSubmitting: boolean;
+  onSubmit: (values: CreateReviewData) => void;
 }
 
-export default function ReviewForm({ id, onReviewAdded }: ReviewFormProps) {
+export default function ReviewForm({ isSubmitting, onSubmit }: ReviewFormProps) {
   const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     if (rating === 0) {
-      toast.error("Please select a rating");
+      toastError("Please select a rating");
       return;
     }
-
     if (!review.trim()) {
-      toast.error("Please write a review");
+      toastError("Please write a review");
       return;
     }
-
-    setLoading(true);
-
-    const reviewData: CreateReviewData = {
-      review,
-      rating,
-    };
-
-    // Call server action
-    const response = await createReviewAction(id, reviewData);
-
-    if (response.success) {
-      toast.success(response.message || "Review added successfully");
-      setRating(0);
-      setReview("");
-      onReviewAdded?.();
-    } else {
-      toast.error(response.message || "Failed to add review");
-    }
-
-    setLoading(false);
-  };
+    onSubmit({ review, rating });
+    setRating(0);
+    setReview("");
+  }
   return (
     <form
       onSubmit={handleSubmit}
@@ -61,16 +41,18 @@ export default function ReviewForm({ id, onReviewAdded }: ReviewFormProps) {
         <label className="block text-sm font-medium mb-2">Rating</label>
         <div className="flex gap-2">
           {[1, 2, 3, 4, 5].map((star) => (
-            <button
+            <Button
               key={star}
               type="button"
+              variant={undefined}
+              size="icon-lg"
               onClick={() => setRating(star)}
-              className={`text-3xl transition ${
+              className={`text-3xl bg-transparent hover:bg-transparent ${
                 star <= rating ? "text-yellow-400" : "text-gray-300"
-              } cursor-pointer hover:text-yellow-300`}
+              }  hover:text-yellow-300`}
             >
               ★
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -85,16 +67,15 @@ export default function ReviewForm({ id, onReviewAdded }: ReviewFormProps) {
           rows={4}
         />
       </div>
-
-      <Button
+      <LoadingBtn
+        isSubmitting={isSubmitting}
         type="submit"
-        disabled={loading}
-        className="bg-sky-800 hover:bg-sky-900 text-white w-full"
-        variant={undefined}
-        size={undefined}
-      >
-        {loading ? "Submitting..." : "Submit Review"}
-      </Button>
+        variant="primary"
+        size="lg"
+        className="w-full text-lg"
+        loadingTitle="Submitting..."
+        title="Submit Review"
+      />
     </form>
   );
 }

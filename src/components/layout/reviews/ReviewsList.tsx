@@ -5,7 +5,6 @@ import StarRating from "./StarRating";
 
 interface ReviewsListProps {
   reviews: Review[];
-  currentUserId: string;
 }
 
 export default function ReviewsList({ reviews }: ReviewsListProps) {

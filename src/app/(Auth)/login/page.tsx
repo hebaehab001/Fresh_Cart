@@ -1,7 +1,6 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,50 +9,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { loginSchema } from "@/schema/login.schema";
-import { LoginCredentials } from "@/types/auth.type";
-export default function Login() {
-  const router = useRouter();
-  const form = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-    resolver: zodResolver(loginSchema),
-  });
-  async function handleLogin(values: LoginCredentials) {
-    const res = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-      callbackUrl: "/",
-    });
-    if (res?.ok) {
-      toast.success("login success", {
-        position: "bottom-right",
-        duration: 1000,
-      });
-      router.refresh();
-      router.push(res.url || "/");
-    } else {
-      toast.error(res.error, {
-        position: "bottom-right",
-        duration: 1000,
-      });
-    }
-  }
+import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
+import { useLogin } from "@/hooks/useLogin";
 
+export default function Login() {
+  const { handleLogin, form, isSubmitting } = useLogin();
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
       <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
@@ -98,13 +61,15 @@ export default function Login() {
                   <FormItem className={undefined}>
                     <div className="flex justify-between">
                       <FormLabel className={undefined}>Password</FormLabel>
-
-                      <Link href="/forget-password">
-                        <Button
-                          variant={Link}
-                          className="px-1 text-xs underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800" size={undefined}                        >
-                          Forget Password?
-                        </Button>
+                      <Link
+                        href="/forget-password"
+                        className={buttonVariants({
+                          variant: "link",
+                          size: "sm",
+                          className: "text-xs",
+                        })}
+                      >
+                        Forget Password?
                       </Link>
                     </div>
                     <FormControl>
@@ -118,17 +83,24 @@ export default function Login() {
                   </FormItem>
                 )}
               />
-
-              <Button
-                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-                type="submit" variant={undefined} size={undefined}              >
-                Login
-              </Button>
+              <LoadingBtn
+                isSubmitting={isSubmitting}
+                type="submit"
+                variant="primary"
+                size="lg"
+                className="w-full text-lg"
+                loadingTitle="Logging in..."
+                title="Login"
+              />
               <p className="text-center">
                 Don&apos;t have an account?{" "}
                 <Link
                   href="/register"
-                  className="px-1 underline underline-offset-4 hover:underline hover:cursor-pointer hover:text-sky-800"
+                  className={buttonVariants({
+                    variant: "link",
+                    size: "sm",
+                    className: "px-0!",
+                  })}
                 >
                   Sign up
                 </Link>

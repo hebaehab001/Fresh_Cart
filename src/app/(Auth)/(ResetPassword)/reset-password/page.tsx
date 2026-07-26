@@ -1,8 +1,5 @@
 "use client";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Form,
   FormControl,
@@ -11,43 +8,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { ResetPasswordSchema } from "@/schema/resetPassword.schema";
-import { ResetPasswordData } from "@/types/auth.type";
-import { updateUserPassword } from "@/APIs/auth.api";
+import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
+import { useResetPassword } from "@/hooks/useResetPassword";
 export default function ResetPassword() {
-  const router = useRouter();
-  const form = useForm({
-    resolver: zodResolver(ResetPasswordSchema),
-    defaultValues: {
-      email: "",
-      newPassword: "",
-    },
-  });
-  async function handleResetPassword(values: ResetPasswordData) {
-    const data = await updateUserPassword(values);
-    if (data?.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      router.push("/login");
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
+  const { handleResetPassword, form, isSubmitting } = useResetPassword();
 
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
@@ -103,11 +69,15 @@ export default function ResetPassword() {
                   </FormItem>
                 )}
               />
-              <Button
-                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-                type="submit" variant={undefined} size={undefined}              >
-                Confirm Password
-              </Button>
+              <LoadingBtn
+                isSubmitting={isSubmitting}
+                type="submit"
+                variant="primary"
+                size="lg"
+                className="w-full text-lg"
+                loadingTitle="Confirming Password..."
+                title="Confirm Password"
+              />
             </form>
           </Form>
         </CardContent>

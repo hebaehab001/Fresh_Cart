@@ -1,61 +1,28 @@
 "use client";
-import { useContext, useRef } from "react";
-import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cartContext } from "@/Context/CartContextProvider";
-import { cashPaymentAction } from "@/Actions/PaymentActions/cashPaymentAction";
-import { useRouter } from "next/navigation";
-import { onlinePaymentAction } from "@/Actions/PaymentActions/onlinePaymentAction";
-import { toast } from "sonner";
+import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
+import { usePayment } from "@/hooks/usePayment";
 import { ShippingAddress } from "@/types/addresses.type";
+import { toastError } from "@/lib/toast";
 export default function page() {
-  const { cardId, afterPayment } = useContext(cartContext);
-  const router = useRouter();
+  const { cashPayment, onlinePayment, isProcessing } = usePayment();
   const details = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
   const city = useRef<HTMLInputElement>(null);
-  async function cashPayment() {
-    const values:ShippingAddress = {
-        details: details.current?.value,
-        phone: phone.current?.value,
-        city: city.current?.value,   
-    };
-    const data = await cashPaymentAction(cardId, values);
-    if (data?.success) {
-      toast.success(data.message, {
-        duration: 1000,
-        position: "bottom-right",
-      });
-      afterPayment();
-      router.push("/allorders");
-    } else {
-      toast.error(data.message, {
-        duration: 1000,
-        position: "bottom-right",
-      });
-    }
-  }
-  async function onlinePayment() {
+  function getShippingValues(): ShippingAddress | null {
     const values: ShippingAddress = {
-      details: details.current?.value,
-      phone: phone.current?.value,
-      city: city.current?.value,
+      details: details.current?.value.trim() || "",
+      phone: phone.current?.value.trim() || "",
+      city: city.current?.value.trim() || "",
     };
-    const data = await onlinePaymentAction(cardId, values);
-    if (data?.success) {
-      toast.success(data.message, {
-        duration: 1000,
-        position: "bottom-right",
-      });
-      window.location.href = data.session.url;
-    } else {
-      toast.error(data.message, {
-        duration: 1000,
-        position: "bottom-right",
-      });
+    if (!values.details || !values.phone || !values.city) {
+      toastError("Please fill in all shipping fields");
+      return null;
     }
+    return values;
   }
   return (
     <section className="bg-gray-100 min-h-[90vh] py-4 flex flex-col justify-center gap-3 items-center w-full">
@@ -82,31 +49,69 @@ export default function page() {
             </CardHeader>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="details" className={undefined}>Shipping Address Details</Label>
-                <Input ref={details} id="details" type="text" required className={undefined} />
+                <Label htmlFor="details" className={undefined}>
+                  Shipping Address Details
+                </Label>
+                <Input
+                  ref={details}
+                  id="details"
+                  type="text"
+                  required
+                  className={undefined}
+                />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="phone" className={undefined}>Phone</Label>
-                <Input ref={phone} id="phone" type="text" required className={undefined} />
+                <Label htmlFor="phone" className={undefined}>
+                  Phone
+                </Label>
+                <Input
+                  ref={phone}
+                  id="phone"
+                  type="text"
+                  required
+                  className={undefined}
+                />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="city" className={undefined}>City</Label>
+                  <Label htmlFor="city" className={undefined}>
+                    City
+                  </Label>
                 </div>
-                <Input ref={city} id="city" type="text" required className={undefined} />
+                <Input
+                  ref={city}
+                  id="city"
+                  type="text"
+                  required
+                  className={undefined}
+                />
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <Button
-                onClick={cashPayment}
-                className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer" variant={undefined} size={undefined}              >
-                Cash Payment
-              </Button>
-              <Button
-                onClick={onlinePayment}
-                className="text-lg border bg-white border-sky-900 text-sky-900 py-5 hover:cursor-pointer rounded-lg hover:bg-sky-800 hover:text-white " variant={undefined} size={undefined}              >
-                Online Payment
-              </Button>
+              <LoadingBtn
+                isSubmitting={isProcessing === "cash"}
+                onClick={() => {
+                  const values = getShippingValues();
+                  if (values) cashPayment(values);
+                }}
+                variant="outline"
+                size="lg"
+                className="text-lg"
+                loadingTitle="Processing..."
+                title="Cash Payment"
+              />
+              <LoadingBtn
+                isSubmitting={isProcessing === "online"}
+                onClick={() => {
+                  const values = getShippingValues();
+                  if (values) onlinePayment(values);
+                }}
+                variant="primary"
+                size="lg"
+                className="text-lg"
+                loadingTitle="Processing..."
+                title="Online Payment"
+              />
             </div>
           </form>
         </CardContent>

@@ -1,12 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
 import ReviewForm from "./ReviewForm";
 import ReviewsList from "./ReviewsList";
 import { Review } from "@/types/review.type";
-import { getProductReviews } from "@/APIs/reviews.api";
-import { getUserIdAction } from "@/Actions/UserActions/getUserIdAction";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewUpdate from "./ReviewUpdate";
+import { useReviews } from "@/hooks/useReviews";
 export default function ProductReviewsSection({
   id,
   initialReviews,
@@ -14,40 +12,16 @@ export default function ProductReviewsSection({
   id: string;
   initialReviews: Review[];
 }) {
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
-  const [reviews, setReviews] = useState<Review[]>(initialReviews);
-  const userReview = reviews.find(
-    (review) => review.user._id === currentUserId,
-  );
-  const [loading, setLoading] = useState(false);
+  const {
+    reviews,
+    loading,
+    userReview,
+    actionState,
+    handleAddReview,
+    handleUpdateReview,
+    handleDeleteReview,
+  } = useReviews(id, initialReviews);
 
-  // ✅ Fetch both at the same time
-  useEffect(() => {
-    const init = async () => {
-      // Get user ID
-      const userId = await getUserIdAction();
-      setCurrentUserId(userId);
-
-      // Fetch reviews
-      setLoading(true);
-      const response = await getProductReviews(id);
-      if (response.data) {
-        setReviews(response.data);
-      }
-      setLoading(false);
-    };
-
-    init();
-  }, [id]);
-
-  const fetchReviews = async () => {
-    setLoading(true);
-    const response = await getProductReviews(id);
-    if (response.data) {
-      setReviews(response.data);
-    }
-    setLoading(false);
-  };
   return (
     <div className="col-span-2 space-y-6 w-full">
       <Tabs defaultValue="CustomerReviews" className="w-full">
@@ -63,14 +37,23 @@ export default function ProductReviewsSection({
           {loading ? (
             <p>Loading reviews...</p>
           ) : (
-            <ReviewsList reviews={reviews} currentUserId={currentUserId} />
+              <ReviewsList reviews={reviews} />
           )}
         </TabsContent>
         <TabsContent value="AddReview" className={undefined}>
           {userReview ? (
-            <ReviewUpdate review={userReview} onReviewDeleted={fetchReviews} />
+            <ReviewUpdate
+              review={userReview}
+              isSaving={actionState === "update"}
+              isDeleting={actionState === "delete"}
+              onSave={(values) => handleUpdateReview(userReview._id, values)}
+              onDelete={() => handleDeleteReview(userReview._id)}
+             />
           ) : (
-            <ReviewForm id={id} onReviewAdded={fetchReviews} />
+            <ReviewForm 
+                isSubmitting={actionState === "add"}
+                onSubmit={handleAddReview}
+             />
           )}
         </TabsContent>
       </Tabs>

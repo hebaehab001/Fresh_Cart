@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
     <div className="min-h-[90vh] w-full flex flex-col gap-4  items-center">
-      <Image src="/notFound.png" width={400} height={300} alt="notFound" />
+      <Image src="/notFound.png" width={300} height={250} alt="notFound" />
       <div className="text-center space-y-6">
         <div className="space-y-2">
           <h2 className="text-3xl font-bold text-stone-800">Page Not Found</h2>
@@ -14,10 +14,11 @@ export default function NotFound() {
             been moved or deleted.
           </p>
         </div>
-        <Link href="/">
-          <Button className="py-6 cursor-pointer px-8 bg-linear-to-b from-sky-800 to-sky-950 rounded-xl text-lg hover:shadow-lg transition-all" variant={undefined} size={undefined}>
-            Back to Home
-          </Button>
+        <Link
+          href="/"
+          className={`${buttonVariants({ variant: "primary", size: "lg" })} w-full `}
+        >
+          Back to Home
         </Link>
       </div>
     </div>

@@ -5,6 +5,7 @@ export interface WishListContextType {
   numOfFav: number;
   products: Product[];
   isLoading: boolean;
+  error: string;
   addProductToFav: (id: string) => Promise<any>;
   removeFavItem: (id: string) => Promise<any>;
 }
@@ -14,7 +15,8 @@ export interface CartContextType {
   products: CartItem[];
   totalPrice: number;
   isLoading: boolean;
-  cardId: string;
+  cartId: string;
+  error: string;
   addProductToCart: (id: string) => Promise<any>;
   removeCartItem: (id: string) => Promise<any>;
   updateCartItem: (id: string, count: number) => Promise<any>;

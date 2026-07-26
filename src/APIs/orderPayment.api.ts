@@ -1,5 +1,9 @@
 import { ShippingAddress } from "@/types/addresses.type";
-import { ApiDataParams,ApiResponse, OrderApiResponse } from "@/types/api.types";
+import {
+  ApiDataParams,
+  ApiResponse,
+  OrderApiResponse,
+} from "@/types/api.types";
 
 // Cash Payment
 export async function postCashPayment({
@@ -45,7 +49,7 @@ export async function postOnlinePayment({
 }: ApiDataParams<ShippingAddress>): Promise<ApiResponse> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_ONLINEPAYMENT}/${id}?url=http://localhost:3000`,
+      `${process.env.NEXT_PUBLIC_ONLINEPAYMENT}/${id}?url=${process.env.NEXTAUTH_URL}`,
       {
         method: "POST",
         headers: {
@@ -69,6 +73,7 @@ export async function postOnlinePayment({
     return {
       success: true,
       message: result.message || "payment successful.",
+      session: result.session,
     };
   } catch (error) {
     return {
@@ -79,7 +84,9 @@ export async function postOnlinePayment({
 }
 
 // Get User orders
-export default async function getOrderUser(id: string): Promise<OrderApiResponse> {
+export default async function getOrderUser(
+  id: string,
+): Promise<OrderApiResponse> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_USER_ORDER}/${id}`, {
       method: "GET",

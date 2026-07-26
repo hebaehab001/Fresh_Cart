@@ -1,5 +1,5 @@
 "use client";
-import React, {useState } from "react";
+
 import {
   Form,
   FormControl,
@@ -11,10 +11,7 @@ import {
 import { CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TabsContent } from "@/components/ui/tabs";
-import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import NoProducts from "../Common/NoProducts/NoProducts";
 import {
   Dialog,
@@ -24,58 +21,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { postNewAddresseAction } from "@/Actions/ProfileActions/postNewAddresseAction";
-import { NewAddressesSchema } from "@/schema/NewAddresses.schema";
-import { useRouter } from "next/navigation";
-import { removeAddressAction } from "@/Actions/ProfileActions/removeAddressAction";
 import { ShippingAddress } from "@/types/addresses.type";
-export default function AdressesTab({ addresses }: {addresses : ShippingAddress[]}) { 
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const form = useForm({
-    resolver: zodResolver(NewAddressesSchema),
-    defaultValues: {
-      name: "",
-      details: "",
-      phone: "",
-      city: "",
-    },
-  });
-  const { isSubmitting } = form.formState;
-
-  async function handleDeleteAddress(id:string) {
-    try {
-      await removeAddressAction(id);
-      toast.success("Address removed successfully", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      router.refresh();
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
-
-  async function handleNewAddresses(values:ShippingAddress) {
-    try {
-      await postNewAddresseAction(values);
-      toast.success("Data Added successfully", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-      setOpen(false); 
-      form.reset(); 
-      router.refresh();
-    } catch (error) {
-      toast.error(error.response?.data?.message ?? "Something went wrong", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
+import LoadingBtn from "../Buttons/LoadingBtn";
+import { useAddresses } from "@/hooks/useAddresses";
+export default function AdressesTab({
+  addresses,
+}: {
+  addresses: ShippingAddress[];
+}) {
+  const { open, setOpen, handleDeleteAddress, handleNewAddresses, form, isSubmitting } = useAddresses();
   return (
     <TabsContent
       className="h-full w-full flex flex-col gap-6"
@@ -92,11 +46,11 @@ export default function AdressesTab({ addresses }: {addresses : ShippingAddress[
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer" variant={undefined} size={undefined}>
+            <Button className="text-lg" variant="primary" size="lg">
               Add New Address
             </Button>
           </DialogTrigger>
-          <DialogContent className={undefined} >
+          <DialogContent className={undefined}>
             <DialogHeader className={undefined}>
               <DialogTitle className="text-4xl font-bold  text-sky-900">
                 New Address
@@ -159,12 +113,15 @@ export default function AdressesTab({ addresses }: {addresses : ShippingAddress[
                     </FormItem>
                   )}
                 />
-                <Button
-                  className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-                  type="submit"
-                  disabled={isSubmitting} variant={undefined} size={undefined}                >
-                  {isSubmitting ? "Saving..." : "Add Address"}
-                </Button>
+                <LoadingBtn
+                                isSubmitting={isSubmitting}
+                                type="submit"
+                                variant="primary"
+                                size="lg"
+                                className="w-full text-lg"
+                  loadingTitle=" Saving..."
+                  title="Add Address"
+                              />
               </form>
             </Form>
           </DialogContent>
@@ -186,9 +143,12 @@ export default function AdressesTab({ addresses }: {addresses : ShippingAddress[
               </p>
               <p className="text-muted-foreground">Phone : {address.phone}</p>
               <Button
-                className=" bg-white absolute top-3 right-2 hover:bg-white cursor-pointer text-sky-900 hover:text-red-600"
-                onClick={() => handleDeleteAddress(address._id)} variant={undefined} size={undefined}              >
-                <RiDeleteBin6Line className="size-5 " />
+                className=" bg-tarnsparent absolute top-3 right-2 hover:bg-transparent text-sky-900 hover:text-red-500"
+                onClick={() => handleDeleteAddress(address._id)}
+                size="icon-lg"
+                variant={undefined}
+              >
+                <RiDeleteBin6Line className="size-6 " />
               </Button>
             </div>
           ))}

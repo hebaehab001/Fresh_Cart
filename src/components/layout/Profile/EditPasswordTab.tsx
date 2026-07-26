@@ -10,36 +10,10 @@ import {
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TabsContent } from "@/components/ui/tabs";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { updateLoggedUserPasswordSchema } from "@/schema/updateLoggedUserPassword.schema";
-import { toast } from "sonner";
-import { updateLoggedUserPasswordAction } from "@/Actions/ProfileActions/updateLoggedUserPasswordAction";
-import { UpdatePasswordData } from "@/types/auth.type";
+import LoadingBtn from "../Buttons/LoadingBtn";
+import { useEditPassword } from "@/hooks/useEditPassword";
 export default function EditPasswordTab() {
-  const form = useForm({
-    resolver: zodResolver(updateLoggedUserPasswordSchema),
-    defaultValues: {
-      currentPassword: "",
-      password: "",
-      rePassword: "",
-    },
-  });
-  async function handleUpdateData(values:UpdatePasswordData) {
-    const data = await updateLoggedUserPasswordAction(values);
-    if (data?.success) {
-      toast.success(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    } else {
-      toast.error(data.message, {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-  }
+const { form, handleUpdateData, isSubmitting } = useEditPassword();
   return (
     <TabsContent
       className="flex h-full items-center justify-center"
@@ -105,11 +79,15 @@ export default function EditPasswordTab() {
               </FormItem>
             )}
           />
-          <Button
-            className="py-5 bg-linear-to-b from-sky-800 to-sky-950 rounded-lg text-lg hover:cursor-pointer"
-            type="submit" variant={undefined} size={undefined}          >
-            Submit
-          </Button>
+          <LoadingBtn
+            isSubmitting={isSubmitting}
+            type="submit"
+            variant="primary"
+            size="lg"
+            className="w-full text-lg"
+            loadingTitle="Submitting..."
+            title="Submit"
+          />
         </form>
       </Form>
     </TabsContent>
