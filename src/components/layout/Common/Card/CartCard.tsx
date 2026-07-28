@@ -41,7 +41,7 @@ export default function CartCard({ product }: { product: CartItem }) {
           {product.price * product.count} EGP
         </span>
         <div className="flex justify-between">
-          <ButtonGroup className={undefined} orientation="horizontal">
+          <ButtonGroup orientation="horizontal">
             <Button
               onClick={() => {
                 const newCount = product.count - 1;
@@ -86,7 +86,6 @@ export default function CartCard({ product }: { product: CartItem }) {
             className="text-gray-400 hover:text-red-500 bg-transparent hover:bg-transparent"
             title="Remove item"
             size="icon-lg"
-            variant={undefined}
           >
             <RiDeleteBin6Line className="size-6" />
           </Button>

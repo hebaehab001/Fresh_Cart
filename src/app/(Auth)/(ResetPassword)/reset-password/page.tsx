@@ -43,12 +43,12 @@ export default function ResetPassword() {
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem className={undefined}>
-                    <FormLabel className={undefined}>Email</FormLabel>
+                  <FormItem >
+                    <FormLabel >Email</FormLabel>
                     <FormControl>
                       <Input type="email" placeholder="email" {...field} />
                     </FormControl>
-                    <FormMessage className={undefined} />
+                    <FormMessage  />
                   </FormItem>
                 )}
               />
@@ -56,8 +56,8 @@ export default function ResetPassword() {
                 control={form.control}
                 name="newPassword"
                 render={({ field }) => (
-                  <FormItem className={undefined}>
-                    <FormLabel className={undefined}>Password</FormLabel>
+                  <FormItem >
+                    <FormLabel >Password</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -65,7 +65,7 @@ export default function ResetPassword() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className={undefined} />
+                    <FormMessage  />
                   </FormItem>
                 )}
               />

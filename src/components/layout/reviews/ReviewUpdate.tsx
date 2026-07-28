@@ -44,7 +44,6 @@ export default function ReviewUpdate({ review, isSaving, isDeleting, onSave, onD
             <Button
               key={star}
               type="button"
-              variant={undefined}
               size="icon-lg"
               onClick={() => setRating(star)}
               className={`text-3xl bg-transparent hover:bg-transparent ${
@@ -80,8 +79,8 @@ export default function ReviewUpdate({ review, isSaving, isDeleting, onSave, onD
         <LoadingBtn
           isSubmitting={isDeleting}
           type="button"
+          variant="outline"
           onClick={onDelete}
-          variant={undefined}
           size="lg"
           className="text-lg w-full bg-transparent border border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
           loadingTitle="Deleting..."

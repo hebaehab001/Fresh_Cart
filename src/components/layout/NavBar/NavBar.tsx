@@ -57,7 +57,7 @@ export default function NavBar() {
             </DrawerTrigger>
             <DrawerContent className="bg-linear-to-b from-sky-800 to-sky-950 text-white data-[vaul-drawer-direction=left]:border-0 rounded-r-2xl data-[vaul-drawer-direction=left]:max-w-2/4 data-[vaul-drawer-direction=left]:md:max-w-2/6">
               <DrawerHeader className="text-left flex-row items-center justify-between">
-                <DrawerTitle className={undefined}>
+                <DrawerTitle>
                   <Logo />
                 </DrawerTitle>
                 <DrawerClose asChild>
@@ -107,7 +107,6 @@ export default function NavBar() {
                       </span>
                       <Badge
                         className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-white bg-linear-to-b from-sky-800/40 to-sky-950/30 text-white"
-                        variant={undefined}
                       >
                         {numOfFav}
                       </Badge>
@@ -141,7 +140,6 @@ export default function NavBar() {
                       </span>
                       <Badge
                         className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-white bg-linear-to-b from-sky-800/40 to-sky-950/30 text-white"
-                        variant={undefined}
                       >
                         {numOfCart}
                       </Badge>
@@ -179,7 +177,6 @@ export default function NavBar() {
                         <DropdownMenuGroup>
                           <DropdownMenuItem
                             className="p-2 m-0 w-full flex text-gray-800 hover:bg-white  items-center"
-                            inset={undefined}
                           >
                             <MdOutlineAccountCircle className="text-gray-800" />
                             <div className="flex flex-col">
@@ -191,7 +188,6 @@ export default function NavBar() {
                           <Link href="/allorders">
                             <DropdownMenuItem
                               className="p-2 m-0 w-full justify-start hover:bg-gray-100 cursor-pointer"
-                              inset={undefined}
                             >
                               <LuPackageCheck className="text-sky-900" />
                               <span className="text-sky-900 hover:text-sky-900">
@@ -202,7 +198,6 @@ export default function NavBar() {
                           <Link href="/profile">
                             <DropdownMenuItem
                               className="p-2 m-0 w-full  justify-start hover:bg-gray-100 cursor-pointer"
-                              inset={undefined}
                             >
                               <MdOutlineManageAccounts className="text-sky-900" />
                               <span className="text-sky-900 hover:text-sky-900">
@@ -213,11 +208,9 @@ export default function NavBar() {
                           <DropdownMenuSeparator className="bg-[#A8BBA3] " />
                           <DropdownMenuItem
                             className="m-0 p-0 w-full  justify-start "
-                            inset={undefined}
                           >
                             <Button
                               className="px-0 p-2 w-full bg-transparent text-red-700 gap-2  justify-start  hover:bg-red-500 group/hoverl hover:text-white"
-                              variant={undefined}
                               size="default"
                               onClick={handleSignOut}
                             >
@@ -318,7 +311,6 @@ export default function NavBar() {
                 </svg>
                 <Badge
                   className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-white bg-linear-to-b from-sky-800/40 to-sky-950/30 text-white"
-                  variant={undefined}
                 >
                   {numOfFav}
                 </Badge>
@@ -348,7 +340,6 @@ export default function NavBar() {
                 </svg>
                 <Badge
                   className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-1 border-none bg-white bg-linear-to-b from-sky-800/40 to-sky-950/30 text-white"
-                  variant={undefined}
                 >
                   {numOfCart}
                 </Badge>
@@ -380,7 +371,6 @@ export default function NavBar() {
                   <DropdownMenuGroup>
                     <DropdownMenuItem
                       className="p-2 m-0 w-full flex text-gray-800 hover:bg-white  items-center"
-                      inset={undefined}
                     >
                       <MdOutlineAccountCircle className="text-gray-800" />
                       <div className="flex flex-col">
@@ -392,7 +382,6 @@ export default function NavBar() {
                     <Link href="/allorders">
                       <DropdownMenuItem
                         className="p-2 m-0 w-full justify-start hover:bg-gray-100 cursor-pointer"
-                        inset={undefined}
                       >
                         <LuPackageCheck className="text-sky-900" />
                         <span className="text-sky-900 hover:text-sky-900">
@@ -403,7 +392,6 @@ export default function NavBar() {
                     <Link href="/profile">
                       <DropdownMenuItem
                         className="p-2 m-0 w-full  justify-start hover:bg-gray-100 cursor-pointer"
-                        inset={undefined}
                       >
                         <MdOutlineManageAccounts className="text-sky-900" />
                         <span className="text-sky-900 hover:text-sky-900">
@@ -414,11 +402,9 @@ export default function NavBar() {
                     <DropdownMenuSeparator className="bg-[#A8BBA3] " />
                     <DropdownMenuItem
                       className="m-0 p-0 w-full  justify-start "
-                      inset={undefined}
                     >
                       <Button
                         className="px-0 p-2 w-full bg-transparent text-red-700 gap-2  justify-start  hover:bg-red-500 group/hoverl hover:text-white"
-                        variant={undefined}
                         size="default"
                         onClick={handleSignOut}
                       >

@@ -20,7 +20,7 @@ export default function LoadingBtn({
     >
       {isSubmitting ? (
         <span className="flex items-center gap-2">
-          <Spinner data-icon="inline-start" className={undefined} />
+          <Spinner data-icon="inline-start" />
           {loadingTitle}
         </span>
       ) : (

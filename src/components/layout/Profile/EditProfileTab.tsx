@@ -36,12 +36,12 @@ export default function EditProfileTab() {
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className={undefined}>
-                <FormLabel className={undefined}>Name</FormLabel>
+              <FormItem>
+                <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input type="text" placeholder="name" {...field} />
                 </FormControl>
-                <FormMessage className={undefined} />
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -49,15 +49,15 @@ export default function EditProfileTab() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className={undefined}>
-                <FormLabel className={undefined}>Email</FormLabel>
+              <FormItem>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input type="email" placeholder="email" disabled {...field} />
                 </FormControl>
                 <p className="text-xs text-muted-foreground ml-2">
                   Email cannot be changed
                 </p>
-                <FormMessage className={undefined} />
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -65,12 +65,12 @@ export default function EditProfileTab() {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem className={undefined}>
-                <FormLabel className={undefined}>Phone</FormLabel>
+              <FormItem>
+                <FormLabel>Phone</FormLabel>
                 <FormControl>
                   <Input type="tel" placeholder="Phone" {...field} />
                 </FormControl>
-                <FormMessage className={undefined} />
+                <FormMessage />
               </FormItem>
             )}
           />

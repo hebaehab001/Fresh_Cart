@@ -59,9 +59,8 @@ export default function ProductSection({
               placeholder="Search..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className={undefined}
             />
-            <InputGroupAddon className={undefined}>
+            <InputGroupAddon>
               <SearchIcon />
             </InputGroupAddon>
           </InputGroup>

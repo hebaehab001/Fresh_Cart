@@ -45,12 +45,12 @@ export default function Login() {
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem className={undefined}>
-                    <FormLabel className={undefined}>Email</FormLabel>
+                  <FormItem >
+                    <FormLabel >Email</FormLabel>
                     <FormControl>
                       <Input type="email" placeholder="email" {...field} />
                     </FormControl>
-                    <FormMessage className={undefined} />
+                    <FormMessage  />
                   </FormItem>
                 )}
               />
@@ -58,9 +58,9 @@ export default function Login() {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem className={undefined}>
+                  <FormItem >
                     <div className="flex justify-between">
-                      <FormLabel className={undefined}>Password</FormLabel>
+                      <FormLabel >Password</FormLabel>
                       <Link
                         href="/forget-password"
                         className={buttonVariants({
@@ -79,7 +79,7 @@ export default function Login() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className={undefined} />
+                    <FormMessage  />
                   </FormItem>
                 )}
               />

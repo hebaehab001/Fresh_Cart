@@ -43,7 +43,6 @@ export default function WishlistBtn({
           : "top-3 right-3 bg-white/70 hover:bg-white/90"
       } z-30 rounded-full
       ${isInFav ? "text-red-500" : "text-gray-500 hover:text-red-500"}`}
-      variant={undefined}
       size="icon"
     >
       <span className={productdetails ? "w-8 h-8" : "w-6 h-6"}>

@@ -25,22 +25,22 @@ export default function ProductReviewsSection({
   return (
     <div className="col-span-2 space-y-6 w-full">
       <Tabs defaultValue="CustomerReviews" className="w-full">
-        <TabsList className={undefined} variant="line">
-          <TabsTrigger value="CustomerReviews" className={undefined}>
+        <TabsList variant="line">
+          <TabsTrigger value="CustomerReviews">
             Customer Reviews
           </TabsTrigger>
-          <TabsTrigger value="AddReview" className={undefined}>
+          <TabsTrigger value="AddReview">
             Add Your review
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="CustomerReviews" className={undefined}>
+        <TabsContent value="CustomerReviews">
           {loading ? (
             <p>Loading reviews...</p>
           ) : (
               <ReviewsList reviews={reviews} />
           )}
         </TabsContent>
-        <TabsContent value="AddReview" className={undefined}>
+        <TabsContent value="AddReview">
           {userReview ? (
             <ReviewUpdate
               review={userReview}

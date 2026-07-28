@@ -49,42 +49,18 @@ export default function page() {
             </CardHeader>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="details" className={undefined}>
-                  Shipping Address Details
-                </Label>
-                <Input
-                  ref={details}
-                  id="details"
-                  type="text"
-                  required
-                  className={undefined}
-                />
+                <Label htmlFor="details">Shipping Address Details</Label>
+                <Input ref={details} id="details" type="text" required />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="phone" className={undefined}>
-                  Phone
-                </Label>
-                <Input
-                  ref={phone}
-                  id="phone"
-                  type="text"
-                  required
-                  className={undefined}
-                />
+                <Label htmlFor="phone">Phone</Label>
+                <Input ref={phone} id="phone" type="text" required />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="city" className={undefined}>
-                    City
-                  </Label>
+                  <Label htmlFor="city">City</Label>
                 </div>
-                <Input
-                  ref={city}
-                  id="city"
-                  type="text"
-                  required
-                  className={undefined}
-                />
+                <Input ref={city} id="city" type="text" required />
               </div>
             </div>
             <div className="flex flex-col gap-2">

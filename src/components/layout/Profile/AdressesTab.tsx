@@ -50,8 +50,8 @@ export default function AdressesTab({
               Add New Address
             </Button>
           </DialogTrigger>
-          <DialogContent className={undefined}>
-            <DialogHeader className={undefined}>
+          <DialogContent>
+            <DialogHeader>
               <DialogTitle className="text-4xl font-bold  text-sky-900">
                 New Address
               </DialogTitle>
@@ -65,12 +65,12 @@ export default function AdressesTab({
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className={undefined}>
-                      <FormLabel className={undefined}>Name</FormLabel>
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="name" {...field} />
                       </FormControl>
-                      <FormMessage className={undefined} />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -78,12 +78,12 @@ export default function AdressesTab({
                   control={form.control}
                   name="details"
                   render={({ field }) => (
-                    <FormItem className={undefined}>
-                      <FormLabel className={undefined}>details</FormLabel>
+                    <FormItem>
+                      <FormLabel>details</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="details" {...field} />
                       </FormControl>
-                      <FormMessage className={undefined} />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -91,12 +91,12 @@ export default function AdressesTab({
                   control={form.control}
                   name="phone"
                   render={({ field }) => (
-                    <FormItem className={undefined}>
-                      <FormLabel className={undefined}>Phone</FormLabel>
+                    <FormItem>
+                      <FormLabel>Phone</FormLabel>
                       <FormControl>
                         <Input type="tel" placeholder="Phone" {...field} />
                       </FormControl>
-                      <FormMessage className={undefined} />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -104,12 +104,12 @@ export default function AdressesTab({
                   control={form.control}
                   name="city"
                   render={({ field }) => (
-                    <FormItem className={undefined}>
-                      <FormLabel className={undefined}>City</FormLabel>
+                    <FormItem>
+                      <FormLabel>City</FormLabel>
                       <FormControl>
                         <Input type="text" placeholder="City" {...field} />
                       </FormControl>
-                      <FormMessage className={undefined} />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -146,7 +146,6 @@ export default function AdressesTab({
                 className=" bg-tarnsparent absolute top-3 right-2 hover:bg-transparent text-sky-900 hover:text-red-500"
                 onClick={() => handleDeleteAddress(address._id)}
                 size="icon-lg"
-                variant={undefined}
               >
                 <RiDeleteBin6Line className="size-6 " />
               </Button>

@@ -44,7 +44,6 @@ export default function ReviewForm({ isSubmitting, onSubmit }: ReviewFormProps) 
             <Button
               key={star}
               type="button"
-              variant={undefined}
               size="icon-lg"
               onClick={() => setRating(star)}
               className={`text-3xl bg-transparent hover:bg-transparent ${

@@ -74,12 +74,12 @@ export default function ForgetPassword() {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className={undefined}>
-                      <FormLabel className={undefined}>Email</FormLabel>
+                    <FormItem >
+                      <FormLabel >Email</FormLabel>
                       <FormControl>
                         <Input type="email" placeholder="email" {...field} />
                       </FormControl>
-                      <FormMessage className={undefined} />
+                      <FormMessage  />
                     </FormItem>
                   )}
                 />
@@ -123,19 +123,17 @@ export default function ForgetPassword() {
                 required
                 value={Codevalue}
                 onChange={(value) => setCodeValue(value)}
-                className={undefined}
-                containerClassName={undefined}
               >
                 <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
-                  <InputOTPSlot index={0} className={undefined} />
-                  <InputOTPSlot index={1} className={undefined} />
-                  <InputOTPSlot index={2} className={undefined} />
+                  <InputOTPSlot index={0}  />
+                  <InputOTPSlot index={1}  />
+                  <InputOTPSlot index={2}  />
                 </InputOTPGroup>
                 <InputOTPSeparator className="mx-2" />
                 <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
-                  <InputOTPSlot index={3} className={undefined} />
-                  <InputOTPSlot index={4} className={undefined} />
-                  <InputOTPSlot index={5} className={undefined} />
+                  <InputOTPSlot index={3}  />
+                  <InputOTPSlot index={4}  />
+                  <InputOTPSlot index={5}  />
                 </InputOTPGroup>
               </InputOTP>
               <LoadingBtn

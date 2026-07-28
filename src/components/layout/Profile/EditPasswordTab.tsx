@@ -36,8 +36,8 @@ const { form, handleUpdateData, isSubmitting } = useEditPassword();
             control={form.control}
             name="currentPassword"
             render={({ field }) => (
-              <FormItem className={undefined}>
-                <FormLabel className={undefined}>Current Password</FormLabel>
+              <FormItem>
+                <FormLabel>Current Password</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -45,7 +45,7 @@ const { form, handleUpdateData, isSubmitting } = useEditPassword();
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className={undefined} />
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -53,12 +53,12 @@ const { form, handleUpdateData, isSubmitting } = useEditPassword();
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className={undefined}>
-                <FormLabel className={undefined}>Password</FormLabel>
+              <FormItem>
+                <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input type="password" placeholder="password" {...field} />
                 </FormControl>
-                <FormMessage className={undefined} />
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -66,8 +66,8 @@ const { form, handleUpdateData, isSubmitting } = useEditPassword();
             control={form.control}
             name="rePassword"
             render={({ field }) => (
-              <FormItem className={undefined}>
-                <FormLabel className={undefined}>Confirm Password</FormLabel>
+              <FormItem>
+                <FormLabel>Confirm Password</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -75,7 +75,7 @@ const { form, handleUpdateData, isSubmitting } = useEditPassword();
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className={undefined} />
+                <FormMessage />
               </FormItem>
             )}
           />

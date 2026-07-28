@@ -36,8 +36,8 @@ export default function ImgCarousel({ images }:{images:string[]}) {
 
     return (
       <div className="mx-auto max-w-[90%]">
-        <Carousel className="w-full " setApi={setApi} opts={undefined} plugins={undefined} >
-          <CarouselContent className={undefined}>
+        <Carousel className="w-full " setApi={setApi}>
+          <CarouselContent>
             {images.map((image) => (
               <CarouselItem key={image} className="flex justify-center">
                 <Image
@@ -52,7 +52,7 @@ export default function ImgCarousel({ images }:{images:string[]}) {
           </CarouselContent>
         </Carousel>
 
-        <Carousel className="mt-4 mx-auto max-w-[80%] " opts={undefined} setApi={undefined} plugins={undefined} >
+        <Carousel className="mt-4 mx-auto max-w-[80%] ">
           <CarouselContent className="my-1 flex">
             {images.map((image, index) => (
               <CarouselItem

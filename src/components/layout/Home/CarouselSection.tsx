@@ -30,18 +30,16 @@ export default function CarouselSection<T>({
       <Carousel
         opts={{ align: "start", loop }}
         className="w-[70%] md:w-[85%] lg:w-[90%] mx-auto"
-        setApi={undefined}
-        plugins={undefined}
       >
-        <CarouselContent className={undefined}>
+        <CarouselContent>
           {items.map((item) => (
             <CarouselItem key={getKey(item)} className={itemClassName}>
               <div className="p-1">{renderItem(item)}</div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className={undefined} />
-        <CarouselNext className={undefined} />
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
     </section>
   );

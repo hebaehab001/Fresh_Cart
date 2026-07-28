@@ -1,26 +1,53 @@
-"use client";
+"use client"
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { Controller, FormProvider, useFormContext, useFormState } from "react-hook-form";
+import {
+  Controller,
+  FormProvider,
+  useFormContext,
+  useFormState,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
+} from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 
 const Form = FormProvider
 
-const FormFieldContext = React.createContext({})
+type FormFieldContextValue<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = {
+  name: TName
+}
 
-const FormField = (
-  {
-    ...props
-  }
-) => {
+const FormFieldContext = React.createContext<FormFieldContextValue>(
+  {} as FormFieldContextValue
+)
+
+const FormField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
+  ...props
+}: ControllerProps<TFieldValues, TName>) => {
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props} />
     </FormFieldContext.Provider>
-  );
+  )
 }
+
+type FormItemContextValue = {
+  id: string
+}
+
+const FormItemContext = React.createContext<FormItemContextValue>(
+  {} as FormItemContextValue
+)
 
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
@@ -31,6 +58,10 @@ const useFormField = () => {
 
   if (!fieldContext) {
     throw new Error("useFormField should be used within <FormField>")
+  }
+
+  if (!itemContext) {
+    throw new Error("useFormField should be used within <FormItem>")
   }
 
   const { id } = itemContext
@@ -45,25 +76,17 @@ const useFormField = () => {
   }
 }
 
-const FormItemContext = React.createContext({})
-
-function FormItem({
-  className,
-  ...props
-}) {
+function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   const id = React.useId()
 
   return (
     <FormItemContext.Provider value={{ id }}>
       <div data-slot="form-item" className={cn("grid gap-2", className)} {...props} />
     </FormItemContext.Provider>
-  );
+  )
 }
 
-function FormLabel({
-  className,
-  ...props
-}) {
+function FormLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
   const { error, formItemId } = useFormField()
 
   return (
@@ -72,13 +95,12 @@ function FormLabel({
       data-error={!!error}
       className={cn("data-[error=true]:text-destructive", className)}
       htmlFor={formItemId}
-      {...props} />
-  );
+      {...props}
+    />
+  )
 }
 
-function FormControl({
-  ...props
-}) {
+function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
   return (
@@ -91,29 +113,25 @@ function FormControl({
           : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
-      {...props} />
-  );
+      {...props}
+    />
+  )
 }
 
-function FormDescription({
-  className,
-  ...props
-}) {
+function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   const { formDescriptionId } = useFormField()
 
   return (
     <p
       data-slot="form-description"
       id={formDescriptionId}
-      className={cn("text-muted-foreground text-sm", className)}
-      {...props} />
-  );
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    />
+  )
 }
 
-function FormMessage({
-  className,
-  ...props
-}) {
+function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message ?? "") : props.children
 
@@ -125,11 +143,12 @@ function FormMessage({
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
-      {...props}>
+      className={cn("text-sm text-destructive", className)}
+      {...props}
+    >
       {body}
     </p>
-  );
+  )
 }
 
 export {
