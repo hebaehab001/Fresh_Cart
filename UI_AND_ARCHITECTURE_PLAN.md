@@ -316,8 +316,8 @@ Replace repeated and inconsistent button usage with shared button components and
   - [done] Add to cart button
   - [done] Add/remove wishlist button
   - [done] Submit button with loading state
-  - [ ] Delete/confirm action button
-- [ ] Move button handler logic out of page files and into dedicated components or hooks where possible
+  - [done] Delete/confirm action button
+- [done] Move button handler logic out of page files and into dedicated components or hooks where possible
 - [done] Add a loading state to buttons for all async actions
 - [done] Make disabled state consistent for action buttons while submitting
 
@@ -366,11 +366,11 @@ Stop repeating toast lines everywhere and use one shared toast helper for the wh
 
 ## Tasks
 
-- [ ] Create a shared toast helper file such as [src/lib/toast.js](src/lib/toast.js) or [src/lib/toast.ts](src/lib/toast.ts)
-- [ ] Wrap the app with one global Toaster instance in [src/app/layout.jsx](src/app/layout.jsx)
+- [done] Create a shared toast helper file such as [src/lib/toast.js](src/lib/toast.js) or [src/lib/toast.ts](src/lib/toast.ts)
+- [done] Wrap the app with one global Toaster instance in [src/app/layout.jsx](src/app/layout.jsx)
 - [ ] Add shared helpers such as:
-  - [ ] showSuccess(message)
-  - [ ] showError(message)
+  - [done] showSuccess(message)
+  - [done] showError(message)
   - [ ] showInfo(message)
   - [ ] showLoading(message)
 - [ ] Add global toast defaults for position, duration, and style
