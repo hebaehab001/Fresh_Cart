@@ -79,10 +79,10 @@ export default function ReviewUpdate({ review, isSaving, isDeleting, onSave, onD
         <LoadingBtn
           isSubmitting={isDeleting}
           type="button"
-          variant="outline"
+          variant="default"
           onClick={onDelete}
           size="lg"
-          className="text-lg w-full bg-transparent border border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+          className="text-lg w-full bg-transparent border border-red-500 text-red-500 hover:bg-red-500! hover:text-white"
           loadingTitle="Deleting..."
           title="Delete Review"
         />

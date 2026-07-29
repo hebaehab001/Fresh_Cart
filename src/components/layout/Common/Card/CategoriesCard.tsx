@@ -14,11 +14,9 @@ export default function CategoriesCard({ category }: { category: Category }) {
         <Image
           className="rounded-t-xl h-70 relative z-20 aspect-video w-full object-cover"
           src={category.image}
-          alt="category image"
+          alt={category.name}
           width={200}
           height={220}
-          unoptimized
-          loading="lazy"
         />
         <CardHeader className="gap-0 py-3">
           <CardTitle className="text-md  line-clamp-2 text-center font-semibold tracking-tight text-gray-900 ">

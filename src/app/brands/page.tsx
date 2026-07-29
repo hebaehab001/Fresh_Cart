@@ -19,11 +19,9 @@ export default async function page() {
                   <Image
                     className=" md:rounded-t-lg mx-auto h-37.5 object-cover  "
                     src={item.image}
-                    alt="brand image"
+                    alt={item.name}
                     width={200}
                     height={150}
-                    unoptimized
-                    loading="lazy"
                   />
                   <h5 className="text-xl py-2 line-clamp-1 text-center font-semibold tracking-tight text-gray-900 dark:text-white">
                     {item.name}

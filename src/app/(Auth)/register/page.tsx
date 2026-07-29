@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
 import { useRegister } from "@/hooks/useRegister";
+import Image from "next/image";
 export default function Register() {
   const { handleRegister, form, isSubmitting } = useRegister();
 
@@ -22,9 +23,10 @@ export default function Register() {
       <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
         <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
           <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
-            <img
+            <Image
               src="/login.png"
-              alt="Image"
+              alt="Register Image"
+              fill
               className="absolute rounded-l-xl inset-0 h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
             />
           </div>

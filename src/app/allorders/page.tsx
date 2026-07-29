@@ -1,6 +1,7 @@
 import { getUserOrdertAction } from "@/Actions/OrderActions/getUserOrderAction";
 import NoProducts from "@/components/layout/Common/NoProducts/NoProducts";
 import { estimateArrival } from "@/utilities/estimateArrival";
+import Image from "next/image";
 import { LuShoppingBag } from "react-icons/lu";
 export default async function allOrders() {
   const {data} = await getUserOrdertAction();
@@ -70,10 +71,12 @@ export default async function allOrders() {
                         className="flex flex-2 items-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 transition duration-150 hover:shadow-md"
                       >
                         {/* <!-- Product Image --> */}
-                        <img
+                        <Image
                           src={item.product.imageCover}
                           alt={item.product.title}
                           className="w-20 h-20 rounded-lg object-cover mr-4 shrink-0"
+                          width={80}
+                          height={80}
                         />
 
                         {/* <!-- Product Details --> */}

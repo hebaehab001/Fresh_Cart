@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
 import { useResetPassword } from "@/hooks/useResetPassword";
+import Image from "next/image";
 export default function ResetPassword() {
   const { handleResetPassword, form, isSubmitting } = useResetPassword();
 
@@ -20,9 +21,9 @@ export default function ResetPassword() {
       <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
         <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
           <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
-            <img
+            <Image
               src="/newpassword.png"
-              alt="Image"
+              alt="newpassword Image"
               className="absolute rounded-l-xl inset-0 h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
             />
           </div>

@@ -17,11 +17,9 @@ export default function ProductsCard({ product }: { product: Product }) {
         <Image
           className=" md:rounded-t-xl w-[70%] mx-auto md:w-full h-50  object-center  lg:object-cover"
           src={product.imageCover}
-          alt="product image"
+          alt={product.title}
           width={200}
           height={216}
-          unoptimized
-          loading="lazy"
         />
         <div className="px-3 pt-3 flex flex-col gap-1">
           <h5 className="text-xl md:text-lg line-clamp-1  font-semibold tracking-tight text-gray-900">

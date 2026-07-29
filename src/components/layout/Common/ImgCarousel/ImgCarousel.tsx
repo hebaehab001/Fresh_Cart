@@ -41,7 +41,7 @@ export default function ImgCarousel({ images }:{images:string[]}) {
             {images.map((image) => (
               <CarouselItem key={image} className="flex justify-center">
                 <Image
-                  alt="dddepth-248"
+                  alt="Item Image"
                   className="h-[55vh] rounded-xl object-center"
                   src={image}
                   width={300}
@@ -64,7 +64,7 @@ export default function ImgCarousel({ images }:{images:string[]}) {
                 onClick={() => handleThumbClick(index)}
               >
                 <Image
-                  alt="dddepth-248"
+                  alt="Thumbnail Image"
                   className={cn(
                     "size-full rounded-xl object-cover",
                     current === index + 1 ? "border border-sky-900" : "",

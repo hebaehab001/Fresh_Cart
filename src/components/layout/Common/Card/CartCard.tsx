@@ -29,8 +29,6 @@ export default function CartCard({ product }: { product: CartItem }) {
         alt={product.product.title}
         width={200}
         height={216}
-        unoptimized
-        loading="lazy"
       />
       <div className="col-span-2 flex flex-col justify-between gap-1">
         <h5 className="text-xl md:text-lg line-clamp-1  font-semibold tracking-tight text-gray-900">

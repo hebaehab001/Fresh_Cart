@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/input-otp";
 import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
 import { useForgetPassword } from "@/hooks/useForgetPassword";
+import Image from "next/image";
 export default function ForgetPassword() {
   const {
     Codevalue,
@@ -47,11 +48,12 @@ export default function ForgetPassword() {
       <Card className="bg-white rounded-xl shadow-lg w-[90%] p-0 border border-sky-900">
         <CardContent className="grid grid-cols-1 md:grid-cols-2  min-h-[85vh] h-full justify-center p-0 ">
           <div className="relative rounded-l-xl hidden bg-muted md:block bg-linear-to-b from-sky-800 to-sky-950 text-white">
-            <img
+            <Image
               src={
                 ConfirmCode ? "/Otp_authentication.png" : "/forgetpassword.png"
               }
-              alt="Image"
+              fill
+              alt="ForgetPassword Image"
               className="absolute rounded-l-xl inset-0 h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
             />
           </div>
