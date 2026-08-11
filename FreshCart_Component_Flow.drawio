@@ -1,24 +1,292 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="FreshCart Component Flow">
-    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="2400" math="0" shadow="0">
-      <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-        <mxCell id="n101" value="1. App Layout
-(src/app/layout.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="300" height="250" as="geometry"/></mxCell><mxCell id="n102" value="NavBar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n101"><mxGeometry x="10" y="34" width="260" height="34" as="geometry"/></mxCell><mxCell id="n103" value="Providers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n101"><mxGeometry x="10" y="78" width="260" height="34" as="geometry"/></mxCell><mxCell id="n104" value="SessionProvider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n101"><mxGeometry x="30" y="122" width="240" height="28" as="geometry"/></mxCell><mxCell id="n105" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n103" target="n104"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n106" value="CartContextProvider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n101"><mxGeometry x="30" y="156" width="240" height="28" as="geometry"/></mxCell><mxCell id="n107" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n103" target="n106"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n108" value="WishlistContextProvider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n101"><mxGeometry x="30" y="190" width="240" height="28" as="geometry"/></mxCell><mxCell id="n109" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n103" target="n108"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n110" value="2. Home Page
-(src/app/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="380" y="40" width="300" height="412" as="geometry"/></mxCell><mxCell id="n111" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n112" value="API: getAllCategories()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="10" y="66" width="260" height="26" as="geometry"/></mxCell><mxCell id="n113" value="HeroSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="10" y="106" width="260" height="34" as="geometry"/></mxCell><mxCell id="n114" value="CarouselSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="10" y="150" width="260" height="34" as="geometry"/></mxCell><mxCell id="n115" value="CategoriesCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="10" y="194" width="260" height="34" as="geometry"/></mxCell><mxCell id="n116" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="10" y="238" width="260" height="34" as="geometry"/></mxCell><mxCell id="n117" value="CartBtn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="30" y="282" width="240" height="28" as="geometry"/></mxCell><mxCell id="n118" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n116" target="n117"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n119" value="WishlistBtn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="30" y="316" width="240" height="28" as="geometry"/></mxCell><mxCell id="n120" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n116" target="n119"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n121" value="StarRating" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n110"><mxGeometry x="30" y="350" width="240" height="28" as="geometry"/></mxCell><mxCell id="n122" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n116" target="n121"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n123" value="3. Products Page
-(src/app/products/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="720" y="40" width="300" height="222" as="geometry"/></mxCell><mxCell id="n124" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n123"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n125" value="API: getAllCategories()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n123"><mxGeometry x="10" y="66" width="260" height="26" as="geometry"/></mxCell><mxCell id="n126" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n123"><mxGeometry x="10" y="106" width="260" height="34" as="geometry"/></mxCell><mxCell id="n127" value="ProductSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n123"><mxGeometry x="10" y="150" width="260" height="34" as="geometry"/></mxCell><mxCell id="n128" value="4. Product Details Page
-(src/app/products/[id]/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="1060" y="40" width="300" height="456" as="geometry"/></mxCell><mxCell id="n129" value="API: getProductById(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n130" value="API: getProductReviews(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="66" width="260" height="26" as="geometry"/></mxCell><mxCell id="n131" value="CartBtn (props: id, productdetails)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="106" width="260" height="34" as="geometry"/></mxCell><mxCell id="n132" value="WishlistBtn (props: id, productdetails)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="150" width="260" height="34" as="geometry"/></mxCell><mxCell id="n133" value="ImgCarousel (props: images)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="194" width="260" height="34" as="geometry"/></mxCell><mxCell id="n134" value="StarRating" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="238" width="260" height="34" as="geometry"/></mxCell><mxCell id="n135" value="ProductReviewsSection (props: id, initialReviews)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="10" y="282" width="260" height="34" as="geometry"/></mxCell><mxCell id="n136" value="ReviewForm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="30" y="326" width="240" height="28" as="geometry"/></mxCell><mxCell id="n137" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n135" target="n136"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n138" value="ReviewUpdate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="30" y="360" width="240" height="28" as="geometry"/></mxCell><mxCell id="n139" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n135" target="n138"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n140" value="ReviewsList" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n128"><mxGeometry x="30" y="394" width="240" height="28" as="geometry"/></mxCell><mxCell id="n141" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n135" target="n140"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n142" value="5. Brands Page
-(src/app/brands/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="40" y="556" width="300" height="190" as="geometry"/></mxCell><mxCell id="n143" value="API: getAllBrands()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n142"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n144" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n142"><mxGeometry x="10" y="74" width="260" height="34" as="geometry"/></mxCell><mxCell id="n145" value="Brand Cards (Link+Image)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n142"><mxGeometry x="10" y="118" width="260" height="34" as="geometry"/></mxCell><mxCell id="n146" value="6. Brand Details Page
-(src/app/brands/[id]/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="380" y="556" width="300" height="222" as="geometry"/></mxCell><mxCell id="n147" value="API: getBrandById(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n146"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n148" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n146"><mxGeometry x="10" y="66" width="260" height="26" as="geometry"/></mxCell><mxCell id="n149" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n146"><mxGeometry x="10" y="106" width="260" height="34" as="geometry"/></mxCell><mxCell id="n150" value="NoProducts (props: text)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n146"><mxGeometry x="10" y="150" width="260" height="34" as="geometry"/></mxCell><mxCell id="n151" value="7. Categories Page
-(src/app/categories/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="720" y="556" width="300" height="190" as="geometry"/></mxCell><mxCell id="n152" value="API: getAllCategories()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n151"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n153" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n151"><mxGeometry x="10" y="74" width="260" height="34" as="geometry"/></mxCell><mxCell id="n154" value="CategoriesCard (props: category)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n151"><mxGeometry x="10" y="118" width="260" height="34" as="geometry"/></mxCell><mxCell id="n155" value="8. Category Details Page
-(src/app/categories/[id]/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="1060" y="556" width="300" height="222" as="geometry"/></mxCell><mxCell id="n156" value="API: getCategoriesById(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n155"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n157" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n155"><mxGeometry x="10" y="66" width="260" height="26" as="geometry"/></mxCell><mxCell id="n158" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n155"><mxGeometry x="10" y="106" width="260" height="34" as="geometry"/></mxCell><mxCell id="n159" value="NoProducts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n155"><mxGeometry x="10" y="150" width="260" height="34" as="geometry"/></mxCell><mxCell id="n160" value="9. Cart Page
-(src/app/cart/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="40" y="838" width="300" height="182" as="geometry"/></mxCell><mxCell id="n161" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n160"><mxGeometry x="10" y="34" width="260" height="34" as="geometry"/></mxCell><mxCell id="n162" value="CartProductsSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n160"><mxGeometry x="10" y="78" width="260" height="34" as="geometry"/></mxCell><mxCell id="n163" value="CartCard (props: product:CartItem)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n160"><mxGeometry x="30" y="122" width="240" height="28" as="geometry"/></mxCell><mxCell id="n164" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n162" target="n163"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n165" value="10. Wishlist Page
-(src/app/wishlist/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="380" y="838" width="300" height="182" as="geometry"/></mxCell><mxCell id="n166" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n165"><mxGeometry x="10" y="34" width="260" height="34" as="geometry"/></mxCell><mxCell id="n167" value="WishlistProductsSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n165"><mxGeometry x="10" y="78" width="260" height="34" as="geometry"/></mxCell><mxCell id="n168" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n165"><mxGeometry x="30" y="122" width="240" height="28" as="geometry"/></mxCell><mxCell id="n169" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n167" target="n168"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n170" value="11. Profile Page
-(src/app/profile/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="720" y="838" width="300" height="248" as="geometry"/></mxCell><mxCell id="n171" value="API: getloggedUserAddressesAction() [server action]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n170"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n172" value="ProfileSection (props: addresses)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n170"><mxGeometry x="10" y="74" width="260" height="34" as="geometry"/></mxCell><mxCell id="n173" value="EditProfileTab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n170"><mxGeometry x="30" y="118" width="240" height="28" as="geometry"/></mxCell><mxCell id="n174" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n172" target="n173"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n175" value="AdressesTab (props: addresses)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n170"><mxGeometry x="30" y="152" width="240" height="28" as="geometry"/></mxCell><mxCell id="n176" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n172" target="n175"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n177" value="EditPasswordTab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n170"><mxGeometry x="30" y="186" width="240" height="28" as="geometry"/></mxCell><mxCell id="n178" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" edge="1" parent="1" source="n172" target="n177"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="n179" value="12. Payment Page
-(src/app/payment/page.tsx) — CLIENT" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="1060" y="838" width="300" height="192" as="geometry"/></mxCell><mxCell id="n180" value="usePayment() hook" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n179"><mxGeometry x="10" y="34" width="260" height="34" as="geometry"/></mxCell><mxCell id="n181" value="LoadingBtn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n179"><mxGeometry x="10" y="78" width="260" height="34" as="geometry"/></mxCell><mxCell id="n182" value="lib/toast.ts helper" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n179"><mxGeometry x="10" y="122" width="260" height="34" as="geometry"/></mxCell><mxCell id="n183" value="13. Orders Page
-(src/app/allorders/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="40" y="1146" width="300" height="146" as="geometry"/></mxCell><mxCell id="n184" value="API: getUserOrderAction() [server action]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="n183"><mxGeometry x="10" y="34" width="260" height="26" as="geometry"/></mxCell><mxCell id="n185" value="NoProducts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n183"><mxGeometry x="10" y="74" width="260" height="34" as="geometry"/></mxCell><mxCell id="n186" value="14. Auth Pages — CLIENT" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="380" y="1146" width="300" height="236" as="geometry"/></mxCell><mxCell id="n187" value="login/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n186"><mxGeometry x="10" y="34" width="260" height="34" as="geometry"/></mxCell><mxCell id="n188" value="register/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n186"><mxGeometry x="10" y="78" width="260" height="34" as="geometry"/></mxCell><mxCell id="n189" value="forget-password/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n186"><mxGeometry x="10" y="122" width="260" height="34" as="geometry"/></mxCell><mxCell id="n190" value="reset-password/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" vertex="1" parent="n186"><mxGeometry x="10" y="166" width="260" height="34" as="geometry"/></mxCell><mxCell id="n191" value="Server Component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="40" y="1462" width="180" height="30" as="geometry"/></mxCell><mxCell id="n192" value="Client Component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="240" y="1462" width="180" height="30" as="geometry"/></mxCell><mxCell id="n193" value="Server/Client Ambiguous (unresolved in source doc)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="440" y="1462" width="220" height="30" as="geometry"/></mxCell><mxCell id="n194" value="API call / Server Action" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="700" y="1462" width="220" height="30" as="geometry"/></mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="65bd71144e">
+    <diagram name="FreshCart Component Flow" id="0">
+        <mxGraphModel dx="802" dy="475" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="2400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="n101" value="1. App Layout (src/app/layout.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="300" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="n102" value="NavBar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;strokeColor=#FF0000;" parent="n101" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n103" value="Providers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n101" vertex="1">
+                    <mxGeometry x="10" y="78" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n104" value="SessionProvider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n101" vertex="1">
+                    <mxGeometry x="30" y="122" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n106" value="CartContextProvider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n101" vertex="1">
+                    <mxGeometry x="30" y="156" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n108" value="WishlistContextProvider" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n101" vertex="1">
+                    <mxGeometry x="30" y="190" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n105" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n103" target="n104" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n107" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n103" target="n106" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n109" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n103" target="n108" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n110" value="2. Home Page (src/app/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="40" width="300" height="412" as="geometry"/>
+                </mxCell>
+                <mxCell id="n111" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n112" value="API: getAllCategories()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="10" y="66" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n113" value="HeroSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="10" y="106" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n114" value="CarouselSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="10" y="150" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n115" value="CategoriesCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="10" y="194" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n116" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="10" y="238" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n117" value="CartBtn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="30" y="282" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n119" value="WishlistBtn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="30" y="316" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n121" value="StarRating" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=9;align=center;verticalAlign=middle;" parent="n110" vertex="1">
+                    <mxGeometry x="30" y="350" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n118" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n116" target="n117" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n120" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n116" target="n119" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n122" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n116" target="n121" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n123" value="3. Products Page (src/app/products/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="40" width="300" height="222" as="geometry"/>
+                </mxCell>
+                <mxCell id="n124" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n123" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n125" value="API: getAllCategories()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n123" vertex="1">
+                    <mxGeometry x="10" y="66" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n126" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n123" vertex="1">
+                    <mxGeometry x="10" y="106" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n127" value="ProductSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=10;align=center;verticalAlign=middle;" parent="n123" vertex="1">
+                    <mxGeometry x="10" y="150" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n128" value="4. Product Details Page (src/app/products/[id]/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="40" width="300" height="456" as="geometry"/>
+                </mxCell>
+                <mxCell id="n129" value="API: getProductById(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n130" value="API: getProductReviews(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="66" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n131" value="CartBtn (props: id, productdetails)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="106" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n132" value="WishlistBtn (props: id, productdetails)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="150" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n133" value="ImgCarousel (props: images)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="194" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n134" value="StarRating" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=10;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="238" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n135" value="ProductReviewsSection (props: id, initialReviews)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="10" y="282" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n136" value="ReviewForm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="30" y="326" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n138" value="ReviewUpdate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="30" y="360" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n140" value="ReviewsList" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n128" vertex="1">
+                    <mxGeometry x="30" y="394" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n137" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n135" target="n136" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n139" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n135" target="n138" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n141" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n135" target="n140" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n142" value="5. Brands Page (src/app/brands/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="556" width="300" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="n143" value="API: getAllBrands()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n142" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n144" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n142" vertex="1">
+                    <mxGeometry x="10" y="74" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n145" value="Brand Cards (Link+Image)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n142" vertex="1">
+                    <mxGeometry x="10" y="118" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n146" value="6. Brand Details Page (src/app/brands/[id]/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="556" width="300" height="222" as="geometry"/>
+                </mxCell>
+                <mxCell id="n147" value="API: getBrandById(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n146" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n148" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n146" vertex="1">
+                    <mxGeometry x="10" y="66" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n149" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n146" vertex="1">
+                    <mxGeometry x="10" y="106" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n150" value="NoProducts (props: text)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n146" vertex="1">
+                    <mxGeometry x="10" y="150" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n151" value="7. Categories Page (src/app/categories/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="556" width="300" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="n152" value="API: getAllCategories()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n151" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n153" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n151" vertex="1">
+                    <mxGeometry x="10" y="74" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n154" value="CategoriesCard (props: category)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n151" vertex="1">
+                    <mxGeometry x="10" y="118" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n155" value="8. Category Details Page (src/app/categories/[id]/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="556" width="300" height="222" as="geometry"/>
+                </mxCell>
+                <mxCell id="n156" value="API: getCategoriesById(id)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n155" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n157" value="API: getAllProducts()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n155" vertex="1">
+                    <mxGeometry x="10" y="66" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n158" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n155" vertex="1">
+                    <mxGeometry x="10" y="106" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n159" value="NoProducts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n155" vertex="1">
+                    <mxGeometry x="10" y="150" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n160" value="9. Cart Page (src/app/cart/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="838" width="300" height="182" as="geometry"/>
+                </mxCell>
+                <mxCell id="n161" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n160" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n162" value="CartProductsSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n160" vertex="1">
+                    <mxGeometry x="10" y="78" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n163" value="CartCard (props: product:CartItem)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n160" vertex="1">
+                    <mxGeometry x="30" y="122" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n164" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n162" target="n163" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n165" value="10. Wishlist Page (src/app/wishlist/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="838" width="300" height="182" as="geometry"/>
+                </mxCell>
+                <mxCell id="n166" value="PageTitle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n165" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n167" value="WishlistProductsSection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n165" vertex="1">
+                    <mxGeometry x="10" y="78" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n168" value="ProductsCard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=9;align=center;verticalAlign=middle;" parent="n165" vertex="1">
+                    <mxGeometry x="30" y="122" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n169" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n167" target="n168" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n170" value="11. Profile Page (src/app/profile/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="838" width="300" height="248" as="geometry"/>
+                </mxCell>
+                <mxCell id="n171" value="API: getloggedUserAddressesAction() [server action]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n170" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n172" value="ProfileSection (props: addresses)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n170" vertex="1">
+                    <mxGeometry x="10" y="74" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n173" value="EditProfileTab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n170" vertex="1">
+                    <mxGeometry x="30" y="118" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n175" value="AdressesTab (props: addresses)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n170" vertex="1">
+                    <mxGeometry x="30" y="152" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n177" value="EditPasswordTab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=9;align=center;verticalAlign=middle;" parent="n170" vertex="1">
+                    <mxGeometry x="30" y="186" width="240" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="n174" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n172" target="n173" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n176" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n172" target="n175" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n178" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;" parent="1" source="n172" target="n177" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="n179" value="12. Payment Page (src/app/payment/page.tsx) — CLIENT" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="838" width="300" height="192" as="geometry"/>
+                </mxCell>
+                <mxCell id="n180" value="usePayment() hook" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n179" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n181" value="LoadingBtn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=10;align=center;verticalAlign=middle;" parent="n179" vertex="1">
+                    <mxGeometry x="10" y="78" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n182" value="lib/toast.ts helper" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n179" vertex="1">
+                    <mxGeometry x="10" y="122" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n183" value="13. Orders Page (src/app/allorders/page.tsx)" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1146" width="300" height="146" as="geometry"/>
+                </mxCell>
+                <mxCell id="n184" value="API: getUserOrderAction() [server action]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=9;align=center;verticalAlign=middle;" parent="n183" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="n185" value="NoProducts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=10;align=center;verticalAlign=middle;" parent="n183" vertex="1">
+                    <mxGeometry x="10" y="74" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n186" value="14. Auth Pages — CLIENT" style="swimlane;rounded=1;fillColor=#f5f5f5;startSize=26;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="1146" width="300" height="236" as="geometry"/>
+                </mxCell>
+                <mxCell id="n187" value="login/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n186" vertex="1">
+                    <mxGeometry x="10" y="34" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n188" value="register/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n186" vertex="1">
+                    <mxGeometry x="10" y="78" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n189" value="forget-password/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n186" vertex="1">
+                    <mxGeometry x="10" y="122" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n190" value="reset-password/page.tsx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=10;align=center;verticalAlign=middle;" parent="n186" vertex="1">
+                    <mxGeometry x="10" y="166" width="260" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="n191" value="Server Component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1462" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="n192" value="Client Component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="1462" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="n193" value="Server/Client Ambiguous (unresolved in source doc)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="1462" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="n194" value="API call / Server Action" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="1462" width="220" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>

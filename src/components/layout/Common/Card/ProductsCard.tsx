@@ -6,10 +6,9 @@ import { Product } from "@/types/product.type";
 import { Card } from "@/components/ui/card";
 import StarRating from "../../reviews/StarRating";
 
-export default function ProductsCard({ product }: { product: Product }) {
+export default function ProductsCard({ product, priority = false }: { product: Product, priority?: boolean  }) {
   return (
     <Card
-      key={product.id}
       className="relative mx-auto w-full max-w-sm p-0 gap-2 hover:border-sky-900 hover:-translate-y-1 cursor-pointer"
     >
       <AddBtnFav id={product.id} productdetails={false} />
@@ -18,6 +17,7 @@ export default function ProductsCard({ product }: { product: Product }) {
           className=" md:rounded-t-xl w-[70%] mx-auto md:w-full h-50  object-center  lg:object-cover"
           src={product.imageCover}
           alt={product.title}
+          loading={priority ? "eager" : "lazy"}
           width={200}
           height={216}
         />

@@ -8,7 +8,7 @@ import { ButtonGroup } from "@/components/ui/button-group";
 import { useCartActions } from "@/hooks/useCartActions";
 import { useState } from "react";
 
-export default function CartCard({ product }: { product: CartItem }) {
+export default function CartCard({ product, priority = false }: { product: CartItem, priority?: boolean }) {
   const { handleRemoveFromCart, updateCartItem } = useCartActions();
   const [inputValue, setInputValue] = useState(String(product.count));
 
@@ -20,13 +20,13 @@ export default function CartCard({ product }: { product: CartItem }) {
   }
   return (
     <Card
-      key={product.product.id}
       className="relative mx-auto w-full px-4  gap-2 grid grid-cols-3"
     >
       <Image
         className="rounded-xl  h-40  object-cover shrink-0 col-span-1"
         src={product.product.imageCover}
         alt={product.product.title}
+        loading={priority ? "eager" : "lazy"}
         width={200}
         height={216}
       />

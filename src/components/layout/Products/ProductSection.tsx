@@ -71,8 +71,8 @@ export default function ProductSection({
           <NoProducts text="No products match your search or filter criteria." />
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 ">
-            {filteredProducts.map((product) => (
-              <ProductsCard key={product._id} product={product} />
+            {filteredProducts.map((product, index) => (
+              <ProductsCard key={product._id} product={product} priority={index < 2} />
             ))}
           </div>
         )}

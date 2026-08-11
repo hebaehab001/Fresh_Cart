@@ -38,14 +38,15 @@ export default function ImgCarousel({ images }:{images:string[]}) {
       <div className="mx-auto max-w-[90%]">
         <Carousel className="w-full " setApi={setApi}>
           <CarouselContent>
-            {images.map((image) => (
-              <CarouselItem key={image} className="flex justify-center">
+            {images.map((image, index) => (
+              <CarouselItem key={index} className="flex justify-center">
                 <Image
                   alt="Item Image"
                   className="h-[55vh] rounded-xl object-center"
                   src={image}
                   width={300}
                   height={400}
+                  preload={index === 0}
                 />
               </CarouselItem>
             ))}
@@ -60,11 +61,11 @@ export default function ImgCarousel({ images }:{images:string[]}) {
                   "basis-1/4 cursor-pointer transition-opacity",
                   current === index + 1 ? "opacity-100" : "opacity-60 ",
                 )}
-                key={image}
+                key={index}
                 onClick={() => handleThumbClick(index)}
               >
                 <Image
-                  alt="Thumbnail Image"
+                  alt={`Product image ${index + 1}`}
                   className={cn(
                     "size-full rounded-xl object-cover",
                     current === index + 1 ? "border border-sky-900" : "",

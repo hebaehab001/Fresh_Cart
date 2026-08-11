@@ -402,7 +402,7 @@ Improve performance and image reliability by migrating all images to Next.js Ima
 
 ## Tasks
 
-- [ ] Replace all plain HTML img usages with Next.js Image from `next/image`
+- [done] Replace all plain HTML img usages with Next.js Image from `next/image`
 - [ ] Add lazy loading to all non-critical images
 - [ ] Add a default fallback image for broken or missing images
 - [ ] Add loading placeholders or skeletons for image-heavy pages

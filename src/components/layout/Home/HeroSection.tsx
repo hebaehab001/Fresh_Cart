@@ -65,6 +65,7 @@ export default function HeroSection() {
           alt="Hero image"
           width={340}
           height={320}
+          preload
         />
         <div className="size-75 md:size-100 lg:size-130 absolute top-[50%] left-[50%] -translate-1/2 z-10 rounded-full from-sky-100/50 to-sky-950/40 bg-radial-[at_50%_75%]  via-sky-700/30  to-90%"></div>
       </div>

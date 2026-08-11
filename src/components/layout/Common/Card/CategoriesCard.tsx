@@ -3,10 +3,9 @@ import { Category } from "@/types/categories.type";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CategoriesCard({ category }: { category: Category }) {
+export default function CategoriesCard({ category, priority = false }: { category: Category, priority?: boolean }) {
   return (
     <Card
-      key={category._id}
       className="relative mx-auto w-full max-w-sm p-0 gap-3 hover:border-sky-900 hover:-translate-y-1 cursor-pointer"
     >
       <Link href={`/categories/${category._id}`}>
@@ -15,6 +14,7 @@ export default function CategoriesCard({ category }: { category: Category }) {
           className="rounded-t-xl h-70 relative z-20 aspect-video w-full object-cover"
           src={category.image}
           alt={category.name}
+          loading={priority ? "eager" : "lazy"}
           width={200}
           height={220}
         />

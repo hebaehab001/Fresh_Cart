@@ -29,9 +29,9 @@ export default function WishlistProductsSection() {
       ) : products.length === 0 ? (
         <NoProducts text="No products available, add some to your wishlist" />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-4">
-          {products.map((product) => (
-            <ProductsCard key={product._id} product={product} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-4">
+                {products.map((product, index) => (
+            <ProductsCard key={product._id} product={product} priority={index < 2} />
           ))}
         </div>
       )}

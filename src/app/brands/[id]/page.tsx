@@ -67,9 +67,9 @@ export default async function page({ params }:PagePropsParams) {
           ) : filteredProducts.length === 0 ? (
             <NoProducts text={`No products in ${brand.name}`} />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
-              {filteredProducts.map((product) => (
-                <ProductsCard key={product._id} product={product} />
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+              {filteredProducts.map((product, index) => (
+                <ProductsCard key={product._id} product={product} priority={index < 2} />
               ))}
             </div>
           )}

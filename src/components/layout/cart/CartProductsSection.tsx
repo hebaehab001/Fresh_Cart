@@ -42,8 +42,8 @@ export default function CartProductsSection() {
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-4">
             {products.length > 0 ? (
-              products.map((product) => (
-                <CartCard key={product._id} product={product} />
+              products.map((product,index) => (
+                <CartCard key={product._id} product={product} priority={index < 2} />
               ))
             ) : (
               <p className="text-center py-8 text-gray-500">

@@ -1,36 +1,5 @@
 import { ValidationError } from "./common.type";
-import { DefaultSession, User } from "next-auth";
-import { JWT } from "next-auth/jwt";
-
-export interface CustomJWT extends JWT {
-  userId?: string;
-  token?: string;
-  id?: string;
-  email?: string;
-  name?: string;
-  role?: "user" | "admin";
-  iat?: number;
-  exp?: number;
-}
-
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id?: string;
-      phone?: string;
-      role?: "user" | "admin";
-    } & DefaultSession["user"];
-  }
-
-  interface User {
-    id: string;
-    email: string;
-    name: string;
-    role: "user" | "admin";
-    phone?: string;
-    avatar?: string;
-  }
-}
+import { User } from "next-auth";
 
 // ========== REQUEST TYPES ==========
 export interface LoginCredentials {
@@ -99,19 +68,19 @@ export interface VerifyTokenResponse {
   decoded: DecodedToken;
 }
 
-export interface AuthError {
-  statusMsg: "fail";
-  message: string;
-  errors?: ValidationError;
-}
+// export interface AuthError {
+//   statusMsg: "fail";
+//   message: string;
+//   errors?: ValidationError;
+// }
 
-export interface AuthSession {
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    role: "user" | "admin";
-  };
-  isAuthenticated: boolean;
-  token?: string;
-}
+// export interface AuthSession {
+//   user: {
+//     id: string;
+//     email: string;
+//     name: string;
+//     role: "user" | "admin";
+//   };
+//   isAuthenticated: boolean;
+//   token?: string;
+// }
