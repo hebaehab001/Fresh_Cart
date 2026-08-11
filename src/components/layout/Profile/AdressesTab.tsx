@@ -21,9 +21,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { ShippingAddress } from "@/types/addresses.type";
 import LoadingBtn from "../Buttons/LoadingBtn";
 import { useAddresses } from "@/hooks/useAddresses";
+import { ShippingAddress } from "@/types/profile.type";
 export default function AdressesTab({
   addresses,
 }: {

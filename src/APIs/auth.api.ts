@@ -4,9 +4,8 @@ import {
   ResetPasswordData,
   SignupData,
   UpdatePasswordData,
-  UpdateUserData,
-  VerifyResetCodeData,
 } from "@/types/auth.type";
+import { UpdateUserData } from "@/types/profile.type";
 
 export async function updateLoggedUserPassword({
   data,
@@ -143,7 +142,7 @@ export async function postSignup(
 }
 
 export async function postVerifyCode(
-  data: VerifyResetCodeData,
+  data: string,
 ): Promise<ApiResponse> {
   try {
     const res = await fetch(process.env.NEXT_PUBLIC_POST_VERIFYCODE, {
@@ -151,7 +150,7 @@ export async function postVerifyCode(
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ resetCode: data }),
     });
     const result = await res.json();
 

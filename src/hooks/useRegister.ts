@@ -3,9 +3,9 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toastError, toastSuccess } from "@/lib/toast";
-import { registerSchema } from "@/schema/register.schema";
 import { postSignup } from "@/APIs/auth.api";
 import { SignupData } from "@/types/auth.type";
+import { registerSchema } from "@/schema/auth.schema";
 
 export function useRegister() {
   const router = useRouter();

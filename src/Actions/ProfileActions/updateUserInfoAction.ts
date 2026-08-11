@@ -1,7 +1,7 @@
 "use server";
 import { updateUserData } from "@/APIs/auth.api";
 import { ApiResponse } from "@/types/api.types";
-import { UpdateUserData } from "@/types/auth.type";
+import { UpdateUserData } from "@/types/profile.type";
 import { getMyToken } from "@/utilities/token";
 
 export async function updateUserInfoAction(data: UpdateUserData): Promise<ApiResponse> {

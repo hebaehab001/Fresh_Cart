@@ -2,9 +2,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toastError, toastSuccess } from "@/lib/toast";
-import { updateLoggedUserPasswordSchema } from "@/schema/updateLoggedUserPassword.schema";
 import { updateLoggedUserPasswordAction } from "@/Actions/ProfileActions/updateLoggedUserPasswordAction";
 import { UpdatePasswordData } from "@/types/auth.type";
+import { updateLoggedUserPasswordSchema } from "@/schema/auth.schema";
 export function useEditPassword() {
     const form = useForm({
       resolver: zodResolver(updateLoggedUserPasswordSchema),

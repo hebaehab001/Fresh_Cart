@@ -3,9 +3,9 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toastError, toastSuccess } from "@/lib/toast";
-import { ResetPasswordSchema } from "@/schema/resetPassword.schema";
 import { ResetPasswordData } from "@/types/auth.type";
 import { updateUserPassword } from "@/APIs/auth.api";
+import { ResetPasswordSchema } from "@/schema/auth.schema";
 export function useResetPassword() {
   const router = useRouter();
   const form = useForm({

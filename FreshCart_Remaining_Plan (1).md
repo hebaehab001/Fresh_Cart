@@ -8,7 +8,9 @@
 
 These are small, mechanical, and clear existing loose ends rather than adding new surface area. Do these before anything else so they stop nagging at you.
 
-- [ ] **A1. Product card `priority` for LCP** *(~20 min)*
+github: git checkout -b chore/phase-a-technical-debt
+
+- [done] **A1. Product card `priority` for LCP** *(~20 min)*
   - File: `src/components/layout/Common/Card/ProductsCard.tsx`
   - Add `priority?: boolean` prop, pass to internal `<Image priority={priority} />`
   - In brand/category detail pages, pass `priority={index < 5}` on first row
@@ -19,7 +21,7 @@ These are small, mechanical, and clear existing loose ends rather than adding ne
   - Type the callbacks (session, jwt) properly
   - Done when: file is `.ts`, `tsc --noEmit` clean
 
-- [ ] **A3. Merge auth Zod schemas into one file** *(~30 min)*
+- [done] **A3. Merge auth Zod schemas into one file** *(~30 min)*
   - Files: `src/schema/login.schema.ts`, `verifyPassword.schema.ts`, likely `register.schema.ts`, `updateLoggedUserPassword.schema.ts`, `EditProfile.schema.ts`
   - Merge into `src/schema/auth.schema.ts`, keep separate exported consts per schema
   - Done when: one file, all imports updated, `tsc --noEmit` clean
@@ -39,6 +41,8 @@ These are small, mechanical, and clear existing loose ends rather than adding ne
 ## PHASE B — Structure + design consistency (do second, ~6-9 hours)
 
 This phase exists because Phase C (dark mode especially) depends on it. Do this before dark mode, not during — fixing hardcoded styles while also debugging theme-switching is harder than fixing them once, cleanly.
+
+github: git checkout -b refactor/phase-b-design-system
 
 - [ ] **B1. Split forms into a consistent folder structure** *(~1.5-2 hours)*
   - Decide one convention, e.g.: `components/forms/{FeatureName}/{FeatureName}Form.tsx` + co-located hook reference

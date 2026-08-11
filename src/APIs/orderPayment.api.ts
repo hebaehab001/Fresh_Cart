@@ -1,9 +1,9 @@
-import { ShippingAddress } from "@/types/addresses.type";
 import {
   ApiDataParams,
   ApiResponse,
   OrderApiResponse,
 } from "@/types/api.types";
+import { ShippingAddress } from "@/types/profile.type";
 
 // Cash Payment
 export async function postCashPayment({

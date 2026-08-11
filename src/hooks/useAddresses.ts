@@ -2,12 +2,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toastSuccess, toastError } from "@/lib/toast";
-import { ShippingAddress } from "@/types/addresses.type";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postNewAddresseAction } from "@/Actions/ProfileActions/postNewAddresseAction";
-import { NewAddressesSchema } from "@/schema/NewAddresses.schema";
 import { removeAddressAction } from "@/Actions/ProfileActions/removeAddressAction";
+import { NewAddressesSchema } from "@/schema/profile.schema";
+import { ShippingAddress } from "@/types/profile.type";
 export function useAddresses() {
   const router = useRouter();
   const [open, setOpen] = useState(false);

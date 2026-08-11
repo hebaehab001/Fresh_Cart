@@ -1,10 +1,10 @@
-import { ShippingAddress } from "./addresses.type";
 import { Brand } from "./brands.type";
 import { CartData } from "./cart.type";
 import { Category } from "./categories.type";
 import { MetaDataResponse } from "./common.type";
 import { Order } from "./orders.type";
 import { Product } from "./product.type";
+import { ShippingAddress } from "./profile.type";
 
 export type ApiResponse = {
   session?: any;

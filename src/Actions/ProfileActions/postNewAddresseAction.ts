@@ -1,6 +1,6 @@
 "use server";
 import { postNewAddress } from "@/APIs/addresses.api";
-import { ShippingAddress } from "@/types/addresses.type";
+import { ShippingAddress } from "@/types/profile.type";
 import { getMyToken } from "@/utilities/token";
 
 export async function postNewAddresseAction(data: ShippingAddress) {

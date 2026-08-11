@@ -1,7 +1,7 @@
 "use server";
 import { postCashPayment } from "@/APIs/orderPayment.api";
-import { ShippingAddress } from "@/types/addresses.type";
 import { ApiResponse } from "@/types/api.types";
+import { ShippingAddress } from "@/types/profile.type";
 import { getMyToken } from "@/utilities/token";
 
 export async function cashPaymentAction(id:string, data:ShippingAddress): Promise<ApiResponse> {

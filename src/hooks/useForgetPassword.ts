@@ -1,12 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { verifyPasswordSchema } from "@/schema/verifyPassword.schema";
 import { ForgetPasswordData } from "@/types/auth.type";
 import { PostForgotPassword, postVerifyCode } from "@/APIs/auth.api";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toastError, toastSuccess } from "@/lib/toast";
+import { verifyEmailSchema } from "@/schema/auth.schema";
 export function useForgetPassword() {
   const [Codevalue, setCodeValue] = useState("");
   const [Emailvalue, setEmailvalue] = useState("");
@@ -18,7 +18,7 @@ export function useForgetPassword() {
     defaultValues: {
       email: "",
     },
-    resolver: zodResolver(verifyPasswordSchema),
+    resolver: zodResolver(verifyEmailSchema),
   });
   const {
     formState: { isSubmitting },
@@ -56,7 +56,7 @@ export function useForgetPassword() {
   async function handleVerfiyCode() {
     setIsVerifying(true);
     try {
-      const data = await postVerifyCode({ resetCode: Codevalue });
+      const data = await postVerifyCode( Codevalue);
       if (data?.success) {
         toastSuccess(data.message);
         router.push("/reset-password");

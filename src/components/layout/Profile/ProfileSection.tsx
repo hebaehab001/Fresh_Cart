@@ -7,7 +7,7 @@ import { Tabs,TabsList, TabsTrigger } from "@/components/ui/tabs";
 import EditProfileTab from "./EditProfileTab";
 import AdressesTab from "./AdressesTab";
 import EditPasswordTab from "./EditPasswordTab";
-import { ShippingAddress } from "@/types/addresses.type";
+import { ShippingAddress } from "@/types/profile.type";
 const tabs = [
   {
     name: "Edit Profile",

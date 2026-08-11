@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { loginSchema } from "@/schema/login.schema";
 import { LoginCredentials } from "@/types/auth.type";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toastError, toastSuccess } from "@/lib/toast";
+import { loginSchema } from "@/schema/auth.schema";
 
 export function useLogin() {
   const router = useRouter();

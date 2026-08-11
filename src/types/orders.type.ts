@@ -1,5 +1,5 @@
-import { ShippingAddress } from "./addresses.type";
 import { Product } from "./product.type";
+import { ShippingAddress } from "./profile.type";
 
 export interface OrderItem {
   count: number;

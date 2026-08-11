@@ -5,7 +5,7 @@ import { cartContext } from "@/Context/CartContextProvider";
 import { cashPaymentAction } from "@/Actions/PaymentActions/cashPaymentAction";
 import { onlinePaymentAction } from "@/Actions/PaymentActions/onlinePaymentAction";
 import { toastSuccess, toastError } from "@/lib/toast";
-import { ShippingAddress } from "@/types/addresses.type";
+import { ShippingAddress } from "@/types/profile.type";
 
 export function usePayment() {
   const { cartId, afterPayment } = useContext(cartContext);

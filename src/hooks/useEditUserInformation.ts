@@ -2,11 +2,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toastError, toastSuccess } from "@/lib/toast";
-import { EditProfileSchema } from "@/schema/EditProfile.schema";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { updateUserInfoAction } from "@/Actions/ProfileActions/updateUserInfoAction";
-import { UpdateUserData } from "@/types/auth.type";
+import { EditProfileSchema } from "@/schema/profile.schema";
+import { UpdateUserData } from "@/types/profile.type";
 export function useEditUserInformation() {
   const { data: session, update } = useSession();
   const form = useForm({
@@ -34,6 +34,7 @@ export function useEditUserInformation() {
     try {
       const data = await updateUserInfoAction({
         name: values.name,
+        email:"",
         phone: values.phone,
       });
       if (data?.success) {

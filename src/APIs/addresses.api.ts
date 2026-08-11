@@ -1,10 +1,10 @@
-import {ShippingAddress } from "@/types/addresses.type";
 import {
   ApiDataParams,
   ApiResponse,
   ApiParams,
   AddressesApiResponse,
 } from "@/types/api.types";
+import { ShippingAddress } from "@/types/profile.type";
 
 // Add new Address
 export async function postNewAddress({

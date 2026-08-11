@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import LoadingBtn from "@/components/layout/Buttons/LoadingBtn";
 import { usePayment } from "@/hooks/usePayment";
-import { ShippingAddress } from "@/types/addresses.type";
 import { toastError } from "@/lib/toast";
 import Image from "next/image";
+import { ShippingAddress } from "@/types/profile.type";
 export default function page() {
   const { cashPayment, onlinePayment, isProcessing } = usePayment();
   const details = useRef<HTMLInputElement>(null);
