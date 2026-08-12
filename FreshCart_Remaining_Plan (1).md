@@ -26,7 +26,7 @@ github: git checkout -b chore/phase-a-technical-debt
   - Merge into `src/schema/auth.schema.ts`, keep separate exported consts per schema
   - Done when: one file, all imports updated, `tsc --noEmit` clean
 
-- [ ] **A4. Add validation error messages to inputs missing them** *(~30-45 min)*
+- [done] **A4. Add validation error messages to inputs missing them** *(~30-45 min)*
   - Audit forms for missing/generic Zod error messages (e.g. "Required" vs "Please enter your email")
   - Done when: every required field has a specific, human-readable error message
 
@@ -91,7 +91,7 @@ Don't do these sequentially just because they're listed. Pick based on genuine i
 - [ ] **C9. Server vs client rendering audit** *(~2-3 hours)* — per your diagram: confirm pages that could be server components aren't unnecessarily `"use client"`; you already did this correctly for `ProductSectionServer`, extend the same review to brand/category/order pages
 - [ ] **C10. API caching strategy review** *(~2-3 hours)* — confirm `next: { revalidate }` is set consistently across all API functions, decide real revalidate windows per resource type (products vs categories vs user-specific data)
 - [ ] **C11. TypeScript types completeness audit** *(~2 hours)* — grep for `any`, confirm all API response shapes are typed
-
+- []  **C12: "Migrate review/payment forms from manual ref/state validation to Zod + RHF, for consistency with the rest of the app"**
 ---
 
 ## PHASE D — Big, expensive, genuinely optional (do only if C is done and you still want to)

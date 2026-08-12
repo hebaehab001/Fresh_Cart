@@ -29,7 +29,14 @@ export default function AdressesTab({
 }: {
   addresses: ShippingAddress[];
 }) {
-  const { open, setOpen, handleDeleteAddress, handleNewAddresses, form, isSubmitting } = useAddresses();
+  const {
+    open,
+    setOpen,
+    handleDeleteAddress,
+    handleNewAddresses,
+    form,
+    isSubmitting,
+  } = useAddresses();
   return (
     <TabsContent
       className="h-full w-full flex flex-col gap-6"
@@ -114,14 +121,14 @@ export default function AdressesTab({
                   )}
                 />
                 <LoadingBtn
-                                isSubmitting={isSubmitting}
-                                type="submit"
-                                variant="primary"
-                                size="lg"
-                                className="w-full text-lg"
+                  isSubmitting={isSubmitting}
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full text-lg"
                   loadingTitle=" Saving..."
                   title="Add Address"
-                              />
+                />
               </form>
             </Form>
           </DialogContent>

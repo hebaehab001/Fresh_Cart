@@ -1,14 +1,30 @@
 import * as z from "zod";
 
 export const EditProfileSchema = z.object({
-  name: z.string().min(4, "min length 4").max(20, "max length 20"),
-  email: z.email("invalid email"),
-  phone: z.string().regex(/^01[0125][0-9]{8}$/),
+  name: z
+    .string()
+    .min(4, "Name must be at least 4 characters")
+    .max(20, "Name must be at most 20 characters"),
+  email: z.email("Enter a valid email address").trim(),
+  phone: z
+    .string()
+    .regex(/^01[0125][0-9]{8}$/, "Enter a valid Egyptian phone number"),
 });
 
 export const NewAddressesSchema = z.object({
-  name: z.string().min(4, "min length 4").max(20, "max length 20"),
-  details: z.string().min(10, "min length 10").max(100, "max length 100"),
-  phone: z.string().regex(/^01[0125][0-9]{8}$/),
-  city: z.string().min(2, "min length 2").max(50, "max length 50"),
+  name: z
+    .string()
+    .min(4, "Name must be at least 4 characters")
+    .max(20, "Name must be at most 20 characters"),
+  details: z
+    .string()
+    .min(10, "Please provide more detail (at least 10 characters)")
+    .max(100, "Details must be under 100 characters"),
+  phone: z
+    .string()
+    .regex(/^01[0125][0-9]{8}$/, "Enter a valid Egyptian phone number"),
+  city: z
+    .string()
+    .min(2, "City name is too short")
+    .max(50, "City name is too long"),
 });

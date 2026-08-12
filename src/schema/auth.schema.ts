@@ -1,55 +1,56 @@
 import * as z from "zod";
 
+const passwordPolicy = z
+  .string()
+  .min(8, "Password must be at least 8 characters long")
+  .max(20, "Password must be at most 20 characters long")
+  .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+  .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+  .regex(/[0-9]/, "Password must contain at least one number")
+  .regex(
+    /[^A-Za-z0-9]/,
+    "Password must contain at least one special character",
+  );
+
 export const loginSchema = z.object({
-  email: z.email("invalid email"),
-  password: z.string().min(6, "min length 6").max(20, "max length 20"),
+  email: z.email("Enter a valid email address").trim(),
+  password: passwordPolicy,
 });
 
 export const registerSchema = z
   .object({
-    name: z.string().min(4, "min length 4").max(20, "max length 20"),
-    email: z.email("invalid email"),
-    password: z.string().min(6, "min length 6").max(20, "max length 20"),
-    rePassword: z.string().min(6, "min length 6").max(20, "max length 20"),
-    phone: z.string().regex(/^01[0125][0-9]{8}$/),
+    name: z
+      .string()
+      .min(4, "Name must be at least 4 characters")
+      .max(20, "Name must be at most 20 characters"),
+    email: z.email("Enter a valid email address").trim(),
+    password: passwordPolicy,
+    rePassword: z.string(),
+    phone: z
+      .string()
+      .regex(/^01[0125][0-9]{8}$/, "Enter a valid Egyptian phone number"),
   })
-  .refine(
-    function (object) {
-      if (object.password === object.rePassword) {
-        return true;
-      }
-      return false;
-    },
-    {
-      path: ["rePassword"],
-      error: "password doesn't match",
-    },
-  );
+  .refine((data) => data.password === data.rePassword, {
+    path: ["rePassword"],
+    message: "Passwords don't match",
+  });
 
 export const verifyEmailSchema = z.object({
-  email: z.email("invalid email"),
+  email: z.email("Enter a valid email address").trim(),
 });
 
 export const updateLoggedUserPasswordSchema = z
   .object({
-    currentPassword: z.string().min(6, "min length 6").max(20, "max length 20"),
-    password: z.string().min(6, "min length 6").max(20, "max length 20"),
-    rePassword: z.string().min(6, "min length 6").max(20, "max length 20"),
+    currentPassword: z.string().min(1, "Current password is required"),
+    password: passwordPolicy,
+    rePassword: z.string(),
   })
-  .refine(
-    function (object) {
-      if (object.password === object.rePassword) {
-        return true;
-      }
-      return false;
-    },
-    {
-      path: ["rePassword"],
-      error: "password doesn't match",
-    },
-  );
+  .refine((data) => data.password === data.rePassword, {
+    path: ["rePassword"],
+    message: "Passwords don't match",
+  });
 
 export const ResetPasswordSchema = z.object({
-  email: z.email("invalid email"),
-  newPassword: z.string().min(6, "min length 6").max(20, "max length 20"),
+  email: z.email("Enter a valid email address").trim(),
+  newPassword: passwordPolicy,
 });
