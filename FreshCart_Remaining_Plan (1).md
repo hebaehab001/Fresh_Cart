@@ -30,7 +30,7 @@ github: git checkout -b chore/phase-a-technical-debt
   - Audit forms for missing/generic Zod error messages (e.g. "Required" vs "Please enter your email")
   - Done when: every required field has a specific, human-readable error message
 
-- [ ] **A5. Add an error boundary component** *(~30 min)*
+- [done] **A5. Add an error boundary component** *(~30 min)*
   - Create `error.tsx` at key route segments (at minimum: root `app/error.tsx`, and one per major route if time allows)
   - Done when: a thrown error in a page shows a graceful fallback, not a blank crash
 

@@ -6,10 +6,14 @@ import { getProductById } from "@/APIs/product.api";
 import StarRating from "@/components/layout/reviews/StarRating";
 import { getProductReviews } from "@/APIs/reviews.api";
 import ProductReviewsSection from "@/components/layout/reviews/ProductReviewsSection";
+import { notFound } from "next/navigation";
 
 export default async function ProductDetails({ params }:PagePropsParams) {
   const { id } = await params;
   const { data } = await getProductById(id);
+  if (!data) {
+    notFound();
+  }
   const { data: initialReviews } = await getProductReviews(id);
 
   return (

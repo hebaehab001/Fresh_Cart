@@ -4,12 +4,16 @@ import NoProducts from "@/components/layout/Common/NoProducts/NoProducts";
 import { PagePropsParams } from "@/types/common.type";
 import { getCategoriesById } from "@/APIs/category.api";
 import { getAllProducts } from "@/APIs/product.api";
-export default async function page({ params }:PagePropsParams) {
+import { notFound } from "next/navigation";
+export default async function page({ params }: PagePropsParams) {
   const { id } = await params;
   const [{ data: products }, { data: category }] = await Promise.all([
     getAllProducts(),
     getCategoriesById(id),
   ]);
+  if (!category) {
+    notFound();
+  }
   const filteredProducts = products.filter(
     (product) => product.category._id === id,
   );
@@ -71,8 +75,12 @@ export default async function page({ params }:PagePropsParams) {
             <NoProducts text={`No products in ${category.name}`} />
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 ">
-                  {filteredProducts.map((product, index) => (
-                <ProductsCard key={product._id} product={product} priority={index < 2} />
+              {filteredProducts.map((product, index) => (
+                <ProductsCard
+                  key={product._id}
+                  product={product}
+                  priority={index < 2}
+                />
               ))}
             </div>
           )}

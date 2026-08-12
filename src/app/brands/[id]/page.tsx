@@ -4,12 +4,16 @@ import NoProducts from "@/components/layout/Common/NoProducts/NoProducts";
 import { PagePropsParams } from "@/types/common.type";
 import { getBrandById } from "@/APIs/brand.api";
 import { getAllProducts } from "@/APIs/product.api";
-export default async function page({ params }:PagePropsParams) {
+import { notFound } from "next/navigation";
+export default async function page({ params }: PagePropsParams) {
   const { id } = await params;
   const [{ data: products }, { data: brand }] = await Promise.all([
     getAllProducts(),
     getBrandById(id),
   ]);
+  if (!brand) {
+    notFound();
+  }
   const filteredProducts = products.filter(
     (product) => product.brand._id === id,
   );
@@ -67,9 +71,13 @@ export default async function page({ params }:PagePropsParams) {
           ) : filteredProducts.length === 0 ? (
             <NoProducts text={`No products in ${brand.name}`} />
           ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
               {filteredProducts.map((product, index) => (
-                <ProductsCard key={product._id} product={product} priority={index < 2} />
+                <ProductsCard
+                  key={product._id}
+                  product={product}
+                  priority={index < 2}
+                />
               ))}
             </div>
           )}
